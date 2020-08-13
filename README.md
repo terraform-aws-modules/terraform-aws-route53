@@ -86,7 +86,7 @@ Sometimes you need to have a way to create resources conditionally but Terraform
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12.6, < 0.14 |
-| aws | ~> 2.49 |
+| aws | >= 2.49, < 4.0 |
 
 ## Providers
 
