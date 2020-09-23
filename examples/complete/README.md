@@ -1,6 +1,6 @@
 # Route53 zones and records example
 
-Configuration in this directory creates Route53 zones and records.
+Configuration in this directory creates Route53 zones and records for various types of resources - S3 bucket, CloudFront distribution, static records.
 
 ## Usage
 
@@ -17,7 +17,10 @@ Note that this example may create resources which cost money. Run `terraform des
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.6, < 0.14 |
+| aws | >= 2.49, < 4.0 |
 
 ## Providers
 
@@ -29,6 +32,9 @@ No input.
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| this\_route53\_record\_fqdn | FQDN built using the zone domain and name |
+| this\_route53\_record\_name | The name of the record |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
