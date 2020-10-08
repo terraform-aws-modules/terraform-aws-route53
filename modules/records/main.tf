@@ -12,7 +12,7 @@ data "aws_route53_zone" "this" {
 }
 
 resource "aws_route53_record" "this" {
-  for_each = var.create && (var.zone_id != null || var.zone_name != null) ? local.recordsets : object({})
+  for_each = var.create && (var.zone_id != null || var.zone_name != null) ? local.recordsets : tomap({})
   #  for_each = local.recordsets
 
   zone_id = data.aws_route53_zone.this[0].zone_id
