@@ -22,6 +22,21 @@ module "zones" {
   }
 }
 
+module "zones" {
+  source = "../../modules/zones"
+
+  zones = {
+    "private-vpc-terraform-aws-modules-example.com" = {
+      comment = "private-vpc-terraform-aws-modules-examples.com"
+      vpc = {
+        vpc_id = "vpc-16f55d6e"
+      }
+      tags = {
+        Name = "private-vpc-terraform-aws-modules-examples.com"
+      }
+    }
+}
+
 module "records" {
   source = "../../modules/records"
 
