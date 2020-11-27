@@ -21,7 +21,7 @@ This module creates Route53 zones.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | create | Whether to create Route53 zone | `bool` | `true` | no |
-| zones | Map of Route53 zone parameters | `map(any)` | `{}` | no |
+| zones | Map of Route53 zone parameters | `any` | `{}` | no |
 
 ## Outputs
 
