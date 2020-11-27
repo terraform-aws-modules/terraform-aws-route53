@@ -7,7 +7,7 @@ module "zones" {
 
   zones = {
     "terraform-aws-modules-example.com" = {
-      comment = "terraform-aws-modules-examples.com (production)"
+      comment = "terraform-aws-modules-example.com (production)"
       tags = {
         Name = "terraform-aws-modules-example.com"
       }
@@ -19,24 +19,17 @@ module "zones" {
         Name = "app.terraform-aws-modules-example.com"
       }
     }
-  }
-}
 
-module "zones" {
-  source = "../../modules/zones"
-
-  zones = {
-    "private-vpc-terraform-aws-modules-example.com" = {
-      comment = "private-vpc-terraform-aws-modules-examples.com"
+    "private-vpc.terraform-aws-modules-example.com" = {
+      comment = "private-vpc.terraform-aws-modules-example.com"
       vpc = {
         vpc_id = module.vpc.vpc_id
       }
       tags = {
-        Name = "private-vpc-terraform-aws-modules-examples.com"
+        Name = "private-vpc.terraform-aws-modules-example.com"
       }
     }
-
-  depends_on = [module.vpc]
+  }
 }
 
 module "records" {
@@ -118,15 +111,6 @@ module "cloudfront" {
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "my-vpc"
+  name = "my-vpc-for-private-route53-zone"
   cidr = "10.0.0.0/16"
-
-  azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
-
-  tags = {
-    Terraform = "true"
-    Environment = "dev"
-  }
 }

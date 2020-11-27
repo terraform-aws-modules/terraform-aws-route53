@@ -6,6 +6,6 @@ variable "create" {
 
 variable "zones" {
   description = "Map of Route53 zone parameters"
-  type        = map(any)
+  type        = any
   default     = {}
 }
