@@ -7,21 +7,21 @@ This module creates Route53 zones.
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.6, < 0.14 |
-| aws | >= 2.49, < 4.0 |
+| terraform | >= 0.12.6 |
+| aws | >= 2.49 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 2.49, < 4.0 |
+| aws | >= 2.49 |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | create | Whether to create Route53 zone | `bool` | `true` | no |
-| zones | Map of Route53 zone parameters | `map(any)` | `{}` | no |
+| zones | Map of Route53 zone parameters | `any` | `{}` | no |
 
 ## Outputs
 

@@ -7,7 +7,7 @@ module "zones" {
 
   zones = {
     "terraform-aws-modules-example.com" = {
-      comment = "terraform-aws-modules-examples.com (production)"
+      comment = "terraform-aws-modules-example.com (production)"
       tags = {
         Name = "terraform-aws-modules-example.com"
       }
@@ -17,6 +17,16 @@ module "zones" {
       comment = "app.terraform-aws-modules-example.com"
       tags = {
         Name = "app.terraform-aws-modules-example.com"
+      }
+    }
+
+    "private-vpc.terraform-aws-modules-example.com" = {
+      comment = "private-vpc.terraform-aws-modules-example.com"
+      vpc = {
+        vpc_id = module.vpc.vpc_id
+      }
+      tags = {
+        Name = "private-vpc.terraform-aws-modules-example.com"
       }
     }
   }
@@ -96,4 +106,11 @@ module "cloudfront" {
   viewer_certificate = {
     cloudfront_default_certificate = true
   }
+}
+
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+
+  name = "my-vpc-for-private-route53-zone"
+  cidr = "10.0.0.0/16"
 }
