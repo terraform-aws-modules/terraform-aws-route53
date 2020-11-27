@@ -65,9 +65,14 @@ module "records" {
     },
   ]
 
-  depends_on = [module.zones] #, module.cloudfront, module.s3_bucket]
+  depends_on = [module.zones]
 }
 
+module "disabled_records" {
+  source = "../../modules/records"
+
+  create = false
+}
 
 #########
 # Extras - should be created in advance
