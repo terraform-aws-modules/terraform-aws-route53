@@ -30,4 +30,12 @@ resource "aws_route53_record" "this" {
       evaluate_target_health = lookup(each.value.alias, "evaluate_target_health", false)
     }
   }
+  
+  dynamic "weighted_routing_policy" {
+    for_each = length(keys(lookup(each.value, "weighted_routing_policy", {}))) == 0 ? [] : [true]
+
+    content {
+      weight                 = lookup(each.value.weighted_routing_policy,"weight", true)
+    }
+  }
 }
