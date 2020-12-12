@@ -35,7 +35,7 @@ resource "aws_route53_record" "this" {
     for_each = length(keys(lookup(each.value, "weighted_routing_policy", {}))) == 0 ? [] : [true]
 
     content {
-      weight                 = lookup(each.value.weighted_routing_policy,"weight", null)
+      weight                 = each.value.weighted_routing_policy.weight
     }
   }
 }
