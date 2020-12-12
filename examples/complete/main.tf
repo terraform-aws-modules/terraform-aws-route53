@@ -63,6 +63,7 @@ module "records" {
         zone_id = module.cloudfront.this_cloudfront_distribution_hosted_zone_id
       }
     },
+  ]
   
   depends_on = [module.zones]
 }
