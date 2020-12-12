@@ -63,19 +63,7 @@ module "records" {
         zone_id = module.cloudfront.this_cloudfront_distribution_hosted_zone_id
       }
     },
-    {
-      name    = "test"
-      type    = "CNAME"
-      ttl     = "5"
-      records = ["develop.abc.cmcloudlab912.info.",]
-
-      weighted_routing_policy = {
-      weight         = 90
-      }
-      set_identifier = "develop"
-    }
-  ]
-
+  
   depends_on = [module.zones]
 }
 
