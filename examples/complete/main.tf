@@ -72,7 +72,7 @@ module "records" {
         weight = 90
       }
       set_identifier = "develop"
-    },
+    }
   ]
 
   depends_on = [module.zones]
