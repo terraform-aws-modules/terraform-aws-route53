@@ -68,7 +68,6 @@ module "records" {
       type    = "CNAME"
       ttl     = "5"
       records = ["develop.abc.cmcloudlab912.info.", ]
-
       weighted_routing_policy = {
         weight = 90
       }
