@@ -71,7 +71,6 @@ module "records" {
       weighted_routing_policy = {
         weight = 90
       }
-      set_identifier = "develop"
     }
   ]
 
