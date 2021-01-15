@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v1.6.0"></a>
+## [v1.6.0] - 2021-01-15
+
+- feat: added weighted routing policy ([#23](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/23))
+
+
 <a name="v1.5.0"></a>
 ## [v1.5.0] - 2020-11-27
 
@@ -48,7 +54,8 @@ All notable changes to this project will be documented in this file.
 - Added route53 modules for zones and records
 
 
-[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.6.0...HEAD
+[v1.6.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.5.0...v1.6.0
 [v1.5.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.4.0...v1.5.0
 [v1.4.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.3.0...v1.4.0
 [v1.3.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.2.0...v1.3.0
