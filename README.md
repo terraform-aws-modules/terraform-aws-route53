@@ -6,6 +6,7 @@ There are independent submodules:
 
 * [zones](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/zones) - to manage Route53 zones
 * [records](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/records) - to manage Route53 records
+* [delegation_sets](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/delegation_sets) - to manage Route53 delegation sets
 
 This module currently does not have all arguments supported by the Terraform AWS providers.
 
@@ -17,9 +18,20 @@ Terraform 0.12. Pin module version to `~> v1.0`. Submit pull-requests to `master
 
 ## Usage
 
-### Create Route53 zones and records
+### Create Route53 delegation sets, zones and records
 
 ```hcl
+module "delegation_sets" {
+  source  = "terraform-aws-modules/route53/aws//modules/delegation_sets"
+  version = "~> 1.0"
+
+  delegation_sets = {
+    "dset_myapp.com" = {
+      reference_name = "myapp.com"
+    }
+  }
+}
+
 module "zones" {
   source  = "terraform-aws-modules/route53/aws//modules/zones"
   version = "~> 1.0"
@@ -33,9 +45,12 @@ module "zones" {
     }
 
     "myapp.com" = {
-      comment = "myapp.com"
+      comment           = "myapp.com"
+      delegation_set_id = module.delegation_sets.this_route53_delegation_set_id["dset_myapp.com"]
     }
   }
+
+  depends_on = [module.delegation_sets]
 }
 
 module "records" {
@@ -72,7 +87,7 @@ Note that `depends_on` in modules is available since Terraform 0.13.
 
 ## Examples
 
-* [Complete Route53 zones and records example](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/examples/complete) which shows how to create Route53 records of various types like S3 bucket and CloudFront distribution.
+* [Complete Route53 delegation sets, zones and records example](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/examples/complete) which shows how to create Route53 records of various types like S3 bucket and CloudFront distribution.
 
 
 ## Conditional creation

@@ -2,6 +2,16 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+module "delegation_sets" {
+  source = "../../modules/delegation_sets"
+
+  delegation_sets = {
+    "dset_app.terraform-aws-modules-example.com" = {
+      reference_name = "app.terraform-aws-modules-example.com"
+    }
+  }
+}
+
 module "zones" {
   source = "../../modules/zones"
 
@@ -14,7 +24,8 @@ module "zones" {
     }
 
     "app.terraform-aws-modules-example.com" = {
-      comment = "app.terraform-aws-modules-example.com"
+      comment           = "app.terraform-aws-modules-example.com"
+      delegation_set_id = module.delegation_sets.this_route53_delegation_set_id["dset_app.terraform-aws-modules-example.com"]
       tags = {
         Name = "app.terraform-aws-modules-example.com"
       }
@@ -30,6 +41,8 @@ module "zones" {
       }
     }
   }
+
+  depends_on = [module.delegation_sets]
 }
 
 module "records" {
