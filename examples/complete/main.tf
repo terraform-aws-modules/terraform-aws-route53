@@ -63,6 +63,26 @@ module "records" {
         zone_id = module.cloudfront.this_cloudfront_distribution_hosted_zone_id
       }
     },
+    {
+      name           = "test"
+      type           = "CNAME"
+      ttl            = "5"
+      records        = ["test.example.com."]
+      set_identifier = "test-primary"
+      weighted_routing_policy = {
+        weight = 90
+      }
+    },
+    {
+      name           = "test"
+      type           = "CNAME"
+      ttl            = "5"
+      records        = ["test2.example.com."]
+      set_identifier = "test-secondary"
+      weighted_routing_policy = {
+        weight = 10
+      }
+    }
   ]
 
   depends_on = [module.zones]
@@ -101,11 +121,9 @@ module "cloudfront" {
     }
   }
 
-  cache_behavior = {
-    default = {
-      target_origin_id       = "s3_bucket"
-      viewer_protocol_policy = "allow-all"
-    }
+  default_cache_behavior = {
+    target_origin_id       = "s3_bucket"
+    viewer_protocol_policy = "allow-all"
   }
 
   viewer_certificate = {

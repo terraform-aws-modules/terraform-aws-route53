@@ -1,6 +1,6 @@
 locals {
   # convert from list to map with unique keys
-  recordsets = { for rs in var.records : "${rs.name} ${rs.type}" => rs }
+  recordsets = { for rs in var.records : join(" ", compact(["${rs.name} ${rs.type}", lookup(rs, "set_identifier", "")])) => rs }
 }
 
 data "aws_route53_zone" "this" {
@@ -16,10 +16,11 @@ resource "aws_route53_record" "this" {
 
   zone_id = data.aws_route53_zone.this[0].zone_id
 
-  name    = each.value.name != "" ? "${each.value.name}.${data.aws_route53_zone.this[0].name}" : data.aws_route53_zone.this[0].name
-  type    = each.value.type
-  ttl     = lookup(each.value, "ttl", null)
-  records = lookup(each.value, "records", null)
+  name           = each.value.name != "" ? "${each.value.name}.${data.aws_route53_zone.this[0].name}" : data.aws_route53_zone.this[0].name
+  type           = each.value.type
+  ttl            = lookup(each.value, "ttl", null)
+  records        = lookup(each.value, "records", null)
+  set_identifier = lookup(each.value, "set_identifier", null)
 
   dynamic "alias" {
     for_each = length(keys(lookup(each.value, "alias", {}))) == 0 ? [] : [true]
@@ -28,6 +29,14 @@ resource "aws_route53_record" "this" {
       name                   = each.value.alias.name
       zone_id                = each.value.alias.zone_id
       evaluate_target_health = lookup(each.value.alias, "evaluate_target_health", false)
+    }
+  }
+
+  dynamic "weighted_routing_policy" {
+    for_each = length(keys(lookup(each.value, "weighted_routing_policy", {}))) == 0 ? [] : [true]
+
+    content {
+      weight = each.value.weighted_routing_policy.weight
     }
   }
 }
