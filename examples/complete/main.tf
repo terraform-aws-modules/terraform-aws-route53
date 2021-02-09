@@ -30,6 +30,10 @@ module "zones" {
       }
     }
   }
+
+  tags = {
+    ManagedBy = "Terraform"
+  }
 }
 
 module "records" {
