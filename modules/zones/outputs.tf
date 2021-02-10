@@ -7,3 +7,8 @@ output "this_route53_zone_name_servers" {
   description = "Name servers of Route53 zone"
   value       = { for k, v in aws_route53_zone.this : k => v.name_servers }
 }
+
+output "this_route53_zone_name" {
+  description = "Name of Route53 zone"
+  value       = { for k, v in aws_route53_zone.this : k => v.name }
+}
