@@ -21,8 +21,8 @@ This module creates Route53 zones.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | create | Whether to create Route53 zone | `bool` | `true` | no |
+| tags | Tags added to all zones. Will take precedence over tags from the 'zones' variable | `map(any)` | `{}` | no |
 | zones | Map of Route53 zone parameters | `any` | `{}` | no |
-| tags | Tags added to all zones. Will take precedence over tags from the `zones` variable | `map(any)` | `{}` | no |
 
 ## Outputs
 
