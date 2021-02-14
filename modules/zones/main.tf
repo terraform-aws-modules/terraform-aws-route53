@@ -14,5 +14,8 @@ resource "aws_route53_zone" "this" {
     }
   }
 
-  tags = lookup(each.value, "tags", null)
+  tags = merge(
+    lookup(each.value, "tags", {}),
+    var.tags
+  )
 }

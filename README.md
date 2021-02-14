@@ -36,6 +36,10 @@ module "zones" {
       comment = "myapp.com"
     }
   }
+
+  tags = {
+    ManagedBy = "Terraform"
+  }
 }
 
 module "records" {
