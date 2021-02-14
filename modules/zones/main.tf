@@ -6,7 +6,7 @@ resource "aws_route53_zone" "this" {
   force_destroy = lookup(each.value, "force_destroy", false)
 
   dynamic "vpc" {
-    for_each = length(keys(lookup(each.value, "vpc", {}))) == 0 ? [] : [lookup(each.value, "vpc", {})]
+    for_each = try(tolist(lookup(each.value, "vpc", [])), [lookup(each.value, "vpc", {})])
 
     content {
       vpc_id     = vpc.value.vpc_id
