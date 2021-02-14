@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v1.7.0"></a>
+## [v1.7.0] - 2021-02-14
+
+- feat: add global tags variable to zones ([#26](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/26))
+
+
 <a name="v1.6.0"></a>
 ## [v1.6.0] - 2021-01-15
 
@@ -54,7 +60,8 @@ All notable changes to this project will be documented in this file.
 - Added route53 modules for zones and records
 
 
-[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.7.0...HEAD
+[v1.7.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.6.0...v1.7.0
 [v1.6.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.5.0...v1.6.0
 [v1.5.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.4.0...v1.5.0
 [v1.4.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.3.0...v1.4.0
