@@ -16,6 +16,17 @@ This module creates DNS records in Route53 zone.
 |------|---------|
 | aws | >= 2.49 |
 
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_route53_record](https://registry.terraform.io/providers/hashicorp/aws/2.49/docs/resources/route53_record) |
+| [aws_route53_zone](https://registry.terraform.io/providers/hashicorp/aws/2.49/docs/data-sources/route53_zone) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -32,5 +43,4 @@ This module creates DNS records in Route53 zone.
 |------|-------------|
 | this\_route53\_record\_fqdn | FQDN built using the zone domain and name |
 | this\_route53\_record\_name | The name of the record |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
