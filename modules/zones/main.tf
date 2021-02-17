@@ -19,3 +19,22 @@ resource "aws_route53_zone" "this" {
     var.tags
   )
 }
+
+# If parent zone ID is provided, register delegation NS records in parent zone
+
+locals {
+  ns_zones = var.create ? ({ for zone, value in var.zones:
+    zone => ""
+    if lookup(value, "parent_id", null) != null
+  }) : {}
+}
+
+resource aws_route53_record ns_records {
+  for_each = var.create ? local.ns_zones : {}
+
+  zone_id = var.zones[each.key].parent_id
+  name = each.key
+  type = "NS"
+  ttl = lookup(var.zones[each.key], "ttl", 300)
+  records = aws_route53_zone.this[each.key].name_servers
+}

@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="v1.9.0"></a>
+## [v1.9.0] - 2021-02-17
+- feat: Allow automatic creation of delegation NS records in parent domain
+
 
 <a name="v2.0.0"></a>
 ## [v2.0.0] - 2021-04-26

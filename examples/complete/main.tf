@@ -2,7 +2,7 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-module "zones" {
+module "zone" {
   source = "../../modules/zones"
 
   zones = {
@@ -13,8 +13,19 @@ module "zones" {
       }
     }
 
+  tags = {
+    ManagedBy = "Terraform"
+  }
+}
+
+
+module "subzones" {
+  source = "../../modules/zones"
+
+  zones = {
     "app.terraform-aws-modules-example.com" = {
       comment = "app.terraform-aws-modules-example.com"
+      parent_id = module.zone.this_route53_zone_zone_id
       tags = {
         Name = "app.terraform-aws-modules-example.com"
       }
@@ -22,6 +33,7 @@ module "zones" {
 
     "private-vpc.terraform-aws-modules-example.com" = {
       comment = "private-vpc.terraform-aws-modules-example.com"
+      parent_id = module.zone.this_route53_zone_zone_id
       vpc = [
         {
           vpc_id = module.vpc.vpc_id
@@ -127,7 +139,7 @@ module "records" {
     }
   ]
 
-  depends_on = [module.zones]
+  depends_on = [module.zone]
 }
 
 module "disabled_records" {
