@@ -4,16 +4,14 @@ Terraform module which creates Route53 resources.
 
 There are independent submodules:
 
-* [zones](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/zones) - to manage Route53 zones
-* [records](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/records) - to manage Route53 records
+- [zones](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/zones) - to manage Route53 zones
+- [records](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/records) - to manage Route53 records
 
 This module currently does not have all arguments supported by the Terraform AWS providers.
-
 
 ## Terraform versions
 
 Terraform 0.12. Pin module version to `~> v1.0`. Submit pull-requests to `master` branch.
-
 
 ## Usage
 
@@ -73,37 +71,15 @@ module "records" {
 
 Note that `depends_on` in modules is available since Terraform 0.13.
 
-
 ## Examples
 
-* [Complete Route53 zones and records example](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/examples/complete) which shows how to create Route53 records of various types like S3 bucket and CloudFront distribution.
-
+- [Complete Route53 zones and records example](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/examples/complete) which shows how to create Route53 records of various types like S3 bucket and CloudFront distribution.
 
 ## Conditional creation
 
 Sometimes you need to have a way to create resources conditionally but Terraform does not allow to use `count` inside `module` block, so the solution is to specify argument `create`.
 
-
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Requirements
-
-| Name | Version |
-|------|---------|
-| terraform | >= 0.12.6, < 0.14 |
-| aws | >= 2.49, < 4.0 |
-
-## Providers
-
-No provider.
-
-## Inputs
-
-No input.
-
-## Outputs
-
-No output.
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Authors
