@@ -7,7 +7,7 @@ This module creates DNS records in Route53 zone.
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.6 |
+| terraform | >= 0.12.26 |
 | aws | >= 2.49 |
 
 ## Providers
