@@ -7,7 +7,7 @@ This module creates DNS records in Route53 zone.
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.6 |
+| terraform | >= 0.12.26 |
 | aws | >= 2.49 |
 
 ## Providers
@@ -24,8 +24,8 @@ No Modules.
 
 | Name |
 |------|
-| [aws_route53_record](https://registry.terraform.io/providers/hashicorp/aws/2.49/docs/resources/route53_record) |
-| [aws_route53_zone](https://registry.terraform.io/providers/hashicorp/aws/2.49/docs/data-sources/route53_zone) |
+| [aws_route53_record](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) |
+| [aws_route53_zone](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) |
 
 ## Inputs
 

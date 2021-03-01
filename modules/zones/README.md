@@ -7,7 +7,7 @@ This module creates Route53 zones.
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.6 |
+| terraform | >= 0.12.26 |
 | aws | >= 2.49 |
 
 ## Providers
@@ -24,7 +24,7 @@ No Modules.
 
 | Name |
 |------|
-| [aws_route53_zone](https://registry.terraform.io/providers/hashicorp/aws/2.49/docs/resources/route53_zone) |
+| [aws_route53_zone](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone) |
 
 ## Inputs
 
