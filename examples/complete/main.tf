@@ -91,6 +91,31 @@ module "records" {
       weighted_routing_policy = {
         weight = 10
       }
+    },
+    {
+      name            = "failover-primary"
+      type            = "A"
+      set_identifier  = "failover-primary"
+      health_check_id = aws_route53_health_check.failover.id
+      alias = {
+        name    = module.cloudfront.this_cloudfront_distribution_domain_name
+        zone_id = module.cloudfront.this_cloudfront_distribution_hosted_zone_id
+      }
+      failover_routing_policy = {
+        type = "PRIMARY"
+      }
+    },
+    {
+      name           = "failover-secondary"
+      type           = "A"
+      set_identifier = "failover-secondary"
+      alias = {
+        name    = module.s3_bucket.this_s3_bucket_website_domain
+        zone_id = module.s3_bucket.this_s3_bucket_hosted_zone_id
+      }
+      failover_routing_policy = {
+        type = "SECONDARY"
+      }
     }
   ]
 
@@ -106,6 +131,15 @@ module "disabled_records" {
 #########
 # Extras - should be created in advance
 #########
+
+resource "aws_route53_health_check" "failover" {
+  fqdn              = module.cloudfront.this_cloudfront_distribution_domain_name
+  port              = 443
+  type              = "HTTPS"
+  resource_path     = "/index.html"
+  failure_threshold = "3"
+  request_interval  = "30"
+}
 
 module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
