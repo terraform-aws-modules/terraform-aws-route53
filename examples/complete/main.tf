@@ -75,7 +75,7 @@ module "records" {
     {
       name           = "test"
       type           = "CNAME"
-      ttl            = "5"
+      ttl            = 5
       records        = ["test.example.com."]
       set_identifier = "test-primary"
       weighted_routing_policy = {
@@ -85,7 +85,7 @@ module "records" {
     {
       name           = "test"
       type           = "CNAME"
-      ttl            = "5"
+      ttl            = 5
       records        = ["test2.example.com."]
       set_identifier = "test-secondary"
       weighted_routing_policy = {
@@ -137,8 +137,8 @@ resource "aws_route53_health_check" "failover" {
   port              = 443
   type              = "HTTPS"
   resource_path     = "/index.html"
-  failure_threshold = "3"
-  request_interval  = "30"
+  failure_threshold = 3
+  request_interval  = 30
 }
 
 module "s3_bucket" {
