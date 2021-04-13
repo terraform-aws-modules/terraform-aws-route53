@@ -7,6 +7,15 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v1.10.0"></a>
+## [v1.10.0] - 2021-04-13
+
+- feat: Add support for failover_routing_policy and health_check_id ([#33](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/33))
+- chore: update documentation and pin `terraform_docs` version to avoid future changes ([#32](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/32))
+- fix: correct documentation based on update by `terraform_docs` ([#31](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/31))
+- chore: add ci-cd workflow for pre-commit checks ([#30](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/30))
+
+
 <a name="v1.9.0"></a>
 ## [v1.9.0] - 2021-02-20
 
@@ -69,10 +78,23 @@ All notable changes to this project will be documented in this file.
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2020-06-17
 
+- Merge pull request [#7](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/7) from terraform-aws-modules/terraform-provider-githubfile-1592425508189276000
+- [ci skip] Create "Makefile".
+- Merge pull request [#5](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/5) from terraform-aws-modules/terraform-provider-githubfile-1592425468664303000
+- Merge pull request [#2](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/2) from terraform-aws-modules/terraform-provider-githubfile-1592425468664875000
+- Merge pull request [#6](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/6) from terraform-aws-modules/terraform-provider-githubfile-1592425468664768000
+- Merge pull request [#3](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/3) from terraform-aws-modules/terraform-provider-githubfile-1592425468664901000
+- Merge pull request [#1](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/1) from terraform-aws-modules/terraform-provider-githubfile-1592425468664920000
+- [ci skip] Create ".pre-commit-config.yaml".
+- [ci skip] Create "LICENSE".
+- [ci skip] Create ".chglog/CHANGELOG.tpl.md".
+- [ci skip] Create ".gitignore".
+- [ci skip] Create ".editorconfig".
 - Added route53 modules for zones and records
 
 
-[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.9.0...HEAD
+[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.10.0...HEAD
+[v1.10.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.9.0...v1.10.0
 [v1.9.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.8.0...v1.9.0
 [v1.8.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.7.0...v1.8.0
 [v1.7.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.6.0...v1.7.0
