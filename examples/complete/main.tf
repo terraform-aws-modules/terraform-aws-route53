@@ -123,7 +123,6 @@ module "records" {
       set_identifier = "alternative-resource-name"
       alias = {
         name    = module.s3_bucket.this_s3_bucket_website_domain
-        zone_id = null
       }
     }
   ]
