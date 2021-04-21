@@ -28,7 +28,7 @@ resource "aws_route53_record" "this" {
 
     content {
       name                   = each.value.alias.name
-      zone_id                = each.value.alias.zone_id
+      zone_id                = try(each.value.alias.zone_id, null) != null ? each.value.alias.zone_id : data.aws_route53_zone.this[0].zone_id
       evaluate_target_health = lookup(each.value.alias, "evaluate_target_health", false)
     }
   }
