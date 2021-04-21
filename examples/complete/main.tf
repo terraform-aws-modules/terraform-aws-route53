@@ -116,6 +116,14 @@ module "records" {
       failover_routing_policy = {
         type = "SECONDARY"
       }
+    },
+    {
+      name           = "alternative-resource-name"
+      type           = "A"
+      set_identifier = "alternative-resource-name"
+      alias = {
+        name = module.s3_bucket.this_s3_bucket_website_domain
+      }
     }
   ]
 
