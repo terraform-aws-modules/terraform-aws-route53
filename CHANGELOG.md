@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v2.0.0"></a>
+## [v2.0.0] - 2021-04-26
+
+- feat: Shorten outputs (removing this_) ([#36](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/36))
+
+
 <a name="v1.11.0"></a>
 ## [v1.11.0] - 2021-04-21
 
@@ -99,7 +105,8 @@ All notable changes to this project will be documented in this file.
 - Added route53 modules for zones and records
 
 
-[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.11.0...HEAD
+[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.0.0...HEAD
+[v2.0.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.11.0...v2.0.0
 [v1.11.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.10.0...v1.11.0
 [v1.10.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.9.0...v1.10.0
 [v1.9.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.8.0...v1.9.0
