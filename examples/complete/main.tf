@@ -44,8 +44,8 @@ module "zones" {
 module "records" {
   source = "../../modules/records"
 
-  zone_name = keys(module.zones.this_route53_zone_zone_id)[0]
-  #  zone_id = module.zones.this_route53_zone_zone_id["terraform-aws-modules-example.com"]
+  zone_name = keys(module.zones.route53_zone_zone_id)[0]
+  #  zone_id = module.zones.route53_zone_zone_id["terraform-aws-modules-example.com"]
 
   records = [
     {
@@ -60,16 +60,16 @@ module "records" {
       name = "s3-bucket"
       type = "A"
       alias = {
-        name    = module.s3_bucket.this_s3_bucket_website_domain
-        zone_id = module.s3_bucket.this_s3_bucket_hosted_zone_id
+        name    = module.s3_bucket.s3_bucket_website_domain
+        zone_id = module.s3_bucket.s3_bucket_hosted_zone_id
       }
     },
     {
       name = "cloudfront"
       type = "A"
       alias = {
-        name    = module.cloudfront.this_cloudfront_distribution_domain_name
-        zone_id = module.cloudfront.this_cloudfront_distribution_hosted_zone_id
+        name    = module.cloudfront.cloudfront_distribution_domain_name
+        zone_id = module.cloudfront.cloudfront_distribution_hosted_zone_id
       }
     },
     {
@@ -98,8 +98,8 @@ module "records" {
       set_identifier  = "failover-primary"
       health_check_id = aws_route53_health_check.failover.id
       alias = {
-        name    = module.cloudfront.this_cloudfront_distribution_domain_name
-        zone_id = module.cloudfront.this_cloudfront_distribution_hosted_zone_id
+        name    = module.cloudfront.cloudfront_distribution_domain_name
+        zone_id = module.cloudfront.cloudfront_distribution_hosted_zone_id
       }
       failover_routing_policy = {
         type = "PRIMARY"
@@ -110,8 +110,8 @@ module "records" {
       type           = "A"
       set_identifier = "failover-secondary"
       alias = {
-        name    = module.s3_bucket.this_s3_bucket_website_domain
-        zone_id = module.s3_bucket.this_s3_bucket_hosted_zone_id
+        name    = module.s3_bucket.s3_bucket_website_domain
+        zone_id = module.s3_bucket.s3_bucket_hosted_zone_id
       }
       failover_routing_policy = {
         type = "SECONDARY"
@@ -122,7 +122,7 @@ module "records" {
       type           = "A"
       set_identifier = "alternative-resource-name"
       alias = {
-        name = module.s3_bucket.this_s3_bucket_website_domain
+        name = module.s3_bucket.s3_bucket_website_domain
       }
     }
   ]
@@ -141,7 +141,7 @@ module "disabled_records" {
 #########
 
 resource "aws_route53_health_check" "failover" {
-  fqdn              = module.cloudfront.this_cloudfront_distribution_domain_name
+  fqdn              = module.cloudfront.cloudfront_distribution_domain_name
   port              = 443
   type              = "HTTPS"
   resource_path     = "/index.html"
@@ -168,7 +168,7 @@ module "cloudfront" {
 
   origin = {
     s3_bucket = {
-      domain_name = module.s3_bucket.this_s3_bucket_bucket_regional_domain_name
+      domain_name = module.s3_bucket.s3_bucket_bucket_regional_domain_name
     }
   }
 
