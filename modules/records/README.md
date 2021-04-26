@@ -41,6 +41,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_this_route53_record_fqdn"></a> [this\_route53\_record\_fqdn](#output\_this\_route53\_record\_fqdn) | FQDN built using the zone domain and name |
-| <a name="output_this_route53_record_name"></a> [this\_route53\_record\_name](#output\_this\_route53\_record\_name) | The name of the record |
+| <a name="output_route53_record_fqdn"></a> [route53\_record\_fqdn](#output\_route53\_record\_fqdn) | FQDN built using the zone domain and name |
+| <a name="output_route53_record_name"></a> [route53\_record\_name](#output\_route53\_record\_name) | The name of the record |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
