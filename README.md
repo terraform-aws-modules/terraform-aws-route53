@@ -11,7 +11,7 @@ This module currently does not have all arguments supported by the Terraform AWS
 
 ## Terraform versions
 
-Terraform 0.12. Pin module version to `~> v1.0`. Submit pull-requests to `master` branch.
+Terraform 0.12. Pin module version to `~> 2.0`. Submit pull-requests to `master` branch.
 
 ## Usage
 
@@ -20,7 +20,7 @@ Terraform 0.12. Pin module version to `~> v1.0`. Submit pull-requests to `master
 ```hcl
 module "zones" {
   source  = "terraform-aws-modules/route53/aws//modules/zones"
-  version = "~> 1.0"
+  version = "~> 2.0"
 
   zones = {
     "terraform-aws-modules-example.com" = {
@@ -42,9 +42,9 @@ module "zones" {
 
 module "records" {
   source  = "terraform-aws-modules/route53/aws//modules/records"
-  version = "~> 1.0"
+  version = "~> 2.0"
 
-  zone_name = keys(module.zones.this_route53_zone_zone_id)[0]
+  zone_name = keys(module.zones.route53_zone_zone_id)[0]
 
   records = [
     {
