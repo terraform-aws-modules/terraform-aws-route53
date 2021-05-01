@@ -7,12 +7,6 @@ There are independent submodules:
 - [zones](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/zones) - to manage Route53 zones
 - [records](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/records) - to manage Route53 records
 
-This module currently does not have all arguments supported by the Terraform AWS providers.
-
-## Terraform versions
-
-Terraform 0.12. Pin module version to `~> 2.0`. Submit pull-requests to `master` branch.
-
 ## Usage
 
 ### Create Route53 zones and records
@@ -84,8 +78,8 @@ Sometimes you need to have a way to create resources conditionally but Terraform
 
 ## Authors
 
-Module managed by [Anton Babenko](https://github.com/antonbabenko).
+Module is maintained by [Anton Babenko](https://github.com/antonbabenko) with help from [these awesome contributors](https://github.com/terraform-aws-modules/terraform-aws-route53/graphs/contributors).
 
 ## License
 
-Apache 2 Licensed. See LICENSE for full details.
+Apache 2 Licensed. See [LICENSE](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/LICENSE) for full details.
