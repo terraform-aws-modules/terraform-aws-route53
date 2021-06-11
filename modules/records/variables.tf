@@ -1,9 +1,3 @@
-variable "create" {
-  description = "Whether to create DNS records"
-  type        = bool
-  default     = true
-}
-
 variable "zone_id" {
   description = "ID of DNS zone"
   type        = string

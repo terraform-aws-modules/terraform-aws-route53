@@ -1,18 +1,19 @@
-resource "aws_route53_zone" "this" {
-  for_each = var.create ? var.zones : tomap({})
+
+module zone {
+  source = "../zone"
+  for_each = var.zones
 
   name          = each.key
   comment       = lookup(each.value, "comment", null)
   force_destroy = lookup(each.value, "force_destroy", false)
 
-  dynamic "vpc" {
-    for_each = try(tolist(lookup(each.value, "vpc", [])), [lookup(each.value, "vpc", {})])
+  vpc = lookup(each.value, "vpc", [])
+  records = lookup(each.value, "records", {})
 
-    content {
-      vpc_id     = vpc.value.vpc_id
-      vpc_region = lookup(vpc.value, "vpc_region", null)
-    }
-  }
+  parent_id = lookup(each.value, "parent_id", null)
+  parent_name = lookup(each.value, "parent_name", null)
+  parent_is_private = lookup(each.value, "parent_is_private", false)
+  ns_ttl = lookup(each.value, "ns_ttl", 300)
 
   tags = merge(
     lookup(each.value, "tags", {}),

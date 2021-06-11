@@ -1,5 +1,17 @@
 # Route53 Terraform module
 
+This module is derived from [the one with same name maintained by Anton Babenko](https://github.com/terraform-aws-modules/terraform-aws-route53).
+
+In this version, the 'zone' and 'record' modules allow to create a single
+zone and a single record. The 'zones' and 'records' modules  are just calling
+the se modules with for_each loops. This provides a much simpler code as
+it avoids having loops and resource indexes everywhere.
+
+Of course, using loops (for_each/count) on modules is possible since terraform
+0.13 only. So, this module cannot work with a terraform version lower than 0.13.
+
+----------------- Original documentation -----------------------
+
 Terraform module which creates Route53 resources.
 
 There are independent submodules:
