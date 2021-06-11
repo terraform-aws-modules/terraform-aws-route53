@@ -2,6 +2,8 @@
 
 Configuration in this directory creates Route53 zones and records for various types of resources - S3 bucket, CloudFront distribution, static records.
 
+Also, there is a solution for Terragrunt users.
+
 ## Usage
 
 To run this example you need to execute:
@@ -35,6 +37,7 @@ Note that this example may create resources which cost money. Run `terraform des
 | <a name="module_cloudfront"></a> [cloudfront](#module\_cloudfront) | terraform-aws-modules/cloudfront/aws |  |
 | <a name="module_disabled_records"></a> [disabled\_records](#module\_disabled\_records) | ../../modules/records |  |
 | <a name="module_records"></a> [records](#module\_records) | ../../modules/records |  |
+| <a name="module_records_with_terragrunt"></a> [records\_with\_terragrunt](#module\_records\_with\_terragrunt) | ../../modules/records |  |
 | <a name="module_s3_bucket"></a> [s3\_bucket](#module\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws |  |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws |  |
 | <a name="module_vpc2"></a> [vpc2](#module\_vpc2) | terraform-aws-modules/vpc/aws |  |

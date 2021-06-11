@@ -130,6 +130,34 @@ module "records" {
   depends_on = [module.zones]
 }
 
+module "records_with_terragrunt" {
+  source = "../../modules/records"
+
+  zone_name = keys(module.zones.route53_zone_zone_id)[0]
+
+  # Terragrunt has a bug (https://github.com/gruntwork-io/terragrunt/issues/1211) that requires `records` to be wrapped with `jsonencode()`
+  records = jsonencode([
+    {
+      name = "new"
+      type = "A"
+      ttl  = 3600
+      records = [
+        "10.10.10.10",
+      ]
+    },
+    {
+      name = "s3-bucket-new"
+      type = "A"
+      alias = {
+        name    = module.s3_bucket.s3_bucket_website_domain
+        zone_id = module.s3_bucket.s3_bucket_hosted_zone_id
+      }
+    }
+  ])
+
+  depends_on = [module.zones]
+}
+
 module "disabled_records" {
   source = "../../modules/records"
 
