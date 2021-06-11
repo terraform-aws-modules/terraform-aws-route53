@@ -1,6 +1,10 @@
 locals {
+  # terragrunt users have to provide `records` as jsonencode()'d string.
+  # See details: https://github.com/gruntwork-io/terragrunt/issues/1211
+  records = try(jsondecode(var.records), var.records)
+
   # convert from list to map with unique keys
-  recordsets = { for rs in var.records : join(" ", compact(["${rs.name} ${rs.type}", lookup(rs, "set_identifier", "")])) => rs }
+  recordsets = { for rs in local.records : join(" ", compact(["${rs.name} ${rs.type}", lookup(rs, "set_identifier", "")])) => rs }
 }
 
 data "aws_route53_zone" "this" {

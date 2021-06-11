@@ -14,7 +14,7 @@ This module creates DNS records in Route53 zone.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 2.49 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.28.0 |
 
 ## Modules
 
