@@ -7,6 +7,14 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v2.1.0"></a>
+## [v2.1.0] - 2021-06-11
+
+- feat: Added fix for records with terragrunt ([#42](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/42))
+- chore: update CI/CD to use stable `terraform-docs` release artifact and discoverable Apache2.0 license ([#38](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/38))
+- chore: Updated versions in README ([#37](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/37))
+
+
 <a name="v2.0.0"></a>
 ## [v2.0.0] - 2021-04-26
 
@@ -90,22 +98,11 @@ All notable changes to this project will be documented in this file.
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2020-06-17
 
-- Merge pull request [#7](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/7) from terraform-aws-modules/terraform-provider-githubfile-1592425508189276000
-- [ci skip] Create "Makefile".
-- Merge pull request [#5](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/5) from terraform-aws-modules/terraform-provider-githubfile-1592425468664303000
-- Merge pull request [#2](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/2) from terraform-aws-modules/terraform-provider-githubfile-1592425468664875000
-- Merge pull request [#6](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/6) from terraform-aws-modules/terraform-provider-githubfile-1592425468664768000
-- Merge pull request [#3](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/3) from terraform-aws-modules/terraform-provider-githubfile-1592425468664901000
-- Merge pull request [#1](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/1) from terraform-aws-modules/terraform-provider-githubfile-1592425468664920000
-- [ci skip] Create ".pre-commit-config.yaml".
-- [ci skip] Create "LICENSE".
-- [ci skip] Create ".chglog/CHANGELOG.tpl.md".
-- [ci skip] Create ".gitignore".
-- [ci skip] Create ".editorconfig".
 - Added route53 modules for zones and records
 
 
-[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.1.0...HEAD
+[v2.1.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.11.0...v2.0.0
 [v1.11.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.10.0...v1.11.0
 [v1.10.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.9.0...v1.10.0
