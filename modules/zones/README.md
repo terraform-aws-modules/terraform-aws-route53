@@ -14,7 +14,7 @@ This module creates Route53 zones.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.28.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 2.49 |
 
 ## Modules
 
