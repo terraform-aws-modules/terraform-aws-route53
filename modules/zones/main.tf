@@ -18,4 +18,10 @@ resource "aws_route53_zone" "this" {
     lookup(each.value, "tags", {}),
     var.tags
   )
+
+  lifecycle {
+    ignore_changes = [
+      vpc,
+    ]
+  }
 }
