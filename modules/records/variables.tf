@@ -16,6 +16,12 @@ variable "zone_name" {
   default     = null
 }
 
+variable "overide_zone_name" {
+  description = "Use different zone name or sub-domain."
+  type        = string
+  default     = ""
+}
+
 variable "private_zone" {
   description = "Whether Route53 zone is private or public"
   type        = bool

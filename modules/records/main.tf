@@ -20,10 +20,11 @@ resource "aws_route53_record" "this" {
 
   zone_id = data.aws_route53_zone.this[0].zone_id
 
-  name            = each.value.name != "" ? "${each.value.name}.${data.aws_route53_zone.this[0].name}" : data.aws_route53_zone.this[0].name
+  name            = var.overide_zone_name != "" && each.value.name != "" ? "${each.value.name}.${var.overide_zone_name}" : (each.value.name != "") ? "${each.value.name}.${data.aws_route53_zone.this[0].name}" : data.aws_route53_zone.this[0].name
   type            = each.value.type
   ttl             = lookup(each.value, "ttl", null)
   records         = lookup(each.value, "records", null)
+  allow_overwrite = lookup(each.value, "allow_overwrite", false)
   set_identifier  = lookup(each.value, "set_identifier", null)
   health_check_id = lookup(each.value, "health_check_id", null)
 
