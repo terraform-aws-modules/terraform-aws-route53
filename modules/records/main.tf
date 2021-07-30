@@ -20,12 +20,13 @@ resource "aws_route53_record" "this" {
 
   zone_id = data.aws_route53_zone.this[0].zone_id
 
-  name            = each.value.name != "" ? "${each.value.name}.${data.aws_route53_zone.this[0].name}" : data.aws_route53_zone.this[0].name
-  type            = each.value.type
-  ttl             = lookup(each.value, "ttl", null)
-  records         = lookup(each.value, "records", null)
-  set_identifier  = lookup(each.value, "set_identifier", null)
-  health_check_id = lookup(each.value, "health_check_id", null)
+  name                             = each.value.name != "" ? "${each.value.name}.${data.aws_route53_zone.this[0].name}" : data.aws_route53_zone.this[0].name
+  type                             = each.value.type
+  ttl                              = lookup(each.value, "ttl", null)
+  records                          = lookup(each.value, "records", null)
+  set_identifier                   = lookup(each.value, "set_identifier", null)
+  health_check_id                  = lookup(each.value, "health_check_id", null)
+  multivalue_answer_routing_policy = lookup(each.value, "multivalue_answer_routing_policy", null)
 
   dynamic "alias" {
     for_each = length(keys(lookup(each.value, "alias", {}))) == 0 ? [] : [true]
