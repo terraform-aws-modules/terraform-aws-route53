@@ -52,4 +52,14 @@ resource "aws_route53_record" "this" {
       weight = each.value.weighted_routing_policy.weight
     }
   }
+
+  dynamic "geolocation_routing_policy" {
+    for_each = length(keys(lookup(each.value, "geolocation_routing_policy", {}))) == 0 ? [] : [true]
+
+    content {
+      continent   = lookup(each.value.geolocation_routing_policy, "continent", null)
+      country     = lookup(each.value.geolocation_routing_policy, "country", null)
+      subdivision = lookup(each.value.geolocation_routing_policy, "subdivision", null)
+    }
+  }
 }
