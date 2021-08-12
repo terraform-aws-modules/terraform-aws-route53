@@ -27,9 +27,3 @@ variable "records" {
   type        = any
   default     = []
 }
-
-variable "allow_overwrite" {
-  description = "Whether existing records should overwriten"
-  type        = bool
-  default     = false
-}

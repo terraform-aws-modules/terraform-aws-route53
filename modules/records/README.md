@@ -36,7 +36,6 @@ No modules.
 | <a name="input_records"></a> [records](#input\_records) | List of maps of DNS records | `any` | `[]` | no |
 | <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | ID of DNS zone | `string` | `null` | no |
 | <a name="input_zone_name"></a> [zone\_name](#input\_zone\_name) | Name of DNS zone | `string` | `null` | no |
-| <a name="input_allow_overwrite"></a> [allow\_overwrite](#input\_allow\_overwrite) | Whether to overwrite existing records | `bool` | `false` | no |
 
 ## Outputs
 
