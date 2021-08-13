@@ -20,13 +20,14 @@ resource "aws_route53_record" "this" {
 
   zone_id = data.aws_route53_zone.this[0].zone_id
 
-  name            = each.value.name != "" ? "${each.value.name}.${data.aws_route53_zone.this[0].name}" : data.aws_route53_zone.this[0].name
-  type            = each.value.type
-  allow_overwrite = lookup(each.value, "allow_overwrite", false)
-  ttl             = lookup(each.value, "ttl", null)
-  records         = lookup(each.value, "records", null)
-  set_identifier  = lookup(each.value, "set_identifier", null)
-  health_check_id = lookup(each.value, "health_check_id", null)
+  name                             = each.value.name != "" ? "${each.value.name}.${data.aws_route53_zone.this[0].name}" : data.aws_route53_zone.this[0].name
+  type                             = each.value.type
+  ttl                              = lookup(each.value, "ttl", null)
+  records                          = lookup(each.value, "records", null)
+  set_identifier                   = lookup(each.value, "set_identifier", null)
+  health_check_id                  = lookup(each.value, "health_check_id", null)
+  multivalue_answer_routing_policy = lookup(each.value, "multivalue_answer_routing_policy", null)
+  allow_overwrite                  = lookup(each.value, "allow_overwrite", false)
 
   dynamic "alias" {
     for_each = length(keys(lookup(each.value, "alias", {}))) == 0 ? [] : [true]
@@ -51,6 +52,16 @@ resource "aws_route53_record" "this" {
 
     content {
       weight = each.value.weighted_routing_policy.weight
+    }
+  }
+
+  dynamic "geolocation_routing_policy" {
+    for_each = length(keys(lookup(each.value, "geolocation_routing_policy", {}))) == 0 ? [] : [true]
+
+    content {
+      continent   = lookup(each.value.geolocation_routing_policy, "continent", null)
+      country     = lookup(each.value.geolocation_routing_policy, "country", null)
+      subdivision = lookup(each.value.geolocation_routing_policy, "subdivision", null)
     }
   }
 }
