@@ -65,6 +65,16 @@ module "records" {
       }
     },
     {
+      name           = "geo"
+      type           = "CNAME"
+      ttl            = 5
+      records        = ["europe.test.example.com."]
+      set_identifier = "europe"
+      geolocation_routing_policy = {
+        continent = "EU"
+      }
+    },
+    {
       name = "cloudfront"
       type = "A"
       alias = {
@@ -118,11 +128,11 @@ module "records" {
       }
     },
     {
-      name           = "alternative-resource-name"
-      type           = "A"
-      set_identifier = "alternative-resource-name"
+      name = "alternative-resource-name"
+      type = "A"
       alias = {
-        name = module.s3_bucket.s3_bucket_website_domain
+        name    = module.s3_bucket.s3_bucket_website_domain
+        zone_id = module.s3_bucket.s3_bucket_hosted_zone_id
       }
     }
   ]
