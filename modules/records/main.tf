@@ -27,6 +27,7 @@ resource "aws_route53_record" "this" {
   set_identifier                   = lookup(each.value, "set_identifier", null)
   health_check_id                  = lookup(each.value, "health_check_id", null)
   multivalue_answer_routing_policy = lookup(each.value, "multivalue_answer_routing_policy", null)
+  allow_overwrite                  = lookup(each.value, "allow_overwrite", false)
 
   dynamic "alias" {
     for_each = length(keys(lookup(each.value, "alias", {}))) == 0 ? [] : [true]
