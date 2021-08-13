@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v2.2.0"></a>
+## [v2.2.0] - 2021-08-13
+
+- feat: Add geo routing policy and multivalue answer routing policy ([#52](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/52))
+- feat: Add option to overwrite existing records ([#43](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/43))
+
+
 <a name="v2.1.0"></a>
 ## [v2.1.0] - 2021-06-11
 
@@ -101,7 +108,8 @@ All notable changes to this project will be documented in this file.
 - Added route53 modules for zones and records
 
 
-[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.2.0...HEAD
+[v2.2.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.1.0...v2.2.0
 [v2.1.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.11.0...v2.0.0
 [v1.11.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.10.0...v1.11.0
