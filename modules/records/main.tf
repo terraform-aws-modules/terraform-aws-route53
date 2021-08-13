@@ -22,6 +22,7 @@ resource "aws_route53_record" "this" {
 
   name            = each.value.name != "" ? "${each.value.name}.${data.aws_route53_zone.this[0].name}" : data.aws_route53_zone.this[0].name
   type            = each.value.type
+  allow_overwrite = lookup(each.value, "allow_overwrite", false)
   ttl             = lookup(each.value, "ttl", null)
   records         = lookup(each.value, "records", null)
   set_identifier  = lookup(each.value, "set_identifier", null)
