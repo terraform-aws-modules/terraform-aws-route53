@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v2.3.0"></a>
+## [v2.3.0] - 2021-08-27
+
+- fix: Fixed records with different length ([#54](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/54))
+- feat: Allow zones with the same domain name (eg, public and private) ([#55](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/55))
+
+
 <a name="v2.2.0"></a>
 ## [v2.2.0] - 2021-08-13
 
@@ -108,7 +115,8 @@ All notable changes to this project will be documented in this file.
 - Added route53 modules for zones and records
 
 
-[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.2.0...HEAD
+[Unreleased]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.3.0...HEAD
+[v2.3.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.2.0...v2.3.0
 [v2.2.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.1.0...v2.2.0
 [v2.1.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v1.11.0...v2.0.0
