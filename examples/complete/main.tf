@@ -134,12 +134,7 @@ module "records" {
     }
   ]
 
-  depends_on = [
-    module.zones,
-    #    module.s3_bucket,
-    #    module.cloudfront,
-    #    aws_route53_health_check.failover
-  ]
+  depends_on = [module.zones]
 }
 
 module "records_with_lists" {
@@ -197,10 +192,7 @@ module "records_with_terragrunt" {
     }
   ])
 
-  depends_on = [
-    module.zones,
-    #    module.s3_bucket
-  ]
+  depends_on = [module.zones]
 }
 
 module "records_with_terragrunt_with_lists" {

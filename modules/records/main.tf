@@ -5,7 +5,7 @@ locals {
 
   # Convert `records` from list to map with unique keys
   #
-  # A list of `records` values is encoded as a string to solve issue:
+  # A list of `records` values is jsonencode()'d to a string to solve issue:
   # The true result value has the wrong type:
   # element types must all match for conversion to map.
   # Ref:
