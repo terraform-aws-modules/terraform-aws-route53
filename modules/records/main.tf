@@ -3,8 +3,21 @@ locals {
   # See details: https://github.com/gruntwork-io/terragrunt/issues/1211
   records = try(jsondecode(var.records), var.records)
 
-  # convert from list to map with unique keys
-  recordsets = { for rs in local.records : join(" ", compact(["${rs.name} ${rs.type}", lookup(rs, "set_identifier", "")])) => rs }
+  # Convert `records` from list to map with unique keys
+  #
+  # A list of `records` values is encoded as a string to solve issue:
+  # The true result value has the wrong type:
+  # element types must all match for conversion to map.
+  # Ref:
+  # https://github.com/terraform-aws-modules/terraform-aws-route53/issues/47
+  # https://github.com/terraform-aws-modules/terraform-aws-route53/pull/39
+
+  recordsets = {
+    for rs in local.records :
+    join(" ", compact(["${rs.name} ${rs.type}", lookup(rs, "set_identifier", "")])) => merge(rs, {
+      records = jsonencode(try(rs.records, null))
+    })
+  }
 }
 
 data "aws_route53_zone" "this" {
@@ -23,7 +36,7 @@ resource "aws_route53_record" "this" {
   name                             = each.value.name != "" ? "${each.value.name}.${data.aws_route53_zone.this[0].name}" : data.aws_route53_zone.this[0].name
   type                             = each.value.type
   ttl                              = lookup(each.value, "ttl", null)
-  records                          = lookup(each.value, "records", null)
+  records                          = jsondecode(each.value.records)
   set_identifier                   = lookup(each.value, "set_identifier", null)
   health_check_id                  = lookup(each.value, "health_check_id", null)
   multivalue_answer_routing_policy = lookup(each.value, "multivalue_answer_routing_policy", null)

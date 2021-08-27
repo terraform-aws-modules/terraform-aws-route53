@@ -2,6 +2,11 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+locals {
+  zone_name = sort(keys(module.zones.route53_zone_zone_id))[0]
+  #  zone_id = module.zones.route53_zone_zone_id["app.terraform-aws-modules-example.com"]
+}
+
 module "zones" {
   source = "../../modules/zones"
 
@@ -44,8 +49,8 @@ module "zones" {
 module "records" {
   source = "../../modules/records"
 
-  zone_name = keys(module.zones.route53_zone_zone_id)[0]
-  #  zone_id = module.zones.route53_zone_zone_id["terraform-aws-modules-example.com"]
+  zone_name = local.zone_name
+  #  zone_id = local.zone_id
 
   records = [
     {
@@ -126,15 +131,41 @@ module "records" {
       failover_routing_policy = {
         type = "SECONDARY"
       }
+    }
+  ]
+
+  depends_on = [
+    module.zones,
+    #    module.s3_bucket,
+    #    module.cloudfront,
+    #    aws_route53_health_check.failover
+  ]
+}
+
+module "records_with_lists" {
+  source = "../../modules/records"
+
+  zone_name = local.zone_name
+  #  zone_id = local.zone_id
+
+  records = [
+    {
+      name = "tf-list1"
+      type = "A"
+      ttl  = 3600
+      records = [
+        "10.10.10.10",
+      ]
     },
     {
-      name = "alternative-resource-name"
+      name = "tf-list2"
       type = "A"
-      alias = {
-        name    = module.s3_bucket.s3_bucket_website_domain
-        zone_id = module.s3_bucket.s3_bucket_hosted_zone_id
-      }
-    }
+      ttl  = 3600
+      records = [
+        "20.10.10.10",
+        "30.10.10.10",
+      ]
+    },
   ]
 
   depends_on = [module.zones]
@@ -143,7 +174,8 @@ module "records" {
 module "records_with_terragrunt" {
   source = "../../modules/records"
 
-  zone_name = keys(module.zones.route53_zone_zone_id)[0]
+  zone_name = local.zone_name
+  #  zone_id = local.zone_id
 
   # Terragrunt has a bug (https://github.com/gruntwork-io/terragrunt/issues/1211) that requires `records` to be wrapped with `jsonencode()`
   records = jsonencode([
@@ -162,6 +194,39 @@ module "records_with_terragrunt" {
         name    = module.s3_bucket.s3_bucket_website_domain
         zone_id = module.s3_bucket.s3_bucket_hosted_zone_id
       }
+    }
+  ])
+
+  depends_on = [
+    module.zones,
+    #    module.s3_bucket
+  ]
+}
+
+module "records_with_terragrunt_with_lists" {
+  source = "../../modules/records"
+
+  zone_name = local.zone_name
+  #  zone_id = local.zone_id
+
+  # Terragrunt has a bug (https://github.com/gruntwork-io/terragrunt/issues/1211) that requires `records` to be wrapped with `jsonencode()`
+  records = jsonencode([
+    {
+      name = "tg-list1"
+      type = "A"
+      ttl  = 3600
+      records = [
+        "10.10.10.10",
+      ]
+    },
+    {
+      name = "tg-list2"
+      type = "A"
+      ttl  = 3600
+      records = [
+        "20.10.10.10",
+        "30.10.10.10",
+      ]
     }
   ])
 
