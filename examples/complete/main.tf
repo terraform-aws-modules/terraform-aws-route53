@@ -26,7 +26,9 @@ module "zones" {
     }
 
     "private-vpc.terraform-aws-modules-example.com" = {
-      comment = "private-vpc.terraform-aws-modules-example.com"
+      # in case than private and public zones with the same domain name
+      domain_name = "terraform-aws-modules-example.com"
+      comment     = "private-vpc.terraform-aws-modules-example.com"
       vpc = [
         {
           vpc_id = module.vpc.vpc_id
