@@ -90,6 +90,14 @@ module "records" {
       }
     },
     {
+      name = "cloudfront"
+      type = "AAAA"
+      alias = {
+        name    = module.cloudfront.cloudfront_distribution_domain_name
+        zone_id = module.cloudfront.cloudfront_distribution_hosted_zone_id
+      }
+    },
+    {
       name           = "test"
       type           = "CNAME"
       ttl            = 5
