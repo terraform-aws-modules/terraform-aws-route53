@@ -5,6 +5,8 @@ resource "aws_route53_zone" "this" {
   comment       = lookup(each.value, "comment", null)
   force_destroy = lookup(each.value, "force_destroy", false)
 
+  delegation_set_id = lookup(each.value, "delegation_set_id", null)
+
   dynamic "vpc" {
     for_each = try(tolist(lookup(each.value, "vpc", [])), [lookup(each.value, "vpc", {})])
 

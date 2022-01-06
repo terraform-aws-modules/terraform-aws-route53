@@ -35,6 +35,7 @@ Note that this example may create resources which cost money. Run `terraform des
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_cloudfront"></a> [cloudfront](#module\_cloudfront) | terraform-aws-modules/cloudfront/aws | n/a |
+| <a name="module_delegation_sets"></a> [delegation\_sets](#module\_delegation\_sets) | ../../modules/delegation-sets | n/a |
 | <a name="module_disabled_records"></a> [disabled\_records](#module\_disabled\_records) | ../../modules/records | n/a |
 | <a name="module_records"></a> [records](#module\_records) | ../../modules/records | n/a |
 | <a name="module_records_with_lists"></a> [records\_with\_lists](#module\_records\_with\_lists) | ../../modules/records | n/a |
@@ -59,6 +60,8 @@ No inputs.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_route53_delegation_set_id"></a> [route53\_delegation\_set\_id](#output\_route53\_delegation\_set\_id) | ID of Route53 delegation set |
+| <a name="output_route53_delegation_set_name_servers"></a> [route53\_delegation\_set\_name\_servers](#output\_route53\_delegation\_set\_name\_servers) | Name servers in the Route53 delegation set |
 | <a name="output_route53_record_fqdn"></a> [route53\_record\_fqdn](#output\_route53\_record\_fqdn) | FQDN built using the zone domain and name |
 | <a name="output_route53_record_name"></a> [route53\_record\_name](#output\_route53\_record\_name) | The name of the record |
 | <a name="output_route53_zone_name"></a> [route53\_zone\_name](#output\_route53\_zone\_name) | Name of Route53 zone |
