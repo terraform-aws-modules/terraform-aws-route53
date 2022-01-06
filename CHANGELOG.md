@@ -1,3 +1,19 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+# [2.5.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.4.0...v2.5.0) (2022-01-06)
+
+
+### Bug Fixes
+
+* update CI/CD process to enable auto-release workflow ([#62](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/62)) ([563c8b7](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/563c8b79aed34aa71bf34d679ba1be42b69c447a))
+
+
+### Features
+
+* Added support for delegation sets ([#22](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/22)) ([43f587d](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/43f587d8a304adb5dfc4c22df5191cc2fbae49d0))
+
 <a name="v2.4.0"></a>
 ## [v2.4.0] - 2021-11-11
 
