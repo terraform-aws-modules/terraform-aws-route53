@@ -7,12 +7,21 @@ locals {
   #  zone_id = module.zones.route53_zone_zone_id["app.terraform-aws-modules-example.com"]
 }
 
+module "delegation_sets" {
+  source = "../../modules/delegation-sets"
+
+  delegation_sets = {
+    main = {}
+  }
+}
+
 module "zones" {
   source = "../../modules/zones"
 
   zones = {
     "terraform-aws-modules-example.com" = {
-      comment = "terraform-aws-modules-example.com (production)"
+      comment           = "terraform-aws-modules-example.com (production)"
+      delegation_set_id = module.delegation_sets.route53_delegation_set_id.main
       tags = {
         Name = "terraform-aws-modules-example.com"
       }
