@@ -12,10 +12,12 @@ locals {
   # https://github.com/terraform-aws-modules/terraform-aws-route53/issues/47
   # https://github.com/terraform-aws-modules/terraform-aws-route53/pull/39
 
+  record_names = length(var.record_names) > 0 ? var.record_names : [
+    for rs in local.records : join(" ", compact(["${rs.name} ${rs.type}", lookup(rs, "set_identifier", "")]))
+  ]
   recordsets = {
-    for rs in local.records :
-    join(" ", compact(["${rs.name} ${rs.type}", lookup(rs, "set_identifier", "")])) => merge(rs, {
-      records = jsonencode(try(rs.records, null))
+    for i, n in local.record_names : n => merge(local.records[i], {
+      records = jsonencode(try(local.records[i].records, null))
     })
   }
 }

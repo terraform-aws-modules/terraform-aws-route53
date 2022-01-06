@@ -27,3 +27,9 @@ variable "records" {
   type        = any
   default     = []
 }
+
+variable "record_names" {
+  description = "List of unique names for the DNS records"
+  type        = list(string)
+  default     = []
+}

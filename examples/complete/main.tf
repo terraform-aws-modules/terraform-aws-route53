@@ -54,6 +54,18 @@ module "records" {
   zone_name = local.zone_name
   #  zone_id = local.zone_id
 
+  record_names = [
+    " A",
+    "s3-bucket A",
+    "geo CNAME europe",
+    "cloudfront A",
+    "cloudfront AAAA",
+    "cloudfront-id CNAME",
+    "test CNAME test-primary",
+    "test CNAME test-secondary",
+    "failover-primary A failover-primary",
+    "failover-secondary A failover-secondary",
+  ]
   records = [
     {
       name = ""
@@ -96,6 +108,13 @@ module "records" {
         name    = module.cloudfront.cloudfront_distribution_domain_name
         zone_id = module.cloudfront.cloudfront_distribution_hosted_zone_id
       }
+    },
+    # test record name depending on module output
+    {
+      name    = "cloudfront-${module.cloudfront.cloudfront_distribution_id}"
+      type    = "CNAME"
+      ttl     = 60
+      records = [module.cloudfront.cloudfront_distribution_domain_name]
     },
     {
       name           = "test"
@@ -183,6 +202,7 @@ module "records_with_terragrunt" {
   #  zone_id = local.zone_id
 
   # Terragrunt has a bug (https://github.com/gruntwork-io/terragrunt/issues/1211) that requires `records` to be wrapped with `jsonencode()`
+  record_names = ["new A", "s3-bucket-new A"]
   records = jsonencode([
     {
       name = "new"
