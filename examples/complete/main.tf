@@ -63,18 +63,6 @@ module "records" {
   zone_name = local.zone_name
   #  zone_id = local.zone_id
 
-  record_names = [
-    " A",
-    "s3-bucket A",
-    "geo CNAME europe",
-    "cloudfront A",
-    "cloudfront AAAA",
-    "cloudfront-id CNAME",
-    "test CNAME test-primary",
-    "test CNAME test-secondary",
-    "failover-primary A failover-primary",
-    "failover-secondary A failover-secondary",
-  ]
   records = [
     {
       name = ""
@@ -118,8 +106,10 @@ module "records" {
         zone_id = module.cloudfront.cloudfront_distribution_hosted_zone_id
       }
     },
-    # test record name depending on module output
+    # test record name depending on module output and use map_key
+    # to provide a known key for the internal map
     {
+      map_key = "cloudfront-id"
       name    = "cloudfront-${module.cloudfront.cloudfront_distribution_id}"
       type    = "CNAME"
       ttl     = 60
@@ -210,9 +200,9 @@ module "records_with_terragrunt" {
   zone_name = local.zone_name
   #  zone_id = local.zone_id
 
-  # Terragrunt has a bug (https://github.com/gruntwork-io/terragrunt/issues/1211) that requires `records` to be wrapped with `jsonencode()`
-  record_names = ["new A", "s3-bucket-new A"]
-  records = jsonencode([
+  # Terragrunt has a bug (https://github.com/gruntwork-io/terragrunt/issues/1211) that requires JSON encoding of the list of records
+  record_map_keys = ["new A", "s3-bucket-new A"]
+  records_json = jsonencode([
     {
       name = "new"
       type = "A"
@@ -240,8 +230,8 @@ module "records_with_terragrunt_with_lists" {
   zone_name = local.zone_name
   #  zone_id = local.zone_id
 
-  # Terragrunt has a bug (https://github.com/gruntwork-io/terragrunt/issues/1211) that requires `records` to be wrapped with `jsonencode()`
-  records = jsonencode([
+  # Terragrunt has a bug (https://github.com/gruntwork-io/terragrunt/issues/1211) that requires JSON encoding of the list of records
+  records_json = jsonencode([
     {
       name = "tg-list1"
       type = "A"

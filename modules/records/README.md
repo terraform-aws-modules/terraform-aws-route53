@@ -33,8 +33,9 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_create"></a> [create](#input\_create) | Whether to create DNS records | `bool` | `true` | no |
 | <a name="input_private_zone"></a> [private\_zone](#input\_private\_zone) | Whether Route53 zone is private or public | `bool` | `false` | no |
-| <a name="input_record_names"></a> [record\_names](#input\_record\_names) | List of unique names for the DNS records | `list(string)` | `[]` | no |
+| <a name="input_record_map_keys"></a> [record\_map\_keys](#input\_record\_map\_keys) | List of custom map keys for the internal map. Must have the same length as the records or records\_json variable. May contain null values and the module will generate the key itself | `list(string)` | `[]` | no |
 | <a name="input_records"></a> [records](#input\_records) | List of maps of DNS records | `any` | `[]` | no |
+| <a name="input_records_json"></a> [records\_json](#input\_records\_json) | JSON encoded list of maps of DNS records | `string` | `null` | no |
 | <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | ID of DNS zone | `string` | `null` | no |
 | <a name="input_zone_name"></a> [zone\_name](#input\_zone\_name) | Name of DNS zone | `string` | `null` | no |
 

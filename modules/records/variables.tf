@@ -28,8 +28,14 @@ variable "records" {
   default     = []
 }
 
-variable "record_names" {
-  description = "List of unique names for the DNS records"
+variable "records_json" {
+  description = "JSON encoded list of maps of DNS records"
+  type        = string
+  default     = null
+}
+
+variable "record_map_keys" {
+  description = "List of custom map keys for the internal map. Must have the same length as the records or records_json variable. May contain null values and the module will generate the key itself"
   type        = list(string)
   default     = []
 }

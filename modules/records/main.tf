@@ -1,7 +1,7 @@
 locals {
-  # terragrunt users have to provide `records` as jsonencode()'d string.
+  # terragrunt users have to provide `records_json` as jsonencode()'d string.
   # See details: https://github.com/gruntwork-io/terragrunt/issues/1211
-  records = try(jsondecode(var.records), var.records)
+  records = var.records_json != null ? jsondecode(var.records_json) : var.records
 
   # Convert `records` from list to map with unique keys
   #
@@ -11,12 +11,22 @@ locals {
   # Ref:
   # https://github.com/terraform-aws-modules/terraform-aws-route53/issues/47
   # https://github.com/terraform-aws-modules/terraform-aws-route53/pull/39
+  #
+  # Choose map keys in this order:
+  # - not null items from `record_map_keys`, if provided
+  # - or the `map_key` attribute from the record map, if provided
+  # - build one from the record name, type and optional set_identifier
 
-  record_names = length(var.record_names) > 0 ? var.record_names : [
-    for rs in local.records : join(" ", compact(["${rs.name} ${rs.type}", lookup(rs, "set_identifier", "")]))
+  record_map_keys = length(var.record_map_keys) > 0 ? [
+    for i, n in var.record_map_keys : n != null
+    ? n
+    : lookup(local.records[i], "map_key", join(" ", compact(["${local.records[i].name} ${local.records[i].type}", lookup(local.records[i], "set_identifier", "")])))
+    ] : [
+    for i, rs in local.records : lookup(rs, "map_key", join(" ", compact(["${rs.name} ${rs.type}", lookup(rs, "set_identifier", "")])))
   ]
+
   recordsets = {
-    for i, n in local.record_names : n => merge(local.records[i], {
+    for i, n in local.record_map_keys : n => merge(local.records[i], {
       records = jsonencode(try(local.records[i].records, null))
     })
   }
