@@ -18,15 +18,13 @@ locals {
   # - build one from the record name, type and optional set_identifier
 
   record_map_keys = length(var.record_map_keys) > 0 ? [
-    for i, n in var.record_map_keys : n != null
-    ? n
-    : lookup(local.records[i], "map_key", join(" ", compact(["${local.records[i].name} ${local.records[i].type}", lookup(local.records[i], "set_identifier", "")])))
+    for i, map_key in var.record_map_keys : try(map_key, local.records[i].map_key, join(" ", compact([local.records[i].name, local.records[i].type, try(local.records[i].set_identifier, "")])))
     ] : [
-    for i, rs in local.records : lookup(rs, "map_key", join(" ", compact(["${rs.name} ${rs.type}", lookup(rs, "set_identifier", "")])))
+    for rs in local.records : try(rs.map_key, join(" ", compact([rs.name, rs.type, try(rs.set_identifier, "")])))
   ]
 
   recordsets = {
-    for i, n in local.record_map_keys : n => merge(local.records[i], {
+    for i, map_key in local.record_map_keys : map_key => merge(local.records[i], {
       records = jsonencode(try(local.records[i].records, null))
     })
   }
