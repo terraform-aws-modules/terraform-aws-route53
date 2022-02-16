@@ -2,6 +2,11 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+provider "aws" {
+  region = "us-east-1"
+  alias  = "us-east-1"
+}
+
 locals {
   zone_name = sort(keys(module.zones.route53_zone_zone_id))[0]
   #  zone_id = module.zones.route53_zone_zone_id["app.terraform-aws-modules-example.com"]
@@ -150,7 +155,33 @@ module "records" {
       failover_routing_policy = {
         type = "SECONDARY"
       }
-    }
+    },
+    {
+      name           = "latency-eu"
+      type           = "A"
+      set_identifier = "latency"
+      alias = {
+        name    = module.s3_bucket.s3_bucket_website_domain
+        zone_id = module.s3_bucket.s3_bucket_hosted_zone_id
+      }
+      set_identifier = "latency"
+      latency_routing_policy = {
+        region = "eu-west-1"
+      }
+    },
+    {
+      name           = "latency-us"
+      type           = "A"
+      set_identifier = "latency"
+      alias = {
+        name    = module.s3_bucket_us.s3_bucket_website_domain
+        zone_id = module.s3_bucket_us.s3_bucket_hosted_zone_id
+      }
+      set_identifier = "latency"
+      latency_routing_policy = {
+        region = "us-east-1"
+      }
+    },
   ]
 
   depends_on = [module.zones]
@@ -266,6 +297,19 @@ resource "aws_route53_health_check" "failover" {
 module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
+  bucket_prefix = "s3-bucket-"
+  force_destroy = true
+
+  website = {
+    index_document = "index.html"
+  }
+}
+
+module "s3_bucket_us" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+  providers = {
+    aws = aws.us-east-1
+  }          
   bucket_prefix = "s3-bucket-"
   force_destroy = true
 

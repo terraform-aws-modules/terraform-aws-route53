@@ -77,4 +77,12 @@ resource "aws_route53_record" "this" {
       subdivision = lookup(each.value.geolocation_routing_policy, "subdivision", null)
     }
   }
+  
+  dynamic "latency_routing_policy" {
+    for_each = length(keys(lookup(each.value, "latency_routing_policy", {}))) == 0 ? [] : [true]
+
+    content {
+      region   = lookup(each.value.latency_routing_policy, "region", null)
+    }
+  }
 }
