@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.5.0...v2.6.0) (2022-03-12)
+
+
+### Features
+
+* Made it clear that we stand with Ukraine ([6d46086](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/6d4608698f99cf418d9f9d3c535310d6bd703b6e))
+
 # [2.5.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.4.0...v2.5.0) (2022-01-06)
 
 
