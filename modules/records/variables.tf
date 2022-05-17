@@ -27,3 +27,9 @@ variable "records" {
   type        = any
   default     = []
 }
+
+variable "full_override_name" {
+  description = "When true will override the name of record, will not add the domain name to the record name"
+  type        = bool
+  default     = false
+}
