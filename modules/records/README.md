@@ -32,6 +32,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_create"></a> [create](#input\_create) | Whether to create DNS records | `bool` | `true` | no |
+| <a name="input_full_name_override"></a> [full\_name\_override](#input\_full\_name\_override) | When true will override the name of record, will not add the domain name to the record name | `bool` | `false` | no |
 | <a name="input_private_zone"></a> [private\_zone](#input\_private\_zone) | Whether Route53 zone is private or public | `bool` | `false` | no |
 | <a name="input_records"></a> [records](#input\_records) | List of maps of DNS records | `any` | `[]` | no |
 | <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | ID of DNS zone | `string` | `null` | no |

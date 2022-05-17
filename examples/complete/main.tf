@@ -244,6 +244,24 @@ module "records_with_terragrunt_with_lists" {
   depends_on = [module.zones]
 }
 
+module "records_with_full_names" {
+  source = "../../modules/records"
+
+  zone_name          = "example.com"
+  full_name_override = true
+
+  records = [
+    {
+      name = "test.example.com"
+      type = "A"
+      ttl  = 3600
+      records = [
+        "10.10.10.10",
+      ]
+    },
+  ]
+}
+
 module "disabled_records" {
   source = "../../modules/records"
 
