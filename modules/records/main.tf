@@ -33,7 +33,7 @@ resource "aws_route53_record" "this" {
 
   zone_id = data.aws_route53_zone.this[0].zone_id
 
-  name                             = each.value.name != "" ? (var.full_name_override ? each.value.name : "${each.value.name}.${data.aws_route53_zone.this[0].name}") : data.aws_route53_zone.this[0].name
+  name                             = each.value.name != "" ? (lookup(each.value, "full_name_override", false) ? each.value.name : "${each.value.name}.${data.aws_route53_zone.this[0].name}") : data.aws_route53_zone.this[0].name
   type                             = each.value.type
   ttl                              = lookup(each.value, "ttl", null)
   records                          = jsondecode(each.value.records)

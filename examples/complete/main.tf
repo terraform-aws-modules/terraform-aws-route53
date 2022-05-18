@@ -244,19 +244,30 @@ module "records_with_terragrunt_with_lists" {
   depends_on = [module.zones]
 }
 
+
+
 module "records_with_full_names" {
   source = "../../modules/records"
 
-  zone_name          = "example.com"
-  full_name_override = true
+  zone_name = "example.com"
 
   records = [
     {
       name = "test.example.com"
+      # In case when you need to provide full name of record including domain that is equal zone domain name, use full_name_override = true
+      full_name_override = true
+      type               = "A"
+      ttl                = 3600
+      records = [
+        "10.10.10.10",
+      ]
+    },
+    {
+      name = "web"
       type = "A"
       ttl  = 3600
       records = [
-        "10.10.10.10",
+        "10.10.10.11",
       ]
     },
   ]
