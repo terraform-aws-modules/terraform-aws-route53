@@ -9,6 +9,7 @@ There are independent submodules:
 - [zones](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/zones) - to manage Route53 zones
 - [records](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/records) - to manage Route53 records
 - [delegation-sets](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/delegation-sets) - to manage Route53 delegation sets
+- [resolver-rule-associations](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/resolver-rule-associations) - to manage Route53 resolver rule associations
 
 ## Usage
 
