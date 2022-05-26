@@ -26,7 +26,7 @@ module "resolver-rule-associations" {
     },
     "example2" = {
       resolver_rule_id = aws_route53_resolver_rule.sys.id
-      vpc_id = module.vpc2.vpc_id
+      vpc_id           = module.vpc2.vpc_id
     },
   }
 }
