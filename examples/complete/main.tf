@@ -15,6 +15,22 @@ module "delegation_sets" {
   }
 }
 
+module "resolver-rule-associations" {
+  source = "../../modules/resolver-rule-associations"
+
+  vpc_id = module.vpc.vpc_id
+
+  resolver_rule_associations = {
+    "example" = {
+      resolver_rule_id = aws_route53_resolver_rule.sys.id
+    },
+    "example2" = {
+      resolver_rule_id = aws_route53_resolver_rule.sys.id
+      vpc_id = module.vpc2.vpc_id
+    },
+  }
+}
+
 module "zones" {
   source = "../../modules/zones"
 
@@ -308,4 +324,9 @@ module "vpc2" {
 
   name = "my-second-vpc-for-private-route53-zone"
   cidr = "10.1.0.0/16"
+}
+
+resource "aws_route53_resolver_rule" "sys" {
+  domain_name = "sys-example.com"
+  rule_type   = "SYSTEM"
 }
