@@ -22,9 +22,11 @@ module "resolver-rule-associations" {
 
   resolver_rule_associations = {
     "example" = {
+      name             = "example"
       resolver_rule_id = aws_route53_resolver_rule.sys.id
     },
     "example2" = {
+      name             = "example2"
       resolver_rule_id = aws_route53_resolver_rule.sys.id
       vpc_id           = module.vpc2.vpc_id
     },
