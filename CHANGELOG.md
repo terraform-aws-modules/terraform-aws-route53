@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.8.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.7.0...v2.8.0) (2022-05-27)
+
+
+### Features
+
+* Add resolver rule association module ([#70](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/70)) ([b92e8eb](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/b92e8ebfbeb06c17e1cd3d9bf8f7b4b79a319a25))
+
 ## [2.7.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.6.0...v2.7.0) (2022-05-27)
 
 
