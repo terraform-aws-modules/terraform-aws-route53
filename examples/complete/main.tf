@@ -7,32 +7,6 @@ locals {
   #  zone_id = module.zones.route53_zone_zone_id["app.terraform-aws-modules-example.com"]
 }
 
-module "delegation_sets" {
-  source = "../../modules/delegation-sets"
-
-  delegation_sets = {
-    main = {}
-  }
-}
-
-module "resolver_rule_associations" {
-  source = "../../modules/resolver-rule-associations"
-
-  vpc_id = module.vpc.vpc_id
-
-  resolver_rule_associations = {
-    "example" = {
-      name             = "example"
-      resolver_rule_id = aws_route53_resolver_rule.sys.id
-    },
-    "example2" = {
-      name             = "example2"
-      resolver_rule_id = aws_route53_resolver_rule.sys.id
-      vpc_id           = module.vpc2.vpc_id
-    },
-  }
-}
-
 module "zones" {
   source = "../../modules/zones"
 
@@ -289,6 +263,32 @@ module "records_with_full_names" {
 
   depends_on = [module.zones]
 }
+
+module "delegation_sets" {
+  source = "../../modules/delegation-sets"
+
+  delegation_sets = {
+    main = {}
+  }
+}
+
+module "resolver_rule_associations" {
+  source = "../../modules/resolver-rule-associations"
+
+  vpc_id = module.vpc.vpc_id
+
+  resolver_rule_associations = {
+    example = {
+      resolver_rule_id = aws_route53_resolver_rule.sys.id
+    },
+    example2 = {
+      name             = "example2"
+      resolver_rule_id = aws_route53_resolver_rule.sys.id
+      vpc_id           = module.vpc2.vpc_id
+    },
+  }
+}
+
 
 module "disabled_records" {
   source = "../../modules/records"

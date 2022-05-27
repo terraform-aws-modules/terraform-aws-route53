@@ -60,7 +60,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_aws_route53_resolver_rule_association_id"></a> [aws\_route53\_resolver\_rule\_association\_id](#output\_aws\_route53\_resolver\_rule\_association\_id) | ID of Route53 Resolver rule associations |
-| <a name="output_aws_route53_resolver_rule_association_name"></a> [aws\_route53\_resolver\_rule\_association\_name](#output\_aws\_route53\_resolver\_rule\_association\_name) | Name of Route53 Resolver rule associations |
-| <a name="output_aws_route53_resolver_rule_association_resolver_rule_id"></a> [aws\_route53\_resolver\_rule\_association\_resolver\_rule\_id](#output\_aws\_route53\_resolver\_rule\_association\_resolver\_rule\_id) | ID of Route53 Resolver rule associations resolver rule |
+| <a name="output_route53_resolver_rule_association_id"></a> [route53\_resolver\_rule\_association\_id](#output\_route53\_resolver\_rule\_association\_id) | ID of Route53 Resolver rule associations |
+| <a name="output_route53_resolver_rule_association_name"></a> [route53\_resolver\_rule\_association\_name](#output\_route53\_resolver\_rule\_association\_name) | Name of Route53 Resolver rule associations |
+| <a name="output_route53_resolver_rule_association_resolver_rule_id"></a> [route53\_resolver\_rule\_association\_resolver\_rule\_id](#output\_route53\_resolver\_rule\_association\_resolver\_rule\_id) | ID of Route53 Resolver rule associations resolver rule |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
