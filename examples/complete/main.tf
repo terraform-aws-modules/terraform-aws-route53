@@ -192,7 +192,7 @@ module "records_with_terragrunt" {
   #  zone_id = local.zone_id
 
   # Terragrunt has a bug (https://github.com/gruntwork-io/terragrunt/issues/1211) that requires `records` to be wrapped with `jsonencode()`
-  records = jsonencode([
+  records_jsonencoded = jsonencode([
     {
       name = "new"
       type = "A"
@@ -221,7 +221,7 @@ module "records_with_terragrunt_with_lists" {
   #  zone_id = local.zone_id
 
   # Terragrunt has a bug (https://github.com/gruntwork-io/terragrunt/issues/1211) that requires `records` to be wrapped with `jsonencode()`
-  records = jsonencode([
+  records_jsonencoded = jsonencode([
     {
       name = "tg-list1"
       type = "A"
@@ -240,6 +240,34 @@ module "records_with_terragrunt_with_lists" {
       ]
     }
   ])
+
+  depends_on = [module.zones]
+}
+
+module "records_with_full_names" {
+  source = "../../modules/records"
+
+  zone_name = local.zone_name
+
+  records = [
+    {
+      name               = "with-full-name-override.${local.zone_name}"
+      full_name_override = true
+      type               = "A"
+      ttl                = 3600
+      records = [
+        "10.10.10.10",
+      ]
+    },
+    {
+      name = "web"
+      type = "A"
+      ttl  = 3600
+      records = [
+        "10.10.10.11",
+      ]
+    },
+  ]
 
   depends_on = [module.zones]
 }

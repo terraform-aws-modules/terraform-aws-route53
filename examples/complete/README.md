@@ -38,6 +38,7 @@ Note that this example may create resources which cost money. Run `terraform des
 | <a name="module_delegation_sets"></a> [delegation\_sets](#module\_delegation\_sets) | ../../modules/delegation-sets | n/a |
 | <a name="module_disabled_records"></a> [disabled\_records](#module\_disabled\_records) | ../../modules/records | n/a |
 | <a name="module_records"></a> [records](#module\_records) | ../../modules/records | n/a |
+| <a name="module_records_with_full_names"></a> [records\_with\_full\_names](#module\_records\_with\_full\_names) | ../../modules/records | n/a |
 | <a name="module_records_with_lists"></a> [records\_with\_lists](#module\_records\_with\_lists) | ../../modules/records | n/a |
 | <a name="module_records_with_terragrunt"></a> [records\_with\_terragrunt](#module\_records\_with\_terragrunt) | ../../modules/records | n/a |
 | <a name="module_records_with_terragrunt_with_lists"></a> [records\_with\_terragrunt\_with\_lists](#module\_records\_with\_terragrunt\_with\_lists) | ../../modules/records | n/a |
