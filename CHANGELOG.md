@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.7.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.6.0...v2.7.0) (2022-05-27)
+
+
+### Features
+
+* Added full_override_name override to disable adding domain name to record names ([#69](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/69)) ([553a4e1](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/553a4e180dedf41f652be91a2a8feb7a257b3354))
+
 ## [2.6.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.5.0...v2.6.0) (2022-03-12)
 
 
