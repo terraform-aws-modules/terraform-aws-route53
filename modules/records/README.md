@@ -2,6 +2,30 @@
 
 This module creates DNS records in Route53 zone.
 
+Due to a bug in Terragrunt (https://github.com/gruntwork-io/terragrunt/issues/1211), users should specify records using `records_jsonencoded` argument as jsonencode()'d string, like this:
+
+```hcl
+records_jsonencoded = jsonencode([
+  {
+    name = "tg-list1"
+    type = "A"
+    ttl  = 3600
+    records = [
+      "10.10.10.10",
+    ]
+  },
+  {
+    name = "tg-list2"
+    type = "A"
+    ttl  = 3600
+    records = [
+      "20.10.10.10",
+      "30.10.10.10",
+    ]
+  }
+])
+```
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -34,6 +58,7 @@ No modules.
 | <a name="input_create"></a> [create](#input\_create) | Whether to create DNS records | `bool` | `true` | no |
 | <a name="input_private_zone"></a> [private\_zone](#input\_private\_zone) | Whether Route53 zone is private or public | `bool` | `false` | no |
 | <a name="input_records"></a> [records](#input\_records) | List of maps of DNS records | `any` | `[]` | no |
+| <a name="input_records_jsonencoded"></a> [records\_jsonencoded](#input\_records\_jsonencoded) | List of map of DNS records (stored as jsonencoded string, for terragrunt) | `string` | `null` | no |
 | <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | ID of DNS zone | `string` | `null` | no |
 | <a name="input_zone_name"></a> [zone\_name](#input\_zone\_name) | Name of DNS zone | `string` | `null` | no |
 
