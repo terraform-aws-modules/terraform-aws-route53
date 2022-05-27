@@ -1,7 +1,7 @@
 locals {
   # terragrunt users have to provide `records` as jsonencode()'d string.
   # See details: https://github.com/gruntwork-io/terragrunt/issues/1211
-  records = try(jsondecode(var.records), var.records)
+  records = try(jsondecode(var.records_jsonencoded), var.records)
 
   # Convert `records` from list to map with unique keys
   #
@@ -29,11 +29,11 @@ data "aws_route53_zone" "this" {
 }
 
 resource "aws_route53_record" "this" {
-  for_each = var.create && (var.zone_id != null || var.zone_name != null) ? local.recordsets : tomap({})
+  for_each = { for k, v in local.recordsets : k => v if var.create && (var.zone_id != null || var.zone_name != null) }
 
   zone_id = data.aws_route53_zone.this[0].zone_id
 
-  name                             = each.value.name != "" ? "${each.value.name}.${data.aws_route53_zone.this[0].name}" : data.aws_route53_zone.this[0].name
+  name                             = each.value.name != "" ? (lookup(each.value, "full_name_override", false) ? each.value.name : "${each.value.name}.${data.aws_route53_zone.this[0].name}") : data.aws_route53_zone.this[0].name
   type                             = each.value.type
   ttl                              = lookup(each.value, "ttl", null)
   records                          = jsondecode(each.value.records)
