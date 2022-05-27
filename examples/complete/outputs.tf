@@ -12,17 +12,17 @@ output "route53_delegation_set_name_servers" {
 # resolver rule associations
 output "aws_route53_resolver_rule_association_id" {
   description = "ID of Route53 Resolver rule associations"
-  value       = module.resolver-rule-associations.aws_route53_resolver_rule_association_id
+  value       = module.resolver_rule_associations.aws_route53_resolver_rule_association_id
 }
 
 output "aws_route53_resolver_rule_association_name" {
   description = "Name of Route53 Resolver rule associations"
-  value       = module.resolver-rule-associations.aws_route53_resolver_rule_association_name
+  value       = module.resolver_rule_associations.aws_route53_resolver_rule_association_name
 }
 
 output "aws_route53_resolver_rule_association_resolver_rule_id" {
   description = "ID of Route53 Resolver rule associations resolver rule"
-  value       = module.resolver-rule-associations.aws_route53_resolver_rule_association_resolver_rule_id
+  value       = module.resolver_rule_associations.aws_route53_resolver_rule_association_resolver_rule_id
 }
 
 # zones

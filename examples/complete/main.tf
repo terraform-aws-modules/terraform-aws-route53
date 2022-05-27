@@ -15,7 +15,7 @@ module "delegation_sets" {
   }
 }
 
-module "resolver-rule-associations" {
+module "resolver_rule_associations" {
   source = "../../modules/resolver-rule-associations"
 
   vpc_id = module.vpc.vpc_id
