@@ -11,14 +11,16 @@ module "resolver_rule_associations" {
   source  = "terraform-aws-modules/route53/aws//modules/resolver-rule-associations"
   version = "~> 2.0"
 
-  vpc_id = "vpc-..."
+  vpc_id = "vpc-185a3e2f2d6d2c863"
 
   resolver_rule_associations = {
-    "myass-foo" = {
-      resolver_rule_id = "rslvr-rr-..."
+    foo = {
+      resolver_rule_id = "rslvr-rr-2d3e8e42eea14f20a"
     },
-    "myass-bar" = {
-      resolver_rule_id = "rslvr-rr-..."
+    bar = {
+      name             = "bar"
+      resolver_rule_id = "rslvr-rr-2d3e8e42eea14f20a"
+      vpc_id           = "vpc-285a3e2f2d6d2c863"
     },
   }
 }
