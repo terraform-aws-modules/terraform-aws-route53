@@ -23,13 +23,13 @@ variable "private_zone" {
 }
 
 variable "records" {
-  description = "List of maps of DNS records"
+  description = "List of objects of DNS records"
   type        = any
   default     = []
 }
 
-variable "records_jsonencoded" {
-  description = "List of map of DNS records (stored as jsonencoded string, for terragrunt)"
-  type        = string
-  default     = null
-}
+#variable "records_jsonencoded" {
+#  description = "List of map of DNS records (stored as jsonencoded string, for terragrunt)"
+#  type        = string
+#  default     = null
+#}
