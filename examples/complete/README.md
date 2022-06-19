@@ -39,12 +39,10 @@ Note that this example may create resources which cost money. Run `terraform des
 | <a name="module_disabled_records"></a> [disabled\_records](#module\_disabled\_records) | ../../modules/records | n/a |
 | <a name="module_records"></a> [records](#module\_records) | ../../modules/records | n/a |
 | <a name="module_records_with_full_names"></a> [records\_with\_full\_names](#module\_records\_with\_full\_names) | ../../modules/records | n/a |
-| <a name="module_records_with_lists"></a> [records\_with\_lists](#module\_records\_with\_lists) | ../../modules/records | n/a |
-| <a name="module_records_with_terragrunt"></a> [records\_with\_terragrunt](#module\_records\_with\_terragrunt) | ../../modules/records | n/a |
-| <a name="module_records_with_terragrunt_with_lists"></a> [records\_with\_terragrunt\_with\_lists](#module\_records\_with\_terragrunt\_with\_lists) | ../../modules/records | n/a |
 | <a name="module_resolver_rule_associations"></a> [resolver\_rule\_associations](#module\_resolver\_rule\_associations) | ../../modules/resolver-rule-associations | n/a |
 | <a name="module_s3_bucket"></a> [s3\_bucket](#module\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | n/a |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | n/a |
+| <a name="module_terragrunt"></a> [terragrunt](#module\_terragrunt) | ../../modules/records | n/a |
+| <a name="module_vpc1"></a> [vpc1](#module\_vpc1) | terraform-aws-modules/vpc/aws | n/a |
 | <a name="module_vpc2"></a> [vpc2](#module\_vpc2) | terraform-aws-modules/vpc/aws | n/a |
 | <a name="module_zones"></a> [zones](#module\_zones) | ../../modules/zones | n/a |
 

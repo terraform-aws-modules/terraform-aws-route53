@@ -1,23 +1,10 @@
 locals {
-  # terragrunt users have to provide `records` as jsonencode()'d string.
+  # Terragrunt users have to provide `records_jsonencoded` as jsonencode()'d string.
   # See details: https://github.com/gruntwork-io/terragrunt/issues/1211
-  records = try(jsondecode(var.records_jsonencoded), var.records)
+  records = concat(var.records, try(jsondecode(var.records_jsonencoded), []))
 
   # Convert `records` from list to map with unique keys
-  #
-  # A list of `records` values is jsonencode()'d to a string to solve issue:
-  # The true result value has the wrong type:
-  # element types must all match for conversion to map.
-  # Ref:
-  # https://github.com/terraform-aws-modules/terraform-aws-route53/issues/47
-  # https://github.com/terraform-aws-modules/terraform-aws-route53/pull/39
-
-  recordsets = {
-    for rs in local.records :
-    join(" ", compact(["${rs.name} ${rs.type}", lookup(rs, "set_identifier", "")])) => merge(rs, {
-      records = jsonencode(try(rs.records, null))
-    })
-  }
+  recordsets = { for rs in local.records : try(rs.key, join(" ", compact(["${rs.name} ${rs.type}", try(rs.set_identifier, "")]))) => rs }
 }
 
 data "aws_route53_zone" "this" {
@@ -36,7 +23,7 @@ resource "aws_route53_record" "this" {
   name                             = each.value.name != "" ? (lookup(each.value, "full_name_override", false) ? each.value.name : "${each.value.name}.${data.aws_route53_zone.this[0].name}") : data.aws_route53_zone.this[0].name
   type                             = each.value.type
   ttl                              = lookup(each.value, "ttl", null)
-  records                          = jsondecode(each.value.records)
+  records                          = try(each.value.records, null)
   set_identifier                   = lookup(each.value, "set_identifier", null)
   health_check_id                  = lookup(each.value, "health_check_id", null)
   multivalue_answer_routing_policy = lookup(each.value, "multivalue_answer_routing_policy", null)

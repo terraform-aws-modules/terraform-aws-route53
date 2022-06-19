@@ -23,7 +23,7 @@ variable "private_zone" {
 }
 
 variable "records" {
-  description = "List of maps of DNS records"
+  description = "List of objects of DNS records"
   type        = any
   default     = []
 }

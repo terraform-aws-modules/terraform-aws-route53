@@ -4,7 +4,7 @@ provider "aws" {
 
 locals {
   zone_name = sort(keys(module.zones.route53_zone_zone_id))[0]
-  #  zone_id = module.zones.route53_zone_zone_id["app.terraform-aws-modules-example.com"]
+  #  zone_id = module.zones.route53_zone_zone_id["terraform-aws-modules-example.com"]
 }
 
 module "zones" {
@@ -12,15 +12,15 @@ module "zones" {
 
   zones = {
     "terraform-aws-modules-example.com" = {
-      comment           = "terraform-aws-modules-example.com (production)"
-      delegation_set_id = module.delegation_sets.route53_delegation_set_id.main
+      comment = "terraform-aws-modules-example.com (production)"
       tags = {
         Name = "terraform-aws-modules-example.com"
       }
     }
 
     "app.terraform-aws-modules-example.com" = {
-      comment = "app.terraform-aws-modules-example.com"
+      comment           = "app.terraform-aws-modules-example.com"
+      delegation_set_id = module.delegation_sets.route53_delegation_set_id.main
       tags = {
         Name = "app.terraform-aws-modules-example.com"
       }
@@ -32,7 +32,7 @@ module "zones" {
       comment     = "private-vpc.terraform-aws-modules-example.com"
       vpc = [
         {
-          vpc_id = module.vpc.vpc_id
+          vpc_id = module.vpc1.vpc_id
         },
         {
           vpc_id = module.vpc2.vpc_id
@@ -65,7 +65,8 @@ module "records" {
       ]
     },
     {
-      name = "s3-bucket"
+      key  = "s3-bucket"
+      name = "s3-bucket-${module.s3_bucket.s3_bucket_hosted_zone_id}"
       type = "A"
       alias = {
         name    = module.s3_bucket.s3_bucket_website_domain
@@ -148,44 +149,15 @@ module "records" {
   depends_on = [module.zones]
 }
 
-module "records_with_lists" {
+module "terragrunt" {
   source = "../../modules/records"
 
   zone_name = local.zone_name
-  #  zone_id = local.zone_id
-
-  records = [
-    {
-      name = "tf-list1"
-      type = "A"
-      ttl  = 3600
-      records = [
-        "10.10.10.10",
-      ]
-    },
-    {
-      name = "tf-list2"
-      type = "A"
-      ttl  = 3600
-      records = [
-        "20.10.10.10",
-        "30.10.10.10",
-      ]
-    },
-  ]
-
-  depends_on = [module.zones]
-}
-
-module "records_with_terragrunt" {
-  source = "../../modules/records"
-
-  zone_name = local.zone_name
-  #  zone_id = local.zone_id
 
   # Terragrunt has a bug (https://github.com/gruntwork-io/terragrunt/issues/1211) that requires `records` to be wrapped with `jsonencode()`
   records_jsonencoded = jsonencode([
     {
+      key  = "new A"
       name = "new"
       type = "A"
       ttl  = 3600
@@ -194,42 +166,25 @@ module "records_with_terragrunt" {
       ]
     },
     {
-      name = "s3-bucket-new"
-      type = "A"
-      alias = {
-        name    = module.s3_bucket.s3_bucket_website_domain
-        zone_id = module.s3_bucket.s3_bucket_hosted_zone_id
-      }
-    }
-  ])
-
-  depends_on = [module.zones]
-}
-
-module "records_with_terragrunt_with_lists" {
-  source = "../../modules/records"
-
-  zone_name = local.zone_name
-  #  zone_id = local.zone_id
-
-  # Terragrunt has a bug (https://github.com/gruntwork-io/terragrunt/issues/1211) that requires `records` to be wrapped with `jsonencode()`
-  records_jsonencoded = jsonencode([
-    {
-      name = "tg-list1"
+      name = "new2"
       type = "A"
       ttl  = 3600
       records = [
-        "10.10.10.10",
+        "10.10.10.11",
+        "10.10.10.12",
       ]
     },
     {
-      name = "tg-list2"
+      name = "s3-bucket-terragrunt"
       type = "A"
-      ttl  = 3600
-      records = [
-        "20.10.10.10",
-        "30.10.10.10",
-      ]
+      alias = {
+        # In Terragrunt code the values may depend on the outputs of modules:
+        # name    = dependency.s3_bucket.outputs.s3_bucket_website_domain
+        # zone_id = dependency.s3_bucket.outputs.s3_bucket_hosted_zone_id
+        # Terragrunt passes known values to the module:
+        name    = "s3-website-eu-west-1.amazonaws.com"
+        zone_id = "Z1BKCTXD74EZPE"
+      }
     }
   ])
 
@@ -257,6 +212,7 @@ module "records_with_full_names" {
       ttl  = 3600
       records = [
         "10.10.10.11",
+        "10.10.10.12",
       ]
     },
   ]
@@ -275,7 +231,7 @@ module "delegation_sets" {
 module "resolver_rule_associations" {
   source = "../../modules/resolver-rule-associations"
 
-  vpc_id = module.vpc.vpc_id
+  vpc_id = module.vpc1.vpc_id
 
   resolver_rule_associations = {
     example = {
@@ -288,7 +244,6 @@ module "resolver_rule_associations" {
     },
   }
 }
-
 
 module "disabled_records" {
   source = "../../modules/records"
@@ -342,7 +297,7 @@ module "cloudfront" {
   }
 }
 
-module "vpc" {
+module "vpc1" {
   source = "terraform-aws-modules/vpc/aws"
 
   name = "my-vpc-for-private-route53-zone"
