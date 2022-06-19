@@ -28,8 +28,8 @@ variable "records" {
   default     = []
 }
 
-#variable "records_jsonencoded" {
-#  description = "List of map of DNS records (stored as jsonencoded string, for terragrunt)"
-#  type        = string
-#  default     = null
-#}
+variable "records_jsonencoded" {
+  description = "List of map of DNS records (stored as jsonencoded string, for terragrunt)"
+  type        = string
+  default     = null
+}
