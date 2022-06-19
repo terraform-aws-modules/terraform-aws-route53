@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [2.8.1](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.8.0...v2.8.1) (2022-06-19)
+
+
+### Bug Fixes
+
+* Fixed the for_each value depends on resource attributes that cannot be determined until apply ([#72](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/72)) ([e6fe5ba](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/e6fe5baaaf8a1b6f8f939c6daf9d0729eedce15e))
+
 ## [2.8.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.7.0...v2.8.0) (2022-05-27)
 
 
