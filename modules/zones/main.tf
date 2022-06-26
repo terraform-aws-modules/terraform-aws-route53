@@ -1,5 +1,5 @@
 resource "aws_route53_zone" "this" {
-  for_each = var.create ? var.zones : tomap({})
+  for_each = { for k, v in var.zones : k => v if var.create }
 
   name          = lookup(each.value, "domain_name", each.key)
   comment       = lookup(each.value, "comment", null)
