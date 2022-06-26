@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [2.8.2](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.8.1...v2.8.2) (2022-06-26)
+
+
+### Bug Fixes
+
+* Fixed for_each in zones submodule ([#74](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/74)) ([68352a6](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/68352a62e5c2dcb57ac3fae2afeff371f75444f8))
+
 ### [2.8.1](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.8.0...v2.8.1) (2022-06-19)
 
 
