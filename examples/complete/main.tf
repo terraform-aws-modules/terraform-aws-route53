@@ -143,6 +143,19 @@ module "records" {
       failover_routing_policy = {
         type = "SECONDARY"
       }
+    },
+    {
+      name           = "latency-test"
+      type           = "A"
+      set_identifier = "latency-test"
+      alias = {
+        name                   = module.cloudfront.cloudfront_distribution_domain_name
+        zone_id                = module.cloudfront.cloudfront_distribution_hosted_zone_id
+        evaluate_target_health = true
+      }
+      latency_routing_policy = {
+        region = "eu-west-1"
+      }
     }
   ]
 

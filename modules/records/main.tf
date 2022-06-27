@@ -47,6 +47,14 @@ resource "aws_route53_record" "this" {
     }
   }
 
+  dynamic "latency_routing_policy" {
+    for_each = length(keys(lookup(each.value, "latency_routing_policy", {}))) == 0 ? [] : [true]
+
+    content {
+      region = each.value.latency_routing_policy.region
+    }
+  }
+
   dynamic "weighted_routing_policy" {
     for_each = length(keys(lookup(each.value, "weighted_routing_policy", {}))) == 0 ? [] : [true]
 
