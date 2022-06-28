@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.9.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.8.2...v2.9.0) (2022-06-28)
+
+
+### Features
+
+* **records:** Add support for latency routing policy ([#76](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/76)) ([206d82c](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/206d82cfdaf958f99dd8faa2c25de1860158d346))
+
 ### [2.8.2](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.8.1...v2.8.2) (2022-06-26)
 
 
