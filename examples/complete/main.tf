@@ -2,6 +2,11 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+provider "aws" {
+  alias  = "another_account"
+  region = "eu-west-1"
+}
+
 locals {
   zone_name = sort(keys(module.zones.route53_zone_zone_id))[0]
   #  zone_id = module.zones.route53_zone_zone_id["terraform-aws-modules-example.com"]
@@ -42,10 +47,54 @@ module "zones" {
         Name = "private-vpc.terraform-aws-modules-example.com"
       }
     }
+    "cross-account-vpc.terraform-aws-modules-example.com" = {
+      comment = "Enabling cross account VPC attachments with aws_route53_vpc_association_authorization"
+      vpc = [
+        {
+          vpc_id = module.vpc1.vpc_id
+        },
+      ]
+      external_vpcs = [
+        {
+          vpc_id = module.vpc2.vpc_id
+        },
+        {
+          vpc_id = module.vpc_other_account.vpc_id
+        }
+      ]
+      tags = {
+        Name = "private-vpc.terraform-aws-modules-example.com"
+      }
+    }
   }
 
   tags = {
     ManagedBy = "Terraform"
+  }
+}
+
+module "zones_associations" {
+  source = "../../modules/zones_associations"
+
+  zones_associations = [
+    {
+      vpc_id  = module.vpc2.vpc_id
+      zone_id = module.zones.route53_zone_zone_id["cross-account-vpc.terraform-aws-modules-example.com"]
+    }
+  ]
+}
+
+module "zones_associations_other_account" {
+  source = "../../modules/zones_associations"
+
+  zones_associations = [
+    {
+      vpc_id  = module.vpc_other_account.vpc_id
+      zone_id = module.zones.route53_zone_zone_id["cross-account-vpc.terraform-aws-modules-example.com"]
+    }
+  ]
+  providers = {
+    aws = aws.another_account
   }
 }
 
@@ -322,6 +371,16 @@ module "vpc2" {
 
   name = "my-second-vpc-for-private-route53-zone"
   cidr = "10.1.0.0/16"
+}
+
+module "vpc_other_account" {
+  source = "terraform-aws-modules/vpc/aws"
+
+  name = "external-vpc-for-private-route53-zone"
+  cidr = "10.3.0.0/16"
+  providers = {
+    aws = aws.another_account
+  }
 }
 
 resource "aws_route53_resolver_rule" "sys" {

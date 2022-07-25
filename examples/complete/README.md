@@ -44,7 +44,10 @@ Note that this example may create resources which cost money. Run `terraform des
 | <a name="module_terragrunt"></a> [terragrunt](#module\_terragrunt) | ../../modules/records | n/a |
 | <a name="module_vpc1"></a> [vpc1](#module\_vpc1) | terraform-aws-modules/vpc/aws | n/a |
 | <a name="module_vpc2"></a> [vpc2](#module\_vpc2) | terraform-aws-modules/vpc/aws | n/a |
+| <a name="module_vpc_other_account"></a> [vpc\_other\_account](#module\_vpc\_other\_account) | terraform-aws-modules/vpc/aws | n/a |
 | <a name="module_zones"></a> [zones](#module\_zones) | ../../modules/zones | n/a |
+| <a name="module_zones_associations"></a> [zones\_associations](#module\_zones\_associations) | ../../modules/zones_associations | n/a |
+| <a name="module_zones_associations_other_account"></a> [zones\_associations\_other\_account](#module\_zones\_associations\_other\_account) | ../../modules/zones_associations | n/a |
 
 ## Resources
 
