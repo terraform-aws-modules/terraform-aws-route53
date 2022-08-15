@@ -156,6 +156,18 @@ module "records" {
       latency_routing_policy = {
         region = "eu-west-1"
       }
+    },
+    {
+      name    = "_dmarc"
+      type    = "TXT"
+      ttl     = 14400
+      records = ["v=DMARC1;p=quarantine;pct=100;sp=none;aspf=s;"]
+    },
+    {
+      name    = "mail"
+      type    = "MX"
+      ttl     = 14400
+      records = ["0  example.mail.protection.outlook.com."]
     }
   ]
 
