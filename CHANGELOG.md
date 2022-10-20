@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.10.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.9.0...v2.10.0) (2022-10-20)
+
+
+### Features
+
+* Add zone ARN to outputs ([#83](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/83)) ([fad41de](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/fad41de41c3036774ddaa0aac07937eb6da448b6))
+
 ## [2.9.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.8.2...v2.9.0) (2022-06-28)
 
 
