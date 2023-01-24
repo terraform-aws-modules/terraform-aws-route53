@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [2.10.2](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.10.1...v2.10.2) (2023-01-24)
+
+
+### Bug Fixes
+
+* Use a version for  to avoid GitHub API rate limiting on CI workflows ([#89](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/89)) ([30e4fb9](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/30e4fb96775e435bf7ac959927765b04ed833a86))
+
 ### [2.10.1](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.10.0...v2.10.1) (2022-10-27)
 
 
