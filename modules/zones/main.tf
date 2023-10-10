@@ -1,5 +1,4 @@
 data "aws_caller_identity" "current" {}
-data "aws_region" "current" {}
 
 resource "aws_route53_zone" "this" {
   for_each = { for k, v in var.zones : k => v if var.create }
