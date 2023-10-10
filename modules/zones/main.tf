@@ -17,7 +17,7 @@ resource "aws_route53_zone" "this" {
       vpc_region = lookup(vpc.value, "vpc_region", null)
     }
   }
-  
+
   tags = merge(
     lookup(each.value, "tags", {}),
     var.tags
@@ -26,11 +26,11 @@ resource "aws_route53_zone" "this" {
 
 resource "aws_kms_key" "this" {
   for_each = {
-    for k, v in var.zones : 
-    k => v 
+    for k, v in var.zones :
+    k => v
     if var.create
     && lookup(v, "dnssec", null) == "enable"
-    && lookup(v, "ksk", null) == null 
+    && lookup(v, "ksk", null) == null
   }
 
   customer_master_key_spec = "ECC_NIST_P256"
@@ -73,8 +73,8 @@ resource "aws_kms_key" "this" {
 
 resource "aws_route53_key_signing_key" "this" {
   for_each = {
-    for k, v in var.zones : 
-    k => v 
+    for k, v in var.zones :
+    k => v
     if var.create
     && lookup(v, "dnssec", null) == "enable"
   }
@@ -86,8 +86,8 @@ resource "aws_route53_key_signing_key" "this" {
 
 resource "aws_route53_hosted_zone_dnssec" "this" {
   for_each = {
-    for k, v in var.zones : 
-    k => v 
+    for k, v in var.zones :
+    k => v
     if var.create
     && lookup(v, "dnssec", null) == "enable"
   }
