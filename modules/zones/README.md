@@ -33,6 +33,8 @@ No modules.
 | <a name="input_create"></a> [create](#input\_create) | Whether to create Route53 zone | `bool` | `true` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags added to all zones. Will take precedence over tags from the 'zones' variable | `map(any)` | `{}` | no |
 | <a name="input_zones"></a> [zones](#input\_zones) | Map of Route53 zone parameters | `any` | `{}` | no |
+| <a name="input_dnssec"></a> [dnssec](#input\_dnssec) | Parameter of the <a name="input_zones"></a> [zones](#input\_zones) input, determining if DNSSEC for Route53 zone enabled | `string` | null | no |
+| <a name="input_ksk"></a> [ksk](#input\_ksk) | Parameter of the <a name="input_zones"></a> [zones](#input\_zones) input, KMS key's ARN, determining previously created KMS key usage as key signing key (KSK) | `string` | null | no |
 
 ## Outputs
 
