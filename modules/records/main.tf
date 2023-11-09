@@ -63,6 +63,15 @@ resource "aws_route53_record" "this" {
     }
   }
 
+  dynamic "cidr_routing_policy" {
+    for_each = length(keys(lookup(each.value, "cidr_routing_policy", {}))) == 0? [] : [true]
+
+    content {
+      collection_id = lookup(each.value.cidr_routing_policy, "collection_id", null)
+      location_name = lookup(each.value.cidr_routing_policy, "location_name", null)
+    }
+  }
+
   dynamic "geolocation_routing_policy" {
     for_each = length(keys(lookup(each.value, "geolocation_routing_policy", {}))) == 0 ? [] : [true]
 
