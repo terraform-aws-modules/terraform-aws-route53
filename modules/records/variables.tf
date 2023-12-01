@@ -33,3 +33,9 @@ variable "records_jsonencoded" {
   type        = string
   default     = null
 }
+
+variable "route53_vpc_id" {
+  description = "The vpc id of the Route53 zone"
+  type        = string
+  default     = null
+}

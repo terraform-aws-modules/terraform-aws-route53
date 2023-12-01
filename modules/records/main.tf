@@ -13,6 +13,7 @@ data "aws_route53_zone" "this" {
   zone_id      = var.zone_id
   name         = var.zone_name
   private_zone = var.private_zone
+  vpc_id       = var.route53_vpc_id
 }
 
 resource "aws_route53_record" "this" {
