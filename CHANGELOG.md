@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.11.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.10.2...v2.11.0) (2023-12-15)
+
+
+### Features
+
+* Added static zone name output ([#102](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/102)) ([bc63328](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/bc63328714550fd903d2574b263833c9ce1c867e))
+
 ### [2.10.2](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.10.1...v2.10.2) (2023-01-24)
 
 
