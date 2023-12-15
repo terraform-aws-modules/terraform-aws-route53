@@ -17,3 +17,8 @@ output "route53_zone_name" {
   description = "Name of Route53 zone"
   value       = { for k, v in aws_route53_zone.this : k => v.name }
 }
+
+output "route53_static_zone_name" {
+  description = "Name of Route53 zone created statically to avoid invalid count argument error when creating records and zones simmultaneously"
+  value       = { for k, v in var.zones : k => lookup(v, "domain_name", k) if var.create }
+}

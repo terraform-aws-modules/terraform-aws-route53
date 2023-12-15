@@ -68,6 +68,7 @@ No inputs.
 | <a name="output_route53_resolver_rule_association_id"></a> [route53\_resolver\_rule\_association\_id](#output\_route53\_resolver\_rule\_association\_id) | ID of Route53 Resolver rule associations |
 | <a name="output_route53_resolver_rule_association_name"></a> [route53\_resolver\_rule\_association\_name](#output\_route53\_resolver\_rule\_association\_name) | Name of Route53 Resolver rule associations |
 | <a name="output_route53_resolver_rule_association_resolver_rule_id"></a> [route53\_resolver\_rule\_association\_resolver\_rule\_id](#output\_route53\_resolver\_rule\_association\_resolver\_rule\_id) | ID of Route53 Resolver rule associations resolver rule |
+| <a name="output_route53_static_zone_name"></a> [route53\_static\_zone\_name](#output\_route53\_static\_zone\_name) | Name of Route53 zone created statically to avoid invalid count argument error when creating records and zones simmultaneously |
 | <a name="output_route53_zone_name"></a> [route53\_zone\_name](#output\_route53\_zone\_name) | Name of Route53 zone |
 | <a name="output_route53_zone_name_servers"></a> [route53\_zone\_name\_servers](#output\_route53\_zone\_name\_servers) | Name servers of Route53 zone |
 | <a name="output_route53_zone_zone_arn"></a> [route53\_zone\_zone\_arn](#output\_route53\_zone\_zone\_arn) | Zone ARN of Route53 zone |
