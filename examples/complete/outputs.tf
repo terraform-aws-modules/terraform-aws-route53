@@ -19,6 +19,11 @@ output "route53_zone_name" {
   value       = module.zones.route53_zone_name
 }
 
+output "route53_static_zone_name" {
+  description = "Name of Route53 zone created statically to avoid invalid count argument error when creating records and zones simmultaneously"
+  value       = module.zones.route53_static_zone_name
+}
+
 # records
 output "route53_record_name" {
   description = "The name of the record"
