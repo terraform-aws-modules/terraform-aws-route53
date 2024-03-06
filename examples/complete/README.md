@@ -21,7 +21,7 @@ Note that this example may create resources which cost money. Run `terraform des
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 2.49 |
 
 ## Providers
@@ -34,7 +34,7 @@ Note that this example may create resources which cost money. Run `terraform des
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cloudfront"></a> [cloudfront](#module\_cloudfront) | terraform-aws-modules/cloudfront/aws | n/a |
+| <a name="module_cloudfront"></a> [cloudfront](#module\_cloudfront) | terraform-aws-modules/cloudfront/aws | ~> 3.0 |
 | <a name="module_delegation_sets"></a> [delegation\_sets](#module\_delegation\_sets) | ../../modules/delegation-sets | n/a |
 | <a name="module_disabled_records"></a> [disabled\_records](#module\_disabled\_records) | ../../modules/records | n/a |
 | <a name="module_records"></a> [records](#module\_records) | ../../modules/records | n/a |
@@ -42,8 +42,8 @@ Note that this example may create resources which cost money. Run `terraform des
 | <a name="module_resolver_rule_associations"></a> [resolver\_rule\_associations](#module\_resolver\_rule\_associations) | ../../modules/resolver-rule-associations | n/a |
 | <a name="module_s3_bucket"></a> [s3\_bucket](#module\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | n/a |
 | <a name="module_terragrunt"></a> [terragrunt](#module\_terragrunt) | ../../modules/records | n/a |
-| <a name="module_vpc1"></a> [vpc1](#module\_vpc1) | terraform-aws-modules/vpc/aws | n/a |
-| <a name="module_vpc2"></a> [vpc2](#module\_vpc2) | terraform-aws-modules/vpc/aws | n/a |
+| <a name="module_vpc1"></a> [vpc1](#module\_vpc1) | terraform-aws-modules/vpc/aws | ~> 5.0 |
+| <a name="module_vpc2"></a> [vpc2](#module\_vpc2) | terraform-aws-modules/vpc/aws | ~> 5.0 |
 | <a name="module_zones"></a> [zones](#module\_zones) | ../../modules/zones | n/a |
 
 ## Resources

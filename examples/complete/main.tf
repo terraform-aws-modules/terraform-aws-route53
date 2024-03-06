@@ -289,7 +289,8 @@ module "s3_bucket" {
 }
 
 module "cloudfront" {
-  source = "terraform-aws-modules/cloudfront/aws"
+  source  = "terraform-aws-modules/cloudfront/aws"
+  version = "~> 3.0"
 
   enabled             = true
   wait_for_deployment = false
@@ -311,14 +312,16 @@ module "cloudfront" {
 }
 
 module "vpc1" {
-  source = "terraform-aws-modules/vpc/aws"
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "~> 5.0"
 
   name = "my-vpc-for-private-route53-zone"
   cidr = "10.0.0.0/16"
 }
 
 module "vpc2" {
-  source = "terraform-aws-modules/vpc/aws"
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "~> 5.0"
 
   name = "my-second-vpc-for-private-route53-zone"
   cidr = "10.1.0.0/16"
