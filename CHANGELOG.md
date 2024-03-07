@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.11.1](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.11.0...v2.11.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* Update CI workflow versions to remove deprecated runtime warnings ([#104](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/104)) ([ab3aed7](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/ab3aed78c35c9a48b946f0f9788c2105216f5715))
+
 ## [2.11.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.10.2...v2.11.0) (2023-12-15)
 
 
