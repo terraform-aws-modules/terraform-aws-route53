@@ -72,4 +72,22 @@ resource "aws_route53_record" "this" {
       subdivision = lookup(each.value.geolocation_routing_policy, "subdivision", null)
     }
   }
+
+  dynamic "geoproximity_routing_policy" {
+    for_each = length(keys(lookup(each.value, "geoproximity_routing_policy", {}))) == 0 ? [] : [true]
+
+    content {
+      aws_region       = lookup(each.value.geoproximity_routing_policy, "aws_region", null)
+      bias             = lookup(each.value.geoproximity_routing_policy, "bias", null)
+      local_zone_group = lookup(each.value.geoproximity_routing_policy, "local_zone_group", null)
+      dynamic "coordinates" {
+        for_each = lookup(each.value.geoproximity_routing_policy, "coordinates", null) == null ? [] : [lookup(each.value.geoproximity_routing_policy, "coordinates", null)]
+
+        content {
+          latitude  = coordinates.value.latitude
+          longitude = coordinates.value.longitude
+        }
+      }
+    }
+  }
 }

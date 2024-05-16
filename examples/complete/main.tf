@@ -84,6 +84,30 @@ module "records" {
       }
     },
     {
+      name           = "geoproximity-aws-region"
+      type           = "CNAME"
+      ttl            = 5
+      records        = ["us-east-1.test.example.com."]
+      set_identifier = "us-east-1-region"
+      geoproximity_routing_policy = {
+        aws_region = "us-east-1"
+        bias       = 0
+      }
+    },
+    {
+      name           = "geoproximity-coordinates"
+      type           = "CNAME"
+      ttl            = 5
+      records        = ["nyc.test.example.com."]
+      set_identifier = "nyc"
+      geoproximity_routing_policy = {
+        coordinates = {
+          latitude  = "40.7128"
+          longitude = "-74.0060"
+        }
+      }
+    },
+    {
       name = "cloudfront"
       type = "A"
       alias = {
