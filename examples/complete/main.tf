@@ -258,6 +258,23 @@ module "resolver_rule_associations" {
   }
 }
 
+module "resolver_endpoints" {
+  source = "../../modules/resolver-endpoints"
+
+  name      = "example1"
+  direction = "INBOUND"
+  protocols = ["Do53", "DoH"]
+
+  subnet_ids = [
+    slice(module.vpc1.private_subnets, 0, 2)
+  ]
+
+  vpc_id = module.vpc1.vpc_id
+  security_group_ingress_cidr_blocks = [
+    module.vpc2.vpc_cidr_block
+  ]
+}
+
 module "disabled_records" {
   source = "../../modules/records"
 

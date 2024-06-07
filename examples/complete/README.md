@@ -39,6 +39,7 @@ Note that this example may create resources which cost money. Run `terraform des
 | <a name="module_disabled_records"></a> [disabled\_records](#module\_disabled\_records) | ../../modules/records | n/a |
 | <a name="module_records"></a> [records](#module\_records) | ../../modules/records | n/a |
 | <a name="module_records_with_full_names"></a> [records\_with\_full\_names](#module\_records\_with\_full\_names) | ../../modules/records | n/a |
+| <a name="module_resolver_endpoints"></a> [resolver\_endpoints](#module\_resolver\_endpoints) | ../../modules/resolver-endpoints | n/a |
 | <a name="module_resolver_rule_associations"></a> [resolver\_rule\_associations](#module\_resolver\_rule\_associations) | ../../modules/resolver-rule-associations | n/a |
 | <a name="module_s3_bucket"></a> [s3\_bucket](#module\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | n/a |
 | <a name="module_terragrunt"></a> [terragrunt](#module\_terragrunt) | ../../modules/records | n/a |
