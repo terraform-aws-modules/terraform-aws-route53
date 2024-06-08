@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.11.1...v3.0.0) (2024-06-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add support for geoproximity routing policy. Upgraded TF version to 1.3.2 (#105)
+
+### Features
+
+* Add support for geoproximity routing policy. Upgraded TF version to 1.3.2 ([#105](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/105)) ([461eef2](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/461eef2a24eac18a513a3f7f6c5993c61cd8c73a))
+
 ## [2.11.1](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.11.0...v2.11.1) (2024-03-07)
 
 
