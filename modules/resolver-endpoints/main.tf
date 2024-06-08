@@ -1,5 +1,5 @@
 locals {
-  security_group_ids = var.create_security_group ? [aws_security_group.this[0].id] : var.security_group_ids
+  security_group_ids = var.create && var.create_security_group ? [aws_security_group.this[0].id] : var.security_group_ids
 }
 
 resource "aws_route53_resolver_endpoint" "this" {
@@ -13,23 +13,28 @@ resource "aws_route53_resolver_endpoint" "this" {
 
   dynamic "ip_address" {
     for_each = var.subnet_ids
+
     content {
-      subnet_id = var.subnet_ids[ip_address.key]
+      subnet_id = ip_address.value
     }
   }
 
   protocols = var.protocols
+
+  tags = var.tags
 }
 
 resource "aws_security_group" "this" {
   count = var.create && var.create_security_group ? 1 : 0
 
-  name        = var.name
+  name        = var.security_group_name_prefix == null ? coalesce(var.security_group_name, var.name) : null
+  name_prefix = var.security_group_name_prefix
   description = var.security_group_description
   vpc_id      = var.vpc_id
 
   dynamic "ingress" {
     for_each = toset(["tcp", "udp"])
+
     content {
       description = "Allow DNS"
       protocol    = ingress.value
@@ -47,7 +52,5 @@ resource "aws_security_group" "this" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Name = "${var.name}-sg"
-  }
+  tags = var.security_group_tags
 }

@@ -5,6 +5,9 @@ provider "aws" {
 locals {
   zone_name = sort(keys(module.zones.route53_zone_zone_id))[0]
   #  zone_id = module.zones.route53_zone_zone_id["terraform-aws-modules-example.com"]
+
+  vpc_cidr = "10.0.0.0/16"
+  azs      = slice(data.aws_availability_zones.available.names, 0, 3)
 }
 
 module "zones" {
@@ -261,18 +264,26 @@ module "resolver_rule_associations" {
 module "resolver_endpoints" {
   source = "../../modules/resolver-endpoints"
 
-  name      = "example1"
-  direction = "INBOUND"
-  protocols = ["Do53", "DoH"]
+  name       = "example1"
+  direction  = "INBOUND"
+  protocols  = ["Do53", "DoH"]
+  subnet_ids = module.vpc1.private_subnets
 
-  subnet_ids = [
-    slice(module.vpc1.private_subnets, 0, 2)
-  ]
-
-  vpc_id = module.vpc1.vpc_id
+  vpc_id                     = module.vpc1.vpc_id
+  security_group_name_prefix = "example1-sg-"
   security_group_ingress_cidr_blocks = [
     module.vpc2.vpc_cidr_block
   ]
+}
+
+###################
+# Disabled modules
+###################
+
+module "disabled_resolver_endpoints" {
+  source = "../../modules/resolver-endpoints"
+
+  create = false
 }
 
 module "disabled_records" {
@@ -328,12 +339,17 @@ module "cloudfront" {
   }
 }
 
+data "aws_availability_zones" "available" {}
+
 module "vpc1" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 5.0"
 
   name = "my-vpc-for-private-route53-zone"
-  cidr = "10.0.0.0/16"
+  cidr = local.vpc_cidr
+
+  azs             = local.azs
+  private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k)]
 }
 
 module "vpc2" {

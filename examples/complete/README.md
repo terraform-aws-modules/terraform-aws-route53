@@ -37,6 +37,7 @@ Note that this example may create resources which cost money. Run `terraform des
 | <a name="module_cloudfront"></a> [cloudfront](#module\_cloudfront) | terraform-aws-modules/cloudfront/aws | ~> 3.0 |
 | <a name="module_delegation_sets"></a> [delegation\_sets](#module\_delegation\_sets) | ../../modules/delegation-sets | n/a |
 | <a name="module_disabled_records"></a> [disabled\_records](#module\_disabled\_records) | ../../modules/records | n/a |
+| <a name="module_disabled_resolver_endpoints"></a> [disabled\_resolver\_endpoints](#module\_disabled\_resolver\_endpoints) | ../../modules/resolver-endpoints | n/a |
 | <a name="module_records"></a> [records](#module\_records) | ../../modules/records | n/a |
 | <a name="module_records_with_full_names"></a> [records\_with\_full\_names](#module\_records\_with\_full\_names) | ../../modules/records | n/a |
 | <a name="module_resolver_endpoints"></a> [resolver\_endpoints](#module\_resolver\_endpoints) | ../../modules/resolver-endpoints | n/a |
@@ -53,6 +54,7 @@ Note that this example may create resources which cost money. Run `terraform des
 |------|------|
 | [aws_route53_health_check.failover](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_health_check) | resource |
 | [aws_route53_resolver_rule.sys](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_resolver_rule) | resource |
+| [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 
 ## Inputs
 
