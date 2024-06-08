@@ -102,8 +102,8 @@ module "records" {
       set_identifier = "nyc"
       geoproximity_routing_policy = {
         coordinates = {
-          latitude  = "40.7128"
-          longitude = "-74.0060"
+          latitude  = "40.71"
+          longitude = "-74.01"
         }
       }
     },

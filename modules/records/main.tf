@@ -80,6 +80,7 @@ resource "aws_route53_record" "this" {
       aws_region       = lookup(each.value.geoproximity_routing_policy, "aws_region", null)
       bias             = lookup(each.value.geoproximity_routing_policy, "bias", null)
       local_zone_group = lookup(each.value.geoproximity_routing_policy, "local_zone_group", null)
+
       dynamic "coordinates" {
         for_each = lookup(each.value.geoproximity_routing_policy, "coordinates", null) == null ? [] : [lookup(each.value.geoproximity_routing_policy, "coordinates", null)]
 
