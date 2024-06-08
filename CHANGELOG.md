@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.1.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v3.0.0...v3.1.0) (2024-06-08)
+
+
+### Features
+
+* Add resolver-endpoints submodule ([#106](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/106)) ([67b5cf3](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/67b5cf322d4927a0c84e6e20538c05384c940f2b))
+
 ## [3.0.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v2.11.1...v3.0.0) (2024-06-08)
 
 
