@@ -285,7 +285,7 @@ module "resolver_rule_associations" {
   }
 }
 
-module "resolver_endpoints" {
+module "inbound_resolver_endpoints" {
   source = "../../modules/resolver-endpoints"
 
   name       = "example1"
@@ -296,6 +296,27 @@ module "resolver_endpoints" {
   vpc_id                     = module.vpc1.vpc_id
   security_group_name_prefix = "example1-sg-"
   security_group_ingress_cidr_blocks = [
+    module.vpc2.vpc_cidr_block
+  ]
+  security_group_egress_cidr_blocks = [
+    module.vpc2.vpc_cidr_block
+  ]
+}
+
+module "outbound_resolver_endpoints" {
+  source = "../../modules/resolver-endpoints"
+
+  name       = "example2"
+  direction  = "OUTBOUND"
+  protocols  = ["Do53", "DoH"]
+  subnet_ids = module.vpc1.private_subnets
+
+  vpc_id                     = module.vpc1.vpc_id
+  security_group_name_prefix = "example2-sg-"
+  security_group_ingress_cidr_blocks = [
+    module.vpc1.vpc_cidr_block
+  ]
+  security_group_egress_cidr_blocks = [
     module.vpc2.vpc_cidr_block
   ]
 }
