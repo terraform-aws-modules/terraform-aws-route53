@@ -79,7 +79,13 @@ variable "security_group_description" {
 }
 
 variable "security_group_ingress_cidr_blocks" {
-  description = "A list of CIDR blocks to allow on security group"
+  description = "A list of CIDR blocks to allow on security group ingress rules"
+  type        = list(string)
+  default     = []
+}
+
+variable "security_group_egress_cidr_blocks" {
+  description = "A list of CIDR blocks to allow on security group egress rules"
   type        = list(string)
   default     = []
 }

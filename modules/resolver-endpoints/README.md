@@ -37,8 +37,9 @@ No modules.
 | <a name="input_name"></a> [name](#input\_name) | The resolver endpoint name | `string` | `null` | no |
 | <a name="input_protocols"></a> [protocols](#input\_protocols) | The resolver endpoint protocols | `list(string)` | `[]` | no |
 | <a name="input_security_group_description"></a> [security\_group\_description](#input\_security\_group\_description) | The security group description | `string` | `null` | no |
+| <a name="input_security_group_egress_cidr_blocks"></a> [security\_group\_egress\_cidr\_blocks](#input\_security\_group\_egress\_cidr\_blocks) | A list of CIDR blocks to allow on security group egress rules | `list(string)` | `[]` | no |
 | <a name="input_security_group_ids"></a> [security\_group\_ids](#input\_security\_group\_ids) | A list of security group IDs | `list(string)` | `[]` | no |
-| <a name="input_security_group_ingress_cidr_blocks"></a> [security\_group\_ingress\_cidr\_blocks](#input\_security\_group\_ingress\_cidr\_blocks) | A list of CIDR blocks to allow on security group | `list(string)` | `[]` | no |
+| <a name="input_security_group_ingress_cidr_blocks"></a> [security\_group\_ingress\_cidr\_blocks](#input\_security\_group\_ingress\_cidr\_blocks) | A list of CIDR blocks to allow on security group ingress rules | `list(string)` | `[]` | no |
 | <a name="input_security_group_name"></a> [security\_group\_name](#input\_security\_group\_name) | The name of the security group | `string` | `null` | no |
 | <a name="input_security_group_name_prefix"></a> [security\_group\_name\_prefix](#input\_security\_group\_name\_prefix) | The prefix of the security group | `string` | `null` | no |
 | <a name="input_security_group_tags"></a> [security\_group\_tags](#input\_security\_group\_tags) | A map of tags for the security group | `map(string)` | `{}` | no |

@@ -44,12 +44,16 @@ resource "aws_security_group" "this" {
     }
   }
 
-  egress {
-    description = "Allow All"
-    protocol    = "-1"
-    from_port   = 0
-    to_port     = 0
-    cidr_blocks = ["0.0.0.0/0"]
+  dynamic "egress" {
+    for_each = toset(["tcp", "udp"])
+
+    content {
+      description = "Allow DNS"
+      protocol    = egress.value
+      from_port   = 53
+      to_port     = 53
+      cidr_blocks = var.security_group_egress_cidr_blocks
+    }
   }
 
   tags = var.security_group_tags
