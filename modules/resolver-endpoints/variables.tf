@@ -28,10 +28,13 @@ variable "type" {
   default     = "IPV4"
 }
 
-variable "subnet_ids" {
-  description = "A list of subnets where Route53 resolver endpoints will be deployed"
-  type        = list(string)
-  default     = []
+variable "ip_address" {
+  description = "A list of IP addresses and subnets where Route53 resolver endpoints will be deployed"
+  type = list(object({
+    ip        = optional(string)
+    subnet_id = string
+  }))
+  default = []
 }
 
 variable "security_group_ids" {

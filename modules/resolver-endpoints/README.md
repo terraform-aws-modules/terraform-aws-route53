@@ -34,6 +34,7 @@ No modules.
 | <a name="input_create"></a> [create](#input\_create) | Whether to create Route53 resolver endpoints | `bool` | `true` | no |
 | <a name="input_create_security_group"></a> [create\_security\_group](#input\_create\_security\_group) | Whether to create Security Groups for Route53 Resolver Endpoints | `bool` | `true` | no |
 | <a name="input_direction"></a> [direction](#input\_direction) | The resolver endpoint flow direction | `string` | `"INBOUND"` | no |
+| <a name="input_ip_address"></a> [ip\_address](#input\_ip\_address) | A list of IP addresses and subnets where Route53 resolver endpoints will be deployed | <pre>list(object({<br>    ip        = optional(string)<br>    subnet_id = string<br>  }))</pre> | `[]` | no |
 | <a name="input_name"></a> [name](#input\_name) | The resolver endpoint name | `string` | `null` | no |
 | <a name="input_protocols"></a> [protocols](#input\_protocols) | The resolver endpoint protocols | `list(string)` | `[]` | no |
 | <a name="input_security_group_description"></a> [security\_group\_description](#input\_security\_group\_description) | The security group description | `string` | `null` | no |
@@ -43,7 +44,6 @@ No modules.
 | <a name="input_security_group_name"></a> [security\_group\_name](#input\_security\_group\_name) | The name of the security group | `string` | `null` | no |
 | <a name="input_security_group_name_prefix"></a> [security\_group\_name\_prefix](#input\_security\_group\_name\_prefix) | The prefix of the security group | `string` | `null` | no |
 | <a name="input_security_group_tags"></a> [security\_group\_tags](#input\_security\_group\_tags) | A map of tags for the security group | `map(string)` | `{}` | no |
-| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | A list of subnets where Route53 resolver endpoints will be deployed | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags for the Route53 resolver endpoint | `map(string)` | `{}` | no |
 | <a name="input_type"></a> [type](#input\_type) | The resolver endpoint IP type | `string` | `"IPV4"` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The VPC ID for all the Route53 Resolver Endpoints | `string` | `""` | no |

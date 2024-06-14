@@ -12,10 +12,11 @@ resource "aws_route53_resolver_endpoint" "this" {
   security_group_ids     = local.security_group_ids
 
   dynamic "ip_address" {
-    for_each = var.subnet_ids
+    for_each = var.ip_address
 
     content {
-      subnet_id = ip_address.value
+      ip        = ip_address.value.ip
+      subnet_id = ip_address.value.subnet_id
     }
   }
 
