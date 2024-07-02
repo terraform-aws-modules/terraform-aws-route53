@@ -29,6 +29,7 @@ Note that this example may create resources which cost money. Run `terraform des
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.37 |
+| <a name="provider_aws.second_account"></a> [aws.second\_account](#provider\_aws.second\_account) | >= 5.37 |
 
 ## Modules
 
@@ -38,6 +39,7 @@ Note that this example may create resources which cost money. Run `terraform des
 | <a name="module_delegation_sets"></a> [delegation\_sets](#module\_delegation\_sets) | ../../modules/delegation-sets | n/a |
 | <a name="module_disabled_records"></a> [disabled\_records](#module\_disabled\_records) | ../../modules/records | n/a |
 | <a name="module_disabled_resolver_endpoints"></a> [disabled\_resolver\_endpoints](#module\_disabled\_resolver\_endpoints) | ../../modules/resolver-endpoints | n/a |
+| <a name="module_disabled_zone_cross_account_vpc_association"></a> [disabled\_zone\_cross\_account\_vpc\_association](#module\_disabled\_zone\_cross\_account\_vpc\_association) | ../../modules/zone-cross-account-vpc-association | n/a |
 | <a name="module_inbound_resolver_endpoints"></a> [inbound\_resolver\_endpoints](#module\_inbound\_resolver\_endpoints) | ../../modules/resolver-endpoints | n/a |
 | <a name="module_outbound_resolver_endpoints"></a> [outbound\_resolver\_endpoints](#module\_outbound\_resolver\_endpoints) | ../../modules/resolver-endpoints | n/a |
 | <a name="module_records"></a> [records](#module\_records) | ../../modules/records | n/a |
@@ -47,6 +49,8 @@ Note that this example may create resources which cost money. Run `terraform des
 | <a name="module_terragrunt"></a> [terragrunt](#module\_terragrunt) | ../../modules/records | n/a |
 | <a name="module_vpc1"></a> [vpc1](#module\_vpc1) | terraform-aws-modules/vpc/aws | ~> 5.0 |
 | <a name="module_vpc2"></a> [vpc2](#module\_vpc2) | terraform-aws-modules/vpc/aws | ~> 5.0 |
+| <a name="module_vpc_otheraccount"></a> [vpc\_otheraccount](#module\_vpc\_otheraccount) | terraform-aws-modules/vpc/aws | ~> 5.0 |
+| <a name="module_zone_cross_account_vpc_association"></a> [zone\_cross\_account\_vpc\_association](#module\_zone\_cross\_account\_vpc\_association) | ../../modules/zone-cross-account-vpc-association | n/a |
 | <a name="module_zones"></a> [zones](#module\_zones) | ../../modules/zones | n/a |
 
 ## Resources
@@ -56,6 +60,7 @@ Note that this example may create resources which cost money. Run `terraform des
 | [aws_route53_health_check.failover](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_health_check) | resource |
 | [aws_route53_resolver_rule.sys](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_resolver_rule) | resource |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
+| [aws_region.second_account_current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
 ## Inputs
 

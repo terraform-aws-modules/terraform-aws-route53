@@ -11,6 +11,7 @@ There are independent submodules:
 - [delegation-sets](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/delegation-sets) - to manage Route53 delegation sets
 - [resolver-endpoints](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/resolver-endpoints) - to manage Route53 resolver endpoints
 - [resolver-rule-associations](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/resolver-rule-associations) - to manage Route53 resolver rule associations
+- [zone-cross-account-vpc-association](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/zone-cross-account-vpc-association) - to associate Route53 zones with VPCs from different AWS accounts
 
 ## Usage
 
