@@ -1,6 +1,10 @@
 provider "aws" {
   region = "eu-west-1"
 }
+provider "aws" {
+  alias  = "second_account"
+  region = "us-east-1"
+}
 
 locals {
   zone_name = sort(keys(module.zones.route53_zone_zone_id))[0]
@@ -8,6 +12,10 @@ locals {
 
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
+}
+
+data "aws_region" "second_account_current" {
+  provider = aws.second_account
 }
 
 module "zones" {
@@ -45,6 +53,21 @@ module "zones" {
         Name = "private-vpc.terraform-aws-modules-example.com"
       }
     }
+
+    "private-vpc.terraform-aws-modules-example2.com" = {
+      # in case than private and public zones with the same domain name
+      domain_name = "terraform-aws-modules-example2.com"
+      comment     = "private-vpc.terraform-aws-modules-example2.com"
+      vpc = [
+        {
+          vpc_id = module.vpc1.vpc_id
+        },
+      ]
+      tags = {
+        Name = "private-vpc.terraform-aws-modules-example2.com"
+      }
+    }
+
   }
 
   tags = {
@@ -268,6 +291,28 @@ module "delegation_sets" {
   }
 }
 
+
+module "zone_cross_account_vpc_association" {
+  source = "../../modules/zone-cross-account-vpc-association"
+  providers = {
+    aws.r53_owner = aws
+    aws.vpc_owner = aws.second_account
+  }
+
+  zone_vpc_associations = {
+    example = {
+      zone_id = module.zones.route53_zone_zone_id["private-vpc.terraform-aws-modules-example.com"]
+      vpc_id  = module.vpc_otheraccount.vpc_id
+    },
+    example2 = {
+      zone_id    = module.zones.route53_zone_zone_id["private-vpc.terraform-aws-modules-example2.com"]
+      vpc_id     = module.vpc_otheraccount.vpc_id
+      vpc_region = data.aws_region.second_account_current.name
+    },
+  }
+}
+
+
 module "resolver_rule_associations" {
   source = "../../modules/resolver-rule-associations"
 
@@ -382,6 +427,15 @@ module "vpc2" {
 
   name = "my-second-vpc-for-private-route53-zone"
   cidr = "10.1.0.0/16"
+}
+
+module "vpc_otheraccount" {
+  source   = "terraform-aws-modules/vpc/aws"
+  provider = aws.second_account
+  version  = "~> 5.0"
+
+  name = "my-second-account-vpc-for-private-route53-zone"
+  cidr = "172.16.0.0/12"
 }
 
 resource "aws_route53_resolver_rule" "sys" {
