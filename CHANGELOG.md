@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v3.1.0...v4.0.0) (2024-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add primary name server to outputs in modules/zones. Bump AWS provider version to 4 (#108)
+
+### Features
+
+* Add primary name server to outputs in modules/zones. Bump AWS provider version to 4 ([#108](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/108)) ([0fa1069](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/0fa1069b85c5f0d001bb41969b899f4f7ffff218))
+
 ## [3.1.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v3.0.0...v3.1.0) (2024-06-08)
 
 
