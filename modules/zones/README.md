@@ -8,13 +8,13 @@ This module creates Route53 zones.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.2 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 2.49 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.36.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 2.49 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.36.0 |
 
 ## Modules
 
