@@ -1,0 +1,36 @@
+name: Sync Fork with Upstream
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for tags and branches
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "sync-job"
+
+      - name: Add upstream repository
+        run: |
+          git remote add upstream https://github.com/terraform-aws-modules/terraform-aws-route53.git
+          git fetch upstream
+
+      - name: Sync master branch
+        run: |
+          git checkout master
+          git merge upstream/master --no-edit
+          git push origin master
+
+      - name: Sync tags
+        run: |
+          git fetch upstream --tags
+          git push --tags origin
