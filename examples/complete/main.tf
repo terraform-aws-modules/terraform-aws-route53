@@ -61,6 +61,14 @@ module "records" {
   records = [
     {
       name = ""
+      type = "SOA"
+      ttl  = 900
+      records = [
+        "${module.zones.primary_name_server[local.zone_name]}. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 60",
+      ]
+    },
+    {
+      name = ""
       type = "A"
       ttl  = 3600
       records = [
