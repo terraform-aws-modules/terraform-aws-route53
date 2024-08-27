@@ -54,7 +54,7 @@ resource "aws_security_group" "this" {
       protocol    = egress.value
       from_port   = 53
       to_port     = 53
-      cidr_blocks = var.security_group_egress_cidr_blocks
+      cidr_blocks = try(var.security_group_egress_cidr_blocks, ["0.0.0.0"])
     }
   }
 
