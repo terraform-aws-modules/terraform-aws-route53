@@ -15,7 +15,7 @@ resource "aws_route53_resolver_endpoint" "this" {
     for_each = var.ip_address
 
     content {
-      ip        = ip_address.value.ip
+      ip        = lookup(ip_address.value, "ip", null)
       subnet_id = ip_address.value.subnet_id
     }
   }
