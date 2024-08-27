@@ -300,14 +300,7 @@ module "inbound_resolver_endpoints" {
   direction = "INBOUND"
   protocols = ["Do53", "DoH"]
 
-  ip_address = [
-    {
-      subnet_id = module.vpc1.private_subnets[0]
-    },
-    {
-      subnet_id = module.vpc1.private_subnets[1]
-    }
-  ]
+  subnet_ids = slice(module.vpc1.private_subnets, 0, 2)
 
   vpc_id                     = module.vpc1.vpc_id
   security_group_name_prefix = "example1-sg-"
@@ -326,11 +319,14 @@ module "outbound_resolver_endpoints" {
   direction = "OUTBOUND"
   protocols = ["Do53", "DoH"]
 
+  # Using fixed IP addresses
   ip_address = [
     {
+      ip        = "10.0.0.35"
       subnet_id = module.vpc1.private_subnets[0]
     },
     {
+      ip        = "10.0.1.35"
       subnet_id = module.vpc1.private_subnets[1]
     }
   ]

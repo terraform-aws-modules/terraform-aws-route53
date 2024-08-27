@@ -1,5 +1,6 @@
 locals {
   security_group_ids = var.create && var.create_security_group ? [aws_security_group.this[0].id] : var.security_group_ids
+  subnet_ids         = var.create && length(var.subnet_ids) > 0 ? [for subnet in var.subnet_ids : { subnet_id = subnet }] : var.subnet_ids
 }
 
 resource "aws_route53_resolver_endpoint" "this" {
@@ -12,11 +13,11 @@ resource "aws_route53_resolver_endpoint" "this" {
   security_group_ids     = local.security_group_ids
 
   dynamic "ip_address" {
-    for_each = var.ip_address
+    for_each = length(var.ip_address) == 0 ? local.subnet_ids : var.ip_address
 
     content {
       ip        = lookup(ip_address.value, "ip", null)
-      subnet_id = ip_address.value.subnet_id
+      subnet_id = each.value.subnet_id
     }
   }
 
