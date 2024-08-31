@@ -1,5 +1,6 @@
 locals {
   security_group_ids = var.create && var.create_security_group ? [aws_security_group.this[0].id] : var.security_group_ids
+  subnet_ids         = var.create && length(var.subnet_ids) > 0 ? [for subnet in var.subnet_ids : { subnet_id = subnet }] : var.subnet_ids
 }
 
 resource "aws_route53_resolver_endpoint" "this" {
@@ -12,10 +13,11 @@ resource "aws_route53_resolver_endpoint" "this" {
   security_group_ids     = local.security_group_ids
 
   dynamic "ip_address" {
-    for_each = var.subnet_ids
+    for_each = length(var.ip_address) == 0 ? local.subnet_ids : var.ip_address
 
     content {
-      subnet_id = ip_address.value
+      ip        = lookup(ip_address.value, "ip", null)
+      subnet_id = each.value.subnet_id
     }
   }
 
@@ -44,12 +46,16 @@ resource "aws_security_group" "this" {
     }
   }
 
-  egress {
-    description = "Allow All"
-    protocol    = "-1"
-    from_port   = 0
-    to_port     = 0
-    cidr_blocks = ["0.0.0.0/0"]
+  dynamic "egress" {
+    for_each = toset(["tcp", "udp"])
+
+    content {
+      description = "Allow DNS"
+      protocol    = egress.value
+      from_port   = 53
+      to_port     = 53
+      cidr_blocks = try(var.security_group_egress_cidr_blocks, ["0.0.0.0"])
+    }
   }
 
   tags = var.security_group_tags

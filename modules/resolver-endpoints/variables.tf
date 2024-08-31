@@ -30,7 +30,13 @@ variable "type" {
 
 variable "subnet_ids" {
   description = "A list of subnets where Route53 resolver endpoints will be deployed"
-  type        = list(string)
+  type        = list(any)
+  default     = []
+}
+
+variable "ip_address" {
+  description = "A list of IP addresses and subnets where Route53 resolver endpoints will be deployed"
+  type        = list(any)
   default     = []
 }
 
@@ -79,7 +85,13 @@ variable "security_group_description" {
 }
 
 variable "security_group_ingress_cidr_blocks" {
-  description = "A list of CIDR blocks to allow on security group"
+  description = "A list of CIDR blocks to allow on security group ingress rules"
+  type        = list(string)
+  default     = []
+}
+
+variable "security_group_egress_cidr_blocks" {
+  description = "A list of CIDR blocks to allow on security group egress rules"
   type        = list(string)
   default     = []
 }
