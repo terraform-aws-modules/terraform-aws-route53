@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.1](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v4.0.0...v4.0.1) (2024-08-31)
+
+
+### Bug Fixes
+
+* Add egress rule update support ([#107](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/107)) ([bbcab64](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/bbcab64009cdc6d4a7236ece331ece4045e14a31))
+
 ## [4.0.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v3.1.0...v4.0.0) (2024-08-17)
 
 
