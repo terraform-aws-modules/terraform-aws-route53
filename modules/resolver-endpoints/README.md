@@ -2,7 +2,7 @@
 
 This module creates Route53 Resolver Endpoints.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -58,4 +58,4 @@ No modules.
 | <a name="output_route53_resolver_endpoint_id"></a> [route53\_resolver\_endpoint\_id](#output\_route53\_resolver\_endpoint\_id) | The ID of the Resolver Endpoint |
 | <a name="output_route53_resolver_endpoint_ip_addresses"></a> [route53\_resolver\_endpoint\_ip\_addresses](#output\_route53\_resolver\_endpoint\_ip\_addresses) | Resolver Endpoint IP Addresses |
 | <a name="output_route53_resolver_endpoint_security_group_ids"></a> [route53\_resolver\_endpoint\_security\_group\_ids](#output\_route53\_resolver\_endpoint\_security\_group\_ids) | Security Group IDs mapped to Resolver Endpoint |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
