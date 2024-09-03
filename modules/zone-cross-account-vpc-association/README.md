@@ -35,7 +35,7 @@ module "zone_cross_account_vpc_association" {
 }
 ```
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -75,4 +75,4 @@ No modules.
 | <a name="output_aws_route53_vpc_association_authorization_id"></a> [aws\_route53\_vpc\_association\_authorization\_id](#output\_aws\_route53\_vpc\_association\_authorization\_id) | ID of Route53 VPC association authorizations |
 | <a name="output_aws_route53_zone_association_id"></a> [aws\_route53\_zone\_association\_id](#output\_aws\_route53\_zone\_association\_id) | ID of Route53 VPC association |
 | <a name="output_aws_route53_zone_association_owning_account"></a> [aws\_route53\_zone\_association\_owning\_account](#output\_aws\_route53\_zone\_association\_owning\_account) | The account ID of the account that created the hosted zone. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

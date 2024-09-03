@@ -3,8 +3,8 @@ provider "aws" {
 }
 
 provider "aws" {
+  region = "eu-west-1"
   alias  = "second_account"
-  region = "us-east-1"
 }
 
 locals {
@@ -31,8 +31,8 @@ module "zones" {
     }
 
     "app.terraform-aws-modules-example.com" = {
-      comment           = "app.terraform-aws-modules-example.com"
-      delegation_set_id = module.delegation_sets.route53_delegation_set_id.main
+      comment = "app.terraform-aws-modules-example.com"
+      # delegation_set_id = module.delegation_sets.route53_delegation_set_id.main
       tags = {
         Name = "app.terraform-aws-modules-example.com"
       }
@@ -84,9 +84,10 @@ module "records" {
 
   records = [
     {
-      name = ""
-      type = "SOA"
-      ttl  = 900
+      name            = ""
+      type            = "SOA"
+      ttl             = 900
+      allow_overwrite = true # SOA record already exist in the zone
       records = [
         "${module.zones.primary_name_server[local.zone_name]}. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 60",
       ]
@@ -297,6 +298,9 @@ module "delegation_sets" {
 
   delegation_sets = {
     main = {}
+    another = {
+      reference_name = "MySet"
+    }
   }
 }
 
@@ -405,6 +409,7 @@ module "disabled_records" {
 
 module "disabled_zone_cross_account_vpc_association" {
   source = "../../modules/zone-cross-account-vpc-association"
+
   providers = {
     aws.r53_owner = aws
     aws.vpc_owner = aws.second_account
@@ -441,7 +446,7 @@ module "cloudfront" {
   source  = "terraform-aws-modules/cloudfront/aws"
   version = "~> 3.0"
 
-  enabled             = true
+  enabled             = false
   wait_for_deployment = false
 
   origin = {
@@ -490,7 +495,7 @@ module "vpc_otheraccount" {
   }
 
   name = "my-second-account-vpc-for-private-route53-zone"
-  cidr = "172.16.0.0/12"
+  cidr = "172.16.0.0/16"
 }
 
 resource "aws_route53_resolver_rule" "sys" {
