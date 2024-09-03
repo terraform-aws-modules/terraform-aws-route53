@@ -15,7 +15,7 @@ Many-to-many associations are possible, using the zone_vpc_associations input va
 ```hcl
 module "zone_cross_account_vpc_association" {
   source = "terraform-aws-modules/route53/aws//modules/zone-cross-account-vpc-association"
-  version = "~> 3.2"
+
   providers = {
     aws.r53_owner = aws
     aws.vpc_owner = aws.second_account
