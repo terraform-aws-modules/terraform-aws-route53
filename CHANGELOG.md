@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.1.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v4.0.1...v4.1.0) (2024-09-03)
+
+
+### Features
+
+* Add zone-cross-account-vpc-association submodule ([#109](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/109)) ([3615131](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/36151319b2eb0ea933d043c2eb1c57a403e43095))
+
 ## [4.0.1](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v4.0.0...v4.0.1) (2024-08-31)
 
 
