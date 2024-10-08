@@ -110,10 +110,10 @@ module "records" {
       }
     },
     {
-      name      = ""
-      type      = "MX"
-      ttl       = 3600
-      records   = [
+      name = ""
+      type = "MX"
+      ttl  = 3600
+      records = [
         "1 aspmx.l.google.com",
         "5 alt1.aspmx.l.google.com",
         "5 alt2.aspmx.l.google.com",
