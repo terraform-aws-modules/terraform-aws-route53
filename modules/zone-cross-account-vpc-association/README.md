@@ -66,7 +66,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_create"></a> [create](#input\_create) | Whether to create Route53 Zone associations | `bool` | `true` | no |
-| <a name="input_zone_vpc_associations"></a> [zone\_vpc\_associations](#input\_zone\_vpc\_associations) | Map of associations indicating zone\_id and vpc\_id to associate. | <pre>map(object({<br>    zone_id    = string<br>    vpc_id     = string<br>    vpc_region = optional(string)<br>  }))</pre> | `{}` | no |
+| <a name="input_zone_vpc_associations"></a> [zone\_vpc\_associations](#input\_zone\_vpc\_associations) | Map of associations indicating zone\_id and vpc\_id to associate. | <pre>map(object({<br/>    zone_id    = string<br/>    vpc_id     = string<br/>    vpc_region = optional(string)<br/>  }))</pre> | `{}` | no |
 
 ## Outputs
 
