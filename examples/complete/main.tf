@@ -28,6 +28,11 @@ module "zones" {
       tags = {
         Name = "terraform-aws-modules-example.com"
       }
+      timeouts = {
+        create = "2h"
+        update = "3h"
+        delete = "1h"
+      }
     }
 
     "app.terraform-aws-modules-example.com" = {
@@ -91,6 +96,11 @@ module "records" {
       records = [
         "${module.zones.primary_name_server[local.zone_name]}. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 60",
       ]
+      timeouts = {
+        create = "2h"
+        update = "2h"
+        delete = "1h"
+      }
     },
     {
       name = ""
@@ -99,6 +109,11 @@ module "records" {
       records = [
         "10.10.10.10",
       ]
+      set_identifier = "dev"
+      cidr_routing_policy = {
+        collection_id = aws_route53_cidr_collection.example.id
+        location_name = "*"
+      }
     },
     {
       key  = "s3-bucket"
@@ -513,4 +528,8 @@ module "vpc_otheraccount" {
 resource "aws_route53_resolver_rule" "sys" {
   domain_name = "sys-example.com"
   rule_type   = "SYSTEM"
+}
+
+resource "aws_route53_cidr_collection" "example" {
+  name = "collection-1"
 }

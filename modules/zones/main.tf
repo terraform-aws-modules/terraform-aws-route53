@@ -20,4 +20,14 @@ resource "aws_route53_zone" "this" {
     lookup(each.value, "tags", {}),
     var.tags
   )
+
+  dynamic "timeouts" {
+    for_each = try([each.value.timeouts], [])
+
+    content {
+      create = try(timeouts.value.create, null)
+      update = try(timeouts.value.update, null)
+      delete = try(timeouts.value.delete, null)
+    }
+  }
 }

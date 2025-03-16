@@ -41,14 +41,14 @@ module "zone_cross_account_vpc_association" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.2 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.56 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.91 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws.r53_owner"></a> [aws.r53\_owner](#provider\_aws.r53\_owner) | >= 3.56 |
-| <a name="provider_aws.vpc_owner"></a> [aws.vpc\_owner](#provider\_aws.vpc\_owner) | >= 3.56 |
+| <a name="provider_aws.r53_owner"></a> [aws.r53\_owner](#provider\_aws.r53\_owner) | >= 5.91 |
+| <a name="provider_aws.vpc_owner"></a> [aws.vpc\_owner](#provider\_aws.vpc\_owner) | >= 5.91 |
 
 ## Modules
 

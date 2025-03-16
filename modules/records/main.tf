@@ -91,4 +91,23 @@ resource "aws_route53_record" "this" {
       }
     }
   }
+
+  dynamic "cidr_routing_policy" {
+    for_each = try([each.value.cidr_routing_policy], [])
+
+    content {
+      collection_id = cidr_routing_policy.value.collection_id
+      location_name = cidr_routing_policy.value.location_name
+    }
+  }
+
+  dynamic "timeouts" {
+    for_each = try([each.value.timeouts], [])
+
+    content {
+      create = try(timeouts.value.create, null)
+      update = try(timeouts.value.update, null)
+      delete = try(timeouts.value.delete, null)
+    }
+  }
 }
