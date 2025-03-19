@@ -48,13 +48,13 @@ module "zones" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.2 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.56 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.91 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.56 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.91 |
 
 ## Modules
 
