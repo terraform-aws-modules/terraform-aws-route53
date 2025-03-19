@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.0.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v4.1.0...v5.0.0) (2025-03-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* Support timeouts, cidr_routing_policy, MSV of AWS provider v5 (#116)
+
+### Features
+
+* Support timeouts, cidr_routing_policy, MSV of AWS provider v5 ([#116](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/116)) ([44f97fc](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/44f97fcd3bc0b3069c85e9df4092b9c372ac619f))
+
+
+### Bug Fixes
+
+* Update CI workflow versions to latest ([#113](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/113)) ([91f5b54](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/91f5b5412cac179829979f98b54e55793636eae3))
+
 ## [4.1.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v4.0.1...v4.1.0) (2024-09-03)
 
 
