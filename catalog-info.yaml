@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: core-cloud-terraform-aws-dynamodb-table
+  annotations:
+    github.com/project-slug: UKHomeOffice/core-cloud-terraform-aws-dynamodb-table
+spec:
+  type: service
+  owner: core-cloud-devops
+  lifecycle: deprecated
+  system: core-cloud
