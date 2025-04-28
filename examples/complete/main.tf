@@ -249,6 +249,17 @@ module "records" {
   depends_on = [module.zones]
 }
 
+module "records_without_zone_lookup" {
+  source = "../../modules/records"
+
+  # When skip_zone_lookup is set to true, zone_id and zone_name must be provided
+  skip_zone_lookup = true
+  zone_id          = module.zones.route53_zone_zone_id["private-vpc.terraform-aws-modules-example2.com"]
+  zone_name        = module.zones.route53_zone_name["private-vpc.terraform-aws-modules-example2.com"]
+
+  # Note that private_zone is not needed here because we are setting skip_zone_lookup to true
+}
+
 module "terragrunt" {
   source = "../../modules/records"
 

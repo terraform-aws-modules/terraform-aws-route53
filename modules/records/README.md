@@ -59,6 +59,7 @@ No modules.
 | <a name="input_private_zone"></a> [private\_zone](#input\_private\_zone) | Whether Route53 zone is private or public | `bool` | `false` | no |
 | <a name="input_records"></a> [records](#input\_records) | List of objects of DNS records | `any` | `[]` | no |
 | <a name="input_records_jsonencoded"></a> [records\_jsonencoded](#input\_records\_jsonencoded) | List of map of DNS records (stored as jsonencoded string, for terragrunt) | `string` | `null` | no |
+| <a name="input_skip_zone_lookup"></a> [skip\_zone\_lookup](#input\_skip\_zone\_lookup) | Whether to skip zone lookup.  If set to true, zone\_id and zone\_name must be provided | `bool` | `false` | no |
 | <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | ID of DNS zone | `string` | `null` | no |
 | <a name="input_zone_name"></a> [zone\_name](#input\_zone\_name) | Name of DNS zone | `string` | `null` | no |
 

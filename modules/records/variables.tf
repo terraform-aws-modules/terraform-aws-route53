@@ -4,6 +4,12 @@ variable "create" {
   default     = true
 }
 
+variable "skip_zone_lookup" {
+  description = "Whether to skip zone lookup.  If set to true, zone_id and zone_name must be provided"
+  type        = bool
+  default     = false
+}
+
 variable "zone_id" {
   description = "ID of DNS zone"
   type        = string
