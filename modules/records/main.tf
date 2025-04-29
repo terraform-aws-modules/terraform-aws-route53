@@ -22,7 +22,7 @@ data "aws_route53_zone" "this" {
 }
 
 resource "aws_route53_record" "this" {
-  for_each = { for k, v in local.recordsets : k => v if var.create && (var.zone_id != null || var.zone_name != null) }
+  for_each = { for k, v in local.recordsets : k => v if var.skip_zone_lookup ? true : var.create && (var.zone_id != null || var.zone_name != null) }
 
   zone_id = local.zone_id
 
