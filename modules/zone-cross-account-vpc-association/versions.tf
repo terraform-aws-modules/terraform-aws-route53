@@ -9,11 +9,3 @@ terraform {
     }
   }
 }
-
-provider "aws" {
-  alias = "r53_owner"
-}
-
-provider "aws" {
-  alias = "vpc_owner"
-}
