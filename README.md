@@ -1,77 +1,20 @@
-# Route53 Terraform module
+# AWS Route53 Terraform modules
 
-Terraform module which creates Route53 resources.
+Terraform modules which creates Route53 resources.
 
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
-There are independent submodules:
+The following independent sub-modules are available:
 
-- [zones](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/zones) - to manage Route53 zones
-- [records](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/records) - to manage Route53 records
-- [delegation-sets](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/delegation-sets) - to manage Route53 delegation sets
-- [resolver-endpoints](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/resolver-endpoints) - to manage Route53 resolver endpoints
-- [resolver-rule-associations](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/resolver-rule-associations) - to manage Route53 resolver rule associations
-- [zone-cross-account-vpc-association](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/zone-cross-account-vpc-association) - to associate Route53 zones with VPCs from different AWS accounts
+- [zone](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/zone) creates an AWS Route53 Zone and associated resources
+- [resolver-endpoint](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/resolver-endpoint) creates an AWS Route53 Resolver Endpoint and associated resources
+- [resolver-firewall-rule-group](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/resolver-firewall-rule-group) creates an AWS Route53 Resolver Firewall Rule Group and associated resources
 
-## Usage
-
-### Create Route53 zones and records
-
-```hcl
-module "zones" {
-  source  = "terraform-aws-modules/route53/aws//modules/zones"
-  version = "~> 3.0"
-
-  zones = {
-    "terraform-aws-modules-example.com" = {
-      comment = "terraform-aws-modules-examples.com (production)"
-      tags = {
-        env = "production"
-      }
-    }
-
-    "myapp.com" = {
-      comment = "myapp.com"
-    }
-  }
-
-  tags = {
-    ManagedBy = "Terraform"
-  }
-}
-
-module "records" {
-  source  = "terraform-aws-modules/route53/aws//modules/records"
-  version = "~> 3.0"
-
-  zone_name = keys(module.zones.route53_zone_zone_id)[0]
-
-  records = [
-    {
-      name    = "apigateway1"
-      type    = "A"
-      alias   = {
-        name    = "d-10qxlbvagl.execute-api.eu-west-1.amazonaws.com"
-        zone_id = "ZLY8HYME6SFAD"
-      }
-    },
-    {
-      name    = ""
-      type    = "A"
-      ttl     = 3600
-      records = [
-        "10.10.10.10",
-      ]
-    },
-  ]
-
-  depends_on = [module.zones]
-}
-```
+See the respective module directories for examples and documentation.
 
 ## Examples
 
-- [Complete Route53 zones and records example](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/examples/complete) which shows how to create Route53 records of various types like S3 bucket and CloudFront distribution.
+- [Complete](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/examples/complete)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
