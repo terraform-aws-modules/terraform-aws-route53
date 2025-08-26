@@ -2,7 +2,6 @@
 
 Configuration in this directory creates:
 
-- TODO
 
 ## Usage
 
