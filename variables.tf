@@ -14,6 +14,24 @@ variable "tags" {
 # Zone
 ################################################################################
 
+variable "create_zone" {
+  description = "Determines whether to create the Route53 zone or lookup an existing zone"
+  type        = bool
+  default     = true
+}
+
+variable "private_zone" {
+  description = "Whether the hosted zone is private. Only applicable when `create_zone = false`"
+  type        = bool
+  default     = false
+}
+
+variable "vpc_id" {
+  description = "The ID of the VPC associated with the existing hosted zone. Only applicable when `create_zone = false`"
+  type        = string
+  default     = null
+}
+
 variable "comment" {
   description = "A comment for the hosted zone. Defaults to `Managed by Terraform`"
   type        = string

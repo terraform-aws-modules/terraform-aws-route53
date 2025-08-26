@@ -4,27 +4,27 @@
 
 output "id" {
   description = "Zone ID of Route53 zone"
-  value       = try(aws_route53_zone.this[0].id, null)
+  value       = local.zone_id
 }
 
 output "arn" {
   description = "Zone ARN of Route53 zone"
-  value       = try(aws_route53_zone.this[0].arn, null)
+  value       = try(aws_route53_zone.this[0].arn, data.aws_route53_zone.this[0].arn, null)
 }
 
 output "name_servers" {
   description = "Name servers of Route53 zone"
-  value       = try(aws_route53_zone.this[0].name_servers, null)
+  value       = try(aws_route53_zone.this[0].name_servers, data.aws_route53_zone.this[0].name_servers, null)
 }
 
 output "primary_name_server" {
   description = "The Route 53 name server that created the SOA record."
-  value       = try(aws_route53_zone.this[0].primary_name_server, null)
+  value       = try(aws_route53_zone.this[0].primary_name_server, data.aws_route53_zone.this[0].primary_name_server, null)
 }
 
 output "name" {
   description = "Name of Route53 zone"
-  value       = try(aws_route53_zone.this[0].name, null)
+  value       = local.zone_name
 }
 
 ################################################################################

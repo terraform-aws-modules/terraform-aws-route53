@@ -1,9 +1,22 @@
+locals {
+  zone_id   = try(aws_route53_zone.this[0].id, data.aws_route53_zone.this[0].id, null)
+  zone_name = try(aws_route53_zone.this[0].name, data.aws_route53_zone.this[0].name, null)
+}
+
 ################################################################################
 # Zone
 ################################################################################
 
+data "aws_route53_zone" "this" {
+  count = var.create && !var.create_zone ? 1 : 0
+
+  name         = var.name
+  private_zone = var.private_zone
+  vpc_id       = var.vpc_id
+}
+
 resource "aws_route53_zone" "this" {
-  count = var.create ? 1 : 0
+  count = var.create && var.create_zone ? 1 : 0
 
   comment           = var.comment
   delegation_set_id = var.vpc == null ? var.delegation_set_id : null
@@ -38,7 +51,7 @@ resource "aws_route53_zone" "this" {
 resource "aws_route53_vpc_association_authorization" "this" {
   for_each = var.create && var.vpc_association_authorizations != null ? var.vpc_association_authorizations : {}
 
-  zone_id    = aws_route53_zone.this[0].id
+  zone_id    = local.zone_id
   vpc_id     = each.value.vpc_id
   vpc_region = each.value.vpc_region
 }
@@ -50,8 +63,8 @@ resource "aws_route53_vpc_association_authorization" "this" {
 resource "aws_route53_key_signing_key" "this" {
   count = var.create && var.enable_dnssec ? 1 : 0
 
-  name                       = aws_route53_zone.this[0].name
-  hosted_zone_id             = aws_route53_zone.this[0].id
+  name                       = local.zone_name
+  hosted_zone_id             = local.zone_id
   key_management_service_arn = var.create_dnssec_kms_key ? module.route53_dnssec_kms.key_arn : var.dnssec_kms_key_arn
 }
 
@@ -163,7 +176,7 @@ resource "aws_route53_record" "this" {
   }
 
   multivalue_answer_routing_policy = each.value.multivalue_answer_routing_policy
-  name                             = coalesce(each.value.full_name, "${each.value.name}.${aws_route53_zone.this[0].name}", "${each.key}.${aws_route53_zone.this[0].name}")
+  name                             = coalesce(each.value.full_name, "${each.value.name}.${local.zone_name}", "${each.key}.${local.zone_name}")
   records                          = each.value.records
   set_identifier                   = each.value.set_identifier
   ttl                              = each.value.ttl
@@ -177,7 +190,7 @@ resource "aws_route53_record" "this" {
     }
   }
 
-  zone_id = aws_route53_zone.this[0].id
+  zone_id = local.zone_id
 
   dynamic "timeouts" {
     for_each = each.value.timeouts != null ? [each.value.timeouts] : []
