@@ -16,7 +16,7 @@ Terraform module that creates:
 module "zone" {
   source = "terraform-aws-modules/route53/aws//modules/zone"
 
-name    = "terraform-aws-modules-example.com"
+  name    = "terraform-aws-modules-example.com"
   comment = "Public zone for terraform-aws-modules example"
 
   records = {
