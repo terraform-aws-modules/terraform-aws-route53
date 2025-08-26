@@ -192,6 +192,7 @@ module "zone" {
 
 The following independent sub-modules are available:
 
+- [delegation-sets](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/delegation-sets) creates AWS Route53 Delegation Sets
 - [resolver-endpoint](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/resolver-endpoint) creates an AWS Route53 Resolver Endpoint and associated resources
 - [resolver-firewall-rule-group](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/resolver-firewall-rule-group) creates an AWS Route53 Resolver Firewall Rule Group and associated resources
 
