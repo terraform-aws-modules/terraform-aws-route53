@@ -167,7 +167,7 @@ resource "aws_route53_record" "this" {
   # 1. If `name` provided, use it by pre-pending it to the zone name
   # 2. If `full_name` provided, use it as is
   # 3. Otherwise, use the key as the name and append the zone name
-  name           = each.value.name != null ? "${each.value.name}.${aws_route53_zone.this[0].name}" : coalesce(each.value.full_name, "${each.key}.${aws_route53_zone.this[0].name}")
+  name           = coalesce(each.value.full_name, "${each.value.name}.${aws_route53_zone.this[0].name}", "${each.key}.${aws_route53_zone.this[0].name}")
   records        = each.value.records
   set_identifier = each.value.set_identifier
   ttl            = each.value.ttl
