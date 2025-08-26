@@ -41,9 +41,9 @@ Note that this example may create resources which will incur monetary charges on
 | <a name="module_resolver_firewall_rule_group_disabled"></a> [resolver\_firewall\_rule\_group\_disabled](#module\_resolver\_firewall\_rule\_group\_disabled) | ../../modules/resolver-firewall-rule-group | n/a |
 | <a name="module_s3_bucket"></a> [s3\_bucket](#module\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | ~> 5.0 |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | ~> 6.0 |
-| <a name="module_zone_disabled"></a> [zone\_disabled](#module\_zone\_disabled) | ../../modules/zone | n/a |
-| <a name="module_zone_private"></a> [zone\_private](#module\_zone\_private) | ../../modules/zone | n/a |
-| <a name="module_zone_public"></a> [zone\_public](#module\_zone\_public) | ../../modules/zone | n/a |
+| <a name="module_zone_disabled"></a> [zone\_disabled](#module\_zone\_disabled) | ../.. | n/a |
+| <a name="module_zone_private"></a> [zone\_private](#module\_zone\_private) | ../.. | n/a |
+| <a name="module_zone_public"></a> [zone\_public](#module\_zone\_public) | ../.. | n/a |
 
 ## Resources
 

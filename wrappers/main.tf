@@ -1,5 +1,5 @@
 module "wrapper" {
-  source = "../../modules/zone"
+  source = "../"
 
   for_each = var.items
 

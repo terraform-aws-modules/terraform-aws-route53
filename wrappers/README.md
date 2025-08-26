@@ -1,4 +1,4 @@
-# Wrapper for module: `modules/zone`
+# Wrapper for the root module
 
 The configuration in this directory contains an implementation of a single module wrapper pattern, which allows managing several copies of a module in places where using the native Terraform 0.13+ `for_each` feature is not feasible (e.g., with Terragrunt).
 
@@ -12,9 +12,9 @@ This wrapper does not implement any extra functionality.
 
 ```hcl
 terraform {
-  source = "tfr:///terraform-aws-modules/route53/aws//wrappers/zone"
+  source = "tfr:///terraform-aws-modules/route53/aws//wrappers"
   # Alternative source:
-  # source = "git::git@github.com:terraform-aws-modules/terraform-aws-route53.git//wrappers/zone?ref=master"
+  # source = "git::git@github.com:terraform-aws-modules/terraform-aws-route53.git//wrappers?ref=master"
 }
 
 inputs = {
@@ -42,7 +42,7 @@ inputs = {
 
 ```hcl
 module "wrapper" {
-  source = "terraform-aws-modules/route53/aws//wrappers/zone"
+  source = "terraform-aws-modules/route53/aws//wrappers"
 
   defaults = { # Default values
     create = true

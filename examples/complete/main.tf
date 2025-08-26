@@ -23,7 +23,7 @@ locals {
 ################################################################################
 
 module "zone_public" {
-  source = "../../modules/zone"
+  source = "../.."
 
   name    = "terraform-aws-modules-example.com"
   comment = "Public zone for terraform-aws-modules example"
@@ -160,7 +160,7 @@ module "zone_public" {
 }
 
 module "zone_private" {
-  source = "../../modules/zone"
+  source = "../.."
 
   name    = "terraform-aws-modules-example.com"
   comment = "Private zone for terraform-aws-modules example"
@@ -176,7 +176,7 @@ module "zone_private" {
 }
 
 module "zone_disabled" {
-  source = "../../modules/zone"
+  source = "../.."
 
   create = false
 }

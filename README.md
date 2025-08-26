@@ -4,9 +4,194 @@ Terraform modules which creates Route53 resources.
 
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
+## Usage
+
+### Public Hosted Zone
+
+```hcl
+module "zone" {
+  source = "terraform-aws-modules/route53/aws"
+
+  name    = "terraform-aws-modules-example.com"
+  comment = "Public zone for terraform-aws-modules example"
+
+  records = {
+    s3 = {
+      name = "s3-bucket-z1bkctxd74ezpe.terraform-aws-modules-example.com"
+      type = "A"
+      alias = {
+        name    = "s3-website-eu-west-1.amazonaws.com"
+        zone_id = "Z1BKCTXD74EZPE"
+      }
+    }
+    mail = {
+      full_name = "terraform-aws-modules-example.com"
+      type = "MX"
+      ttl  = 3600
+      records = [
+        "1 aspmx.l.google.com",
+        "5 alt1.aspmx.l.google.com",
+        "5 alt2.aspmx.l.google.com",
+        "10 alt3.aspmx.l.google.com",
+        "10 alt4.aspmx.l.google.com",
+      ]
+    }
+    geo = {
+      type           = "CNAME"
+      ttl            = 5
+      records        = ["europe.test.example.com."]
+      set_identifier = "europe"
+      geolocation_routing_policy = {
+        continent = "EU"
+      }
+    }
+    geoproximity-aws-region = {
+      type           = "CNAME"
+      ttl            = 5
+      records        = ["us-east-1.test.example.com."]
+      set_identifier = "us-east-1-region"
+      geoproximity_routing_policy = {
+        aws_region = "us-east-1"
+        bias       = 0
+      }
+    }
+    geoproximity-coordinates = {
+      type           = "CNAME"
+      ttl            = 5
+      records        = ["nyc.test.example.com."]
+      set_identifier = "nyc"
+      geoproximity_routing_policy = {
+        coordinates = [{
+          latitude  = "40.71"
+          longitude = "-74.01"
+        }]
+      }
+    }
+    cloudfront_ipv4 = {
+      name = "cloudfront"
+      type = "A"
+      alias = {
+        name    = "d3778kt32cqdww.cloudfront.net"
+        zone_id = "EF3T6981F7M1"
+      }
+    }
+    cloudfront_ipv6 = {
+      name = "cloudfront"
+      type = "AAAA"
+      alias = {
+        name    = "d3778kt32cqdww.cloudfront.net"
+        zone_id = "EF3T6981F7M1"
+      }
+    }
+    blue = {
+      name           = "test"
+      type           = "CNAME"
+      ttl            = 5
+      records        = ["test.example.com."]
+      set_identifier = "test-primary"
+      weighted_routing_policy = {
+        weight = 90
+      }
+    }
+    green = {
+      name           = "test"
+      type           = "CNAME"
+      ttl            = 5
+      records        = ["test2.example.com."]
+      set_identifier = "test-secondary"
+      weighted_routing_policy = {
+        weight = 10
+      }
+    }
+    failover-primary = {
+      type            = "A"
+      set_identifier  = "failover-primary"
+      health_check_id = "d641c34c-a992-4edd-8a63-c540a4b18d0a"
+      alias = {
+        name    = "d3778kt32cqdww.cloudfront.net"
+        zone_id = "EF3T6981F7M1"
+      }
+      failover_routing_policy = {
+        type = "PRIMARY"
+      }
+    }
+    failover-secondary = {
+      type           = "A"
+      set_identifier = "failover-secondary"
+      alias = {
+        name    = "s3-website-eu-west-1.amazonaws.com"
+        zone_id = "Z1BKCTXD74EZPE"
+      }
+      failover_routing_policy = {
+        type = "SECONDARY"
+      }
+    }
+    latency-test = {
+      type           = "A"
+      set_identifier = "latency-test"
+      alias = {
+        name    = "d3778kt32cqdww.cloudfront.net"
+        zone_id = "EF3T6981F7M1"
+        evaluate_target_health = true
+      }
+      latency_routing_policy = {
+        region = "eu-west-1"
+      }
+    }
+  }
+
+  tags = {
+    Environment = "example"
+    Project     = "terraform-aws-route53"
+  }
+}
+```
+
+### Private Hosted Zone
+
+```hcl
+module "zone" {
+  source = "terraform-aws-modules/route53/aws"
+
+  name    = "terraform-aws-modules-example.com"
+  comment = "Private zone for terraform-aws-modules example"
+
+  records = {
+    "apigateway1" = {
+      type    = "A"
+      alias   = {
+        name    = "d-10qxlbvagl.execute-api.eu-west-1.amazonaws.com"
+        zone_id = "ZLY8HYME6SFAD"
+      }
+    }
+    ip_alias = {
+      name    = "terraform-aws-modules-example.com"
+      type    = "A"
+      ttl     = 3600
+      records = [
+        "10.10.10.10",
+      ]
+    }
+  }
+
+  vpc = {
+    one = {
+      vpc_id     = "vpc-1234556abcdef"
+      vpc_region = "eu-west-1"
+    }
+  }
+
+  tags = {
+    Environment = "example"
+    Project     = "terraform-aws-route53"
+  }
+}
+```
+
+## Sub-Modules
+
 The following independent sub-modules are available:
 
-- [zone](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/zone) creates an AWS Route53 Zone and associated resources
 - [resolver-endpoint](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/resolver-endpoint) creates an AWS Route53 Resolver Endpoint and associated resources
 - [resolver-firewall-rule-group](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/modules/resolver-firewall-rule-group) creates an AWS Route53 Resolver Firewall Rule Group and associated resources
 
