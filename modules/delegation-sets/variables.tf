@@ -6,6 +6,8 @@ variable "create" {
 
 variable "delegation_sets" {
   description = "Map of Route53 delegation set parameters"
-  type        = any
-  default     = {}
+  type = map(object({
+    reference_name = optional(string)
+  }))
+  default = {}
 }
