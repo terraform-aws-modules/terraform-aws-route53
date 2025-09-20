@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.0.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v5.0.0...v6.0.0) (2025-09-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* Refactor modules to group single resource modules into higher order modules (#122)
+
+### Features
+
+* Refactor modules to group single resource modules into higher order modules ([#122](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/122)) ([0417d5b](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/0417d5b30b164c9d484b60f5f788a583a52bd25a))
+
 ## [5.0.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v4.1.0...v5.0.0) (2025-03-19)
 
 
