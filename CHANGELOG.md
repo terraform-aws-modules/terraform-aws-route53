@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.0.1](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.0.0...v6.0.1) (2025-09-23)
+
+
+### Bug Fixes
+
+* Correct `records` output to use Route53 records resource ([#125](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/125)) ([065926c](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/065926c929f4cd8e1620cf6b375b0c165cb9ff28))
+
 ## [6.0.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v5.0.0...v6.0.0) (2025-09-20)
 
 
