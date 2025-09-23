@@ -88,5 +88,5 @@ output "dnssec_kms_key_policy" {
 
 output "records" {
   description = "Records created in the Route53 zone"
-  value       = aws_route53_zone.this
+  value       = aws_route53_record.this
 }
