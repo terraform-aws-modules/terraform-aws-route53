@@ -176,7 +176,7 @@ resource "aws_route53_record" "this" {
   }
 
   multivalue_answer_routing_policy = each.value.multivalue_answer_routing_policy
-  name                             = coalesce(each.value.full_name, try("${each.value.name}.${local.zone_name}", null), "${each.key}.${local.zone_name}")
+  name                             = coalesce(each.value.full_name, try("${each.value.name}.${local.zone_name}", "${each.key}.${local.zone_name}"))
   records                          = each.value.records
   set_identifier                   = each.value.set_identifier
   ttl                              = each.value.ttl
