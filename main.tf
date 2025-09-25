@@ -1,6 +1,6 @@
 locals {
-  zone_id   = try(aws_route53_zone.this[0].id, data.aws_route53_zone.this[0].id, null)
-  zone_name = try(aws_route53_zone.this[0].name, data.aws_route53_zone.this[0].name, null)
+  zone_id   = try(aws_route53_zone.this[0].id, aws_route53_zone.ignore_vpc[0].id, data.aws_route53_zone.this[0].id, null)
+  zone_name = try(aws_route53_zone.this[0].name, aws_route53_zone.ignore_vpc[0].name, data.aws_route53_zone.this[0].name, null)
 }
 
 ################################################################################
@@ -16,7 +16,7 @@ data "aws_route53_zone" "this" {
 }
 
 resource "aws_route53_zone" "this" {
-  count = var.create && var.create_zone ? 1 : 0
+  count = var.create && var.create_zone && !var.ignore_vpc ? 1 : 0
 
   comment           = var.comment
   delegation_set_id = var.vpc == null ? var.delegation_set_id : null
@@ -41,6 +41,41 @@ resource "aws_route53_zone" "this" {
       update = timeouts.value.update
       delete = timeouts.value.delete
     }
+  }
+}
+
+resource "aws_route53_zone" "ignore_vpc" {
+  count = var.create && var.create_zone && var.ignore_vpc ? 1 : 0
+
+  comment           = var.comment
+  delegation_set_id = var.vpc == null ? var.delegation_set_id : null
+  force_destroy     = var.force_destroy
+  name              = var.name
+  tags              = var.tags
+
+  dynamic "vpc" {
+    for_each = var.vpc != null ? var.vpc : {}
+
+    content {
+      vpc_id     = vpc.value.vpc_id
+      vpc_region = vpc.value.vpc_region
+    }
+  }
+
+  dynamic "timeouts" {
+    for_each = var.timeouts != null ? [var.timeouts] : []
+
+    content {
+      create = timeouts.value.create
+      update = timeouts.value.update
+      delete = timeouts.value.delete
+    }
+  }
+
+  # Prevent the deletion of associated VPCs after the initial creation.
+  # See documentation on aws_route53_zone_association for details
+  lifecycle {
+    ignore_changes = [vpc]
   }
 }
 
