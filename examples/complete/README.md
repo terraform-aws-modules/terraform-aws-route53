@@ -2,7 +2,6 @@
 
 Configuration in this directory creates:
 
-
 ## Usage
 
 To run this example you need to execute:

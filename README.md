@@ -188,6 +188,85 @@ module "zone" {
 }
 ```
 
+### Cross Account Zone Association
+
+> [!NOTE]
+> Association (`aws_route53_zone_association`) must be performed by the account that owns the VPC.
+>
+> Association authorization (`aws_route53_vpc_association_authorization`) must be performed by the account that owns the zone.
+>
+> Hence why the `aws_route53_zone_association` resource is *outside* the scope of the module, but the authorization (`aws_route53_vpc_association_authorization`) is *inside* the scope of the module.
+
+> [!CAUTION]
+> Since Terraform does not support variables in the `lifecycle_block`, the `ignore_vpc` variable is used to switch between two resources: `aws_route53_zone.this` and `aws_route53_zone.ignore_vpc`.
+> Therefore, if you changes this value after resources have been created, Terraform will attempt to destroy and recreate the Route53 zone which is usually not desired. To avoid this,
+> you will need to perform the appropriate state move commands/blocks between the two resources.
+>
+> Changing from `ignore_vpc = false` to `ignore_vpc = true`:
+>
+> ```bash
+>terraform state mv 'module.zone.aws_route53_zone.this[0]' 'module.zone.aws_route53_zone.ignore_vpc[0]'
+> ```
+>
+> Or using a state block:
+>
+>```hcl
+>moved {
+>  from = module.zone.aws_route53_zone.this[0]
+>  to   = module.zone.aws_route53_zone.ignore_vpc[0]
+>}
+> ```
+>
+> Changing from `ignore_vpc = true` to `ignore_vpc = false`:
+>
+>```bash
+>terraform state mv 'module.zone.aws_route53_zone.ignore_vpc[0]' 'module.zone.aws_route53_zone.this[0]'
+> ```
+>
+> Or using a state block:
+>
+>```hcl
+>moved {
+>  from = module.zone.aws_route53_zone.ignore_vpc[0]
+>  to   = module.zone.aws_route53_zone.this[0]
+>}
+> ```
+>
+
+```hcl
+module "zone" {
+  source = "terraform-aws-modules/route53/aws"
+
+  name    = "terraform-aws-modules-example.com"
+  comment = "Private zone for terraform-aws-modules example"
+
+  # Ignore VPC after creation to avoid disruptive diff with associations
+  ignore_vpc = true
+  vpc = {
+    default = {
+      vpc_id     = "vpc-1234556abcdef"
+      vpc_region = "eu-west-1"
+    }
+  }
+
+  vpc_association_authorizations = {
+    external = {
+      vpc_id     = "vpc-987564fedcba"
+      vpc_region = "eu-west-1"
+    }
+    external_region = {
+      vpc_id     = "vpc-1a2b3c4d56e7f8"
+      vpc_region = "us-east-1"
+    }
+  }
+
+  tags = {
+    Environment = "example"
+    Project     = "terraform-aws-route53"
+  }
+}
+```
+
 ## Sub-Modules
 
 The following independent sub-modules are available:
@@ -201,6 +280,7 @@ See the respective module directories for examples and documentation.
 ## Examples
 
 - [Complete](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/examples/complete)
+- [Cross Account](https://github.com/terraform-aws-modules/terraform-aws-route53/tree/master/examples/cross-account)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -230,6 +310,7 @@ See the respective module directories for examples and documentation.
 | [aws_route53_key_signing_key.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_key_signing_key) | resource |
 | [aws_route53_record.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
 | [aws_route53_vpc_association_authorization.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_vpc_association_authorization) | resource |
+| [aws_route53_zone.ignore_vpc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone) | resource |
 | [aws_route53_zone.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone) | resource |
 | [aws_route53_zone.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
 
@@ -248,6 +329,7 @@ See the respective module directories for examples and documentation.
 | <a name="input_dnssec_kms_key_tags"></a> [dnssec\_kms\_key\_tags](#input\_dnssec\_kms\_key\_tags) | Additional tags to apply to the KMS key created for DNSSEC signing | `map(string)` | `{}` | no |
 | <a name="input_enable_dnssec"></a> [enable\_dnssec](#input\_enable\_dnssec) | Whether to enable DNSSEC for the Route53 zone | `bool` | `false` | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | Whether to destroy all records (possibly managed outside of Terraform) in the zone when destroying the zone | `bool` | `null` | no |
+| <a name="input_ignore_vpc"></a> [ignore\_vpc](#input\_ignore\_vpc) | Determines whether to ignore VPC association changes after creation to avoid disruptive diffs when using `aws_route53_zone_association` resource(s). Changing is a destructive action; users should be prepared to use Terraform state move commands/blocks when changing this value | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | This is the name of the hosted zone | `string` | `""` | no |
 | <a name="input_private_zone"></a> [private\_zone](#input\_private\_zone) | Whether the hosted zone is private. Only applicable when `create_zone = false` | `bool` | `false` | no |
 | <a name="input_records"></a> [records](#input\_records) | A map of Route53 records to create in the zone. The key can be used as the subdomain name, or `name` can be used to specify the full name | <pre>map(object({<br/>    alias = optional(object({<br/>      evaluate_target_health = optional(bool, false)<br/>      name                   = string<br/>      zone_id                = string<br/>    }))<br/>    allow_overwrite = optional(bool)<br/>    cidr_routing_policy = optional(object({<br/>      collection_id = string<br/>      location_name = string<br/>    }))<br/>    failover_routing_policy = optional(object({<br/>      type = string<br/>    }))<br/>    geolocation_routing_policy = optional(object({<br/>      continent   = optional(string)<br/>      country     = optional(string)<br/>      subdivision = optional(string)<br/>    }))<br/>    geoproximity_routing_policy = optional(object({<br/>      aws_region = optional(string)<br/>      bias       = optional(number)<br/>      coordinates = optional(list(object({<br/>        latitude  = number<br/>        longitude = number<br/>      })))<br/>      local_zone_group = optional(string)<br/>    }))<br/>    health_check_id = optional(string)<br/>    latency_routing_policy = optional(object({<br/>      region = string<br/>    }))<br/>    multivalue_answer_routing_policy = optional(bool)<br/>    name                             = optional(string)<br/>    full_name                        = optional(string)<br/>    records                          = optional(list(string))<br/>    set_identifier                   = optional(string)<br/>    ttl                              = optional(number)<br/>    type                             = string<br/>    weighted_routing_policy = optional(object({<br/>      weight = number<br/>    }))<br/>    timeouts = optional(object({<br/>      create = optional(string)<br/>      update = optional(string)<br/>      delete = optional(string)<br/>    }))<br/>  }))</pre> | `{}` | no |

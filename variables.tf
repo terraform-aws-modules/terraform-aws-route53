@@ -20,6 +20,12 @@ variable "create_zone" {
   default     = true
 }
 
+variable "ignore_vpc" {
+  description = "Determines whether to ignore VPC association changes after creation to avoid disruptive diffs when using `aws_route53_zone_association` resource(s). Changing is a destructive action; users should be prepared to use Terraform state move commands/blocks when changing this value"
+  type        = bool
+  default     = false
+}
+
 variable "private_zone" {
   description = "Whether the hosted zone is private. Only applicable when `create_zone = false`"
   type        = bool
