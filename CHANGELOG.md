@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.0.2](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.0.1...v6.0.2) (2025-09-25)
+
+
+### Bug Fixes
+
+* Catch error and fall back when `records.name` is not provided ([#127](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/127)) ([6391f1b](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/6391f1b7c44c4e854f31c776b78868d5194c668b))
+
 ## [6.0.1](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.0.0...v6.0.1) (2025-09-23)
 
 
