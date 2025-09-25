@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.1.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.0.2...v6.1.0) (2025-09-25)
+
+
+### Features
+
+* Add support for ignoring `vpc` changes to support cross account zone associations ([#128](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/128)) ([8e74e63](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/8e74e63ef06a97d8c632c2e2b4437c9cc1fb9ee5))
+
 ## [6.0.2](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.0.1...v6.0.2) (2025-09-25)
 
 
