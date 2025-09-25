@@ -197,6 +197,42 @@ module "zone" {
 >
 > Hence why the `aws_route53_zone_association` resource is *outside* the scope of the module, but the authorization (`aws_route53_vpc_association_authorization`) is *inside* the scope of the module.
 
+> [!CAUTION]
+> Since Terraform does not support variables in the `lifecycle_block`, the `ignore_vpc` variable is used to switch between two resources: `aws_route53_zone.this` and `aws_route53_zone.ignore_vpc`.
+> Therefore, if you changes this value after resources have been created, Terraform will attempt to destroy and recreate the Route53 zone which is usually not desired. To avoid this,
+> you will need to perform the appropriate state move commands/blocks between the two resources.
+>
+> Changing from `ignore_vpc = false` to `ignore_vpc = true`:
+>
+> ```bash
+>terraform state mv 'module.zone.aws_route53_zone.this[0]' 'module.zone.aws_route53_zone.ignore_vpc[0]'
+> ```
+>
+> Or using a state block:
+>
+>```hcl
+>moved {
+>  from = module.zone.aws_route53_zone.this[0]
+>  to   = module.zone.aws_route53_zone.ignore_vpc[0]
+>}
+> ```
+>
+> Changing from `ignore_vpc = true` to `ignore_vpc = false`:
+>
+>```bash
+>terraform state mv 'module.zone.aws_route53_zone.ignore_vpc[0]' 'module.zone.aws_route53_zone.this[0]'
+> ```
+>
+> Or using a state block:
+>
+>```hcl
+>moved {
+>  from = module.zone.aws_route53_zone.ignore_vpc[0]
+>  to   = module.zone.aws_route53_zone.this[0]
+>}
+> ```
+>
+
 ```hcl
 module "zone" {
   source = "terraform-aws-modules/route53/aws"
