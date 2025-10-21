@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.1.1](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.1.0...v6.1.1) (2025-10-21)
+
+### Bug Fixes
+
+* Update CI workflow versions to latest ([#129](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/129)) ([b760b4e](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/b760b4eaf60afef7d7a9da84d72f4846aae0b352))
+
 ## [6.1.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.0.2...v6.1.0) (2025-09-25)
 
 
