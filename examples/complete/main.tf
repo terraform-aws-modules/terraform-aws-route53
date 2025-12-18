@@ -243,7 +243,7 @@ module "resolver_endpoint_outbound" {
       subnet_id = element(module.vpc.private_subnets, 0)
     },
     {
-      ip        = "10.0.16.35"
+      ip        = "10.0.16.275"
       subnet_id = element(module.vpc.private_subnets, 1)
     }
   ]
