@@ -56,6 +56,12 @@ variable "force_destroy" {
   default     = null
 }
 
+variable "enable_accelerated_recovery" {
+  description = "Whether to enable Route 53 Accelerated Recovery for the public hosted zone. When enabled, provides a 60-minute RTO for resuming DNS record management if the US East (N. Virginia) Region becomes unavailable. Only applies to public hosted zones"
+  type        = bool
+  default     = null
+}
+
 variable "name" {
   description = "This is the name of the hosted zone"
   type        = string

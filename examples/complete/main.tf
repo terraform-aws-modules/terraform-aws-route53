@@ -28,6 +28,9 @@ module "zone_public" {
   name    = "terraform-aws-modules-example.com"
   comment = "Public zone for terraform-aws-modules example"
 
+  # Accelerated Recovery - provides 60-minute RTO for DNS management if us-east-1 is unavailable
+  enable_accelerated_recovery = false
+
   # DNSSEC
   enable_dnssec = true
 
