@@ -15,7 +15,7 @@ module "wrapper" {
   enable_dnssec                  = try(each.value.enable_dnssec, var.defaults.enable_dnssec, false)
   force_destroy                  = try(each.value.force_destroy, var.defaults.force_destroy, null)
   ignore_vpc                     = try(each.value.ignore_vpc, var.defaults.ignore_vpc, false)
-  name                           = try(each.value.name, var.defaults.name, "")
+  name                           = try(each.value.name, var.defaults.name, each.key)
   private_zone                   = try(each.value.private_zone, var.defaults.private_zone, false)
   records                        = try(each.value.records, var.defaults.records, {})
   tags                           = try(each.value.tags, var.defaults.tags, {})
