@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.2.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.1.1...v6.2.0) (2026-01-08)
+
+### Features
+
+* Add provider meta user-agent ([#131](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/131)) ([2104bd7](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/2104bd7d017afe109c62c36747d968f594961db6))
+
 ## [6.1.1](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.1.0...v6.1.1) (2025-10-21)
 
 ### Bug Fixes
