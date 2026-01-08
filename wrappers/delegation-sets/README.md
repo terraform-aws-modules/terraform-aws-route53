@@ -70,9 +70,9 @@ module "wrapper" {
 
 ```hcl
 terraform {
-  source = "tfr:///terraform-aws-modules/s3-bucket/aws//wrappers"
+  source = "tfr:///terraform-aws-modules/route53/aws//wrappers/delegation-sets"
   # Alternative source:
-  # source = "git::git@github.com:terraform-aws-modules/terraform-aws-s3-bucket.git//wrappers?ref=master"
+  # source = "git::git@github.com:terraform-aws-modules/terraform-aws-route53.git//wrappers/delegation-sets?ref=master"
 }
 
 inputs = {

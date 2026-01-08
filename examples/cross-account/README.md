@@ -67,15 +67,15 @@ Note that this example may create resources which will incur monetary charges on
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.27 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.28 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.27 |
-| <a name="provider_aws.external"></a> [aws.external](#provider\_aws.external) | >= 6.27 |
-| <a name="provider_aws.external_region"></a> [aws.external\_region](#provider\_aws.external\_region) | >= 6.27 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.28 |
+| <a name="provider_aws.external"></a> [aws.external](#provider\_aws.external) | >= 6.28 |
+| <a name="provider_aws.external_region"></a> [aws.external\_region](#provider\_aws.external\_region) | >= 6.28 |
 
 ## Modules
 
