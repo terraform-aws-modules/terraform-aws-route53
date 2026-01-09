@@ -18,11 +18,12 @@ data "aws_route53_zone" "this" {
 resource "aws_route53_zone" "this" {
   count = var.create && var.create_zone && !var.ignore_vpc ? 1 : 0
 
-  comment           = var.comment
-  delegation_set_id = var.vpc == null ? var.delegation_set_id : null
-  force_destroy     = var.force_destroy
-  name              = var.name
-  tags              = var.tags
+  comment                     = var.comment
+  delegation_set_id           = var.vpc == null ? var.delegation_set_id : null
+  enable_accelerated_recovery = var.vpc == null ? var.enable_accelerated_recovery : null
+  force_destroy               = var.force_destroy
+  name                        = var.name
+  tags                        = var.tags
 
   dynamic "vpc" {
     for_each = var.vpc != null ? var.vpc : {}
@@ -47,11 +48,12 @@ resource "aws_route53_zone" "this" {
 resource "aws_route53_zone" "ignore_vpc" {
   count = var.create && var.create_zone && var.ignore_vpc ? 1 : 0
 
-  comment           = var.comment
-  delegation_set_id = var.vpc == null ? var.delegation_set_id : null
-  force_destroy     = var.force_destroy
-  name              = var.name
-  tags              = var.tags
+  comment                     = var.comment
+  delegation_set_id           = var.vpc == null ? var.delegation_set_id : null
+  enable_accelerated_recovery = var.vpc == null ? var.enable_accelerated_recovery : null
+  force_destroy               = var.force_destroy
+  name                        = var.name
+  tags                        = var.tags
 
   dynamic "vpc" {
     for_each = var.vpc != null ? var.vpc : {}

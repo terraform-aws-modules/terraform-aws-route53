@@ -12,6 +12,7 @@ module "wrapper" {
   dnssec_kms_key_arn             = try(each.value.dnssec_kms_key_arn, var.defaults.dnssec_kms_key_arn, null)
   dnssec_kms_key_description     = try(each.value.dnssec_kms_key_description, var.defaults.dnssec_kms_key_description, "Route53 DNSSEC KMS Key")
   dnssec_kms_key_tags            = try(each.value.dnssec_kms_key_tags, var.defaults.dnssec_kms_key_tags, {})
+  enable_accelerated_recovery    = try(each.value.enable_accelerated_recovery, var.defaults.enable_accelerated_recovery, null)
   enable_dnssec                  = try(each.value.enable_dnssec, var.defaults.enable_dnssec, false)
   force_destroy                  = try(each.value.force_destroy, var.defaults.force_destroy, null)
   ignore_vpc                     = try(each.value.ignore_vpc, var.defaults.ignore_vpc, false)
