@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.3.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.2.0...v6.3.0) (2026-01-09)
+
+### Features
+
+* Add support support for `enable_accelerated_recovery` ([#132](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/132)) ([8e269ce](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/8e269cea790d804c35fd49318e97401cd1d2257b))
+
 ## [6.2.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.1.1...v6.2.0) (2026-01-08)
 
 ### Features
