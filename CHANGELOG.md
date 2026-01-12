@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.4.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.3.0...v6.4.0) (2026-01-12)
+
+### Features
+
+* Allow self in alias records within same zone ([#134](https://github.com/terraform-aws-modules/terraform-aws-route53/issues/134)) ([891b433](https://github.com/terraform-aws-modules/terraform-aws-route53/commit/891b43337f6113fb3f6ae2a90b9a3f67194adbde))
+
 ## [6.3.0](https://github.com/terraform-aws-modules/terraform-aws-route53/compare/v6.2.0...v6.3.0) (2026-01-09)
 
 ### Features
