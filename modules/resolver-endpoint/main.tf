@@ -19,11 +19,12 @@ resource "aws_route53_resolver_endpoint" "this" {
     }
   }
 
-  name                   = var.name
-  resolver_endpoint_type = var.type
-  security_group_ids     = concat(aws_security_group.this[*].id, var.security_group_ids)
-  protocols              = var.protocols
-  tags                   = var.tags
+  name                         = var.name
+  resolver_endpoint_type       = var.type
+  rni_enhanced_metrics_enabled = var.rni_enhanced_metrics_enabled
+  security_group_ids           = concat(aws_security_group.this[*].id, var.security_group_ids)
+  protocols                    = var.protocols
+  tags                         = var.tags
 }
 
 ################################################################################
