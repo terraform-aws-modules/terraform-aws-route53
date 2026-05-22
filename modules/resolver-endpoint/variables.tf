@@ -60,6 +60,12 @@ variable "security_group_ids" {
   default     = []
 }
 
+variable "rni_enhanced_metrics_enabled" {
+  description = "Boolean indicating whether RNI enhanced metrics are enabled for the Resolver endpoint. Once set, changing the value back to false requires explicitly specifying false rather than removing the argument."
+  type        = bool
+  default     = false
+}
+
 ################################################################################
 # Security Group
 ################################################################################
