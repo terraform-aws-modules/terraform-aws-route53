@@ -195,6 +195,7 @@ module "resolver_endpoint_inbound" {
   direction = "INBOUND"
   type      = "IPV4"
   protocols = ["Do53", "DoH"]
+  rni_enhanced_metrics_enabled = true
 
   ip_address = [
     {
@@ -238,6 +239,7 @@ module "resolver_endpoint_outbound" {
   direction = "OUTBOUND"
   type      = "IPV4"
   protocols = ["Do53", "DoH"]
+  rni_enhanced_metrics_enabled = true
 
   # Using fixed IP addresses
   ip_address = [
