@@ -18,6 +18,7 @@ module "resolver_endpoint" {
   direction = "INBOUND"
   type      = "IPV4"
   protocols = ["Do53", "DoH"]
+  rni_enhanced_metrics_enabled = true
 
   ip_address = [
     {
@@ -68,6 +69,7 @@ module "resolver_endpoint" {
   direction = "OUTBOUND"
   type      = "IPV4"
   protocols = ["Do53", "DoH"]
+  rni_enhanced_metrics_enabled = true
 
   ip_address = [
     {
