@@ -191,10 +191,10 @@ module "zone_disabled" {
 module "resolver_endpoint_inbound" {
   source = "../../modules/resolver-endpoint"
 
-  name      = "${local.name}-inbound"
-  direction = "INBOUND"
-  type      = "IPV4"
-  protocols = ["Do53", "DoH"]
+  name                         = "${local.name}-inbound"
+  direction                    = "INBOUND"
+  type                         = "IPV4"
+  protocols                    = ["Do53", "DoH"]
   rni_enhanced_metrics_enabled = true
 
   ip_address = [
@@ -235,10 +235,10 @@ module "resolver_endpoint_inbound" {
 module "resolver_endpoint_outbound" {
   source = "../../modules/resolver-endpoint"
 
-  name      = "${local.name}-outbound"
-  direction = "OUTBOUND"
-  type      = "IPV4"
-  protocols = ["Do53", "DoH"]
+  name                         = "${local.name}-outbound"
+  direction                    = "OUTBOUND"
+  type                         = "IPV4"
+  protocols                    = ["Do53", "DoH"]
   rni_enhanced_metrics_enabled = true
 
   # Using fixed IP addresses
