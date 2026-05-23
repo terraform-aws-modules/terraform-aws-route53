@@ -10,6 +10,7 @@ module "wrapper" {
   name                           = try(each.value.name, var.defaults.name, null)
   protocols                      = try(each.value.protocols, var.defaults.protocols, [])
   region                         = try(each.value.region, var.defaults.region, null)
+  rni_enhanced_metrics_enabled   = try(each.value.rni_enhanced_metrics_enabled, var.defaults.rni_enhanced_metrics_enabled, false)
   rules                          = try(each.value.rules, var.defaults.rules, {})
   security_group_description     = try(each.value.security_group_description, var.defaults.security_group_description, null)
   security_group_egress_rules    = try(each.value.security_group_egress_rules, var.defaults.security_group_egress_rules, {})
