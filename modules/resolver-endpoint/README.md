@@ -129,14 +129,14 @@ module "resolver_endpoint" {
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.28 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.28 |
 
 ## Modules
@@ -146,7 +146,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_route53_resolver_endpoint.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_resolver_endpoint) | resource |
 | [aws_route53_resolver_rule.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_resolver_rule) | resource |
 | [aws_route53_resolver_rule_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_resolver_rule_association) | resource |
@@ -159,7 +159,7 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_create"></a> [create](#input\_create) | Determines whether resources will be created (affects all resources) | `bool` | `true` | no |
 | <a name="input_create_security_group"></a> [create\_security\_group](#input\_create\_security\_group) | Determines if a security group is created | `bool` | `true` | no |
 | <a name="input_direction"></a> [direction](#input\_direction) | Direction of DNS queries to or from the Route 53 Resolver endpoint. Valid values are `INBOUND` (resolver forwards DNS queries to the DNS service for a VPC from your network or another VPC) or `OUTBOUND` (resolver forwards DNS queries from the DNS service for a VPC to your network or another VPC) | `string` | `"INBOUND"` | no |
@@ -182,7 +182,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the Resolver Endpoint |
 | <a name="output_host_vpc_id"></a> [host\_vpc\_id](#output\_host\_vpc\_id) | The VPC ID used by the Resolver Endpoint |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the Resolver Endpoint |

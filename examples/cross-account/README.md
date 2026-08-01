@@ -65,14 +65,14 @@ Note that this example may create resources which will incur monetary charges on
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.28 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.28 |
 | <a name="provider_aws.external"></a> [aws.external](#provider\_aws.external) | >= 6.28 |
 | <a name="provider_aws.external_region"></a> [aws.external\_region](#provider\_aws.external\_region) | >= 6.28 |
@@ -80,7 +80,7 @@ Note that this example may create resources which will incur monetary charges on
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | ~> 6.0 |
 | <a name="module_vpc_external"></a> [vpc\_external](#module\_vpc\_external) | terraform-aws-modules/vpc/aws | ~> 6.0 |
 | <a name="module_vpc_external_region"></a> [vpc\_external\_region](#module\_vpc\_external\_region) | terraform-aws-modules/vpc/aws | ~> 6.0 |
@@ -89,7 +89,7 @@ Note that this example may create resources which will incur monetary charges on
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_route53_zone_association.external](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone_association) | resource |
 | [aws_route53_zone_association.external_region](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone_association) | resource |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
@@ -98,13 +98,13 @@ Note that this example may create resources which will incur monetary charges on
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_external_account_role_arn"></a> [external\_account\_role\_arn](#input\_external\_account\_role\_arn) | The ARN of the role to assume in the external account containing the VPC to be associated to the Route53 private zone | `string` | `"YOU MUST PROVIDE THIS VALUE"` | no |
 
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_zone_arn"></a> [zone\_arn](#output\_zone\_arn) | Zone ARN of Route53 zone |
 | <a name="output_zone_dnssec_kms_key_arn"></a> [zone\_dnssec\_kms\_key\_arn](#output\_zone\_dnssec\_kms\_key\_arn) | The Amazon Resource Name (ARN) of the key |
 | <a name="output_zone_dnssec_kms_key_id"></a> [zone\_dnssec\_kms\_key\_id](#output\_zone\_dnssec\_kms\_key\_id) | The globally unique identifier for the key |

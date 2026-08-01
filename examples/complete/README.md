@@ -18,20 +18,20 @@ Note that this example may create resources which will incur monetary charges on
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.28 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.28 |
 
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_cloudfront"></a> [cloudfront](#module\_cloudfront) | terraform-aws-modules/cloudfront/aws | ~> 5.0 |
 | <a name="module_resolver_endpoint_disabled"></a> [resolver\_endpoint\_disabled](#module\_resolver\_endpoint\_disabled) | ../../modules/resolver-endpoint | n/a |
 | <a name="module_resolver_endpoint_inbound"></a> [resolver\_endpoint\_inbound](#module\_resolver\_endpoint\_inbound) | ../../modules/resolver-endpoint | n/a |
@@ -47,7 +47,7 @@ Note that this example may create resources which will incur monetary charges on
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_route53_health_check.failover](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_health_check) | resource |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 
@@ -58,7 +58,7 @@ No inputs.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_inbound_resolver_endpoint_arn"></a> [inbound\_resolver\_endpoint\_arn](#output\_inbound\_resolver\_endpoint\_arn) | The ARN of the Resolver Endpoint |
 | <a name="output_inbound_resolver_endpoint_host_vpc_id"></a> [inbound\_resolver\_endpoint\_host\_vpc\_id](#output\_inbound\_resolver\_endpoint\_host\_vpc\_id) | The VPC ID used by the Resolver Endpoint |
 | <a name="output_inbound_resolver_endpoint_id"></a> [inbound\_resolver\_endpoint\_id](#output\_inbound\_resolver\_endpoint\_id) | The ID of the Resolver Endpoint |
